@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDud: 0
-  lifeSpan: 50
+  lifeSpan: 25
   leftButton: {fileID: 0}
   rightButton: {fileID: 0}
   moveSpeed: 10

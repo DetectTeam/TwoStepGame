@@ -123,7 +123,7 @@ public class BallLauncher : MonoBehaviour
         if( !needReload )
         {     
             if ( isWhiteBullet )
-                isDud = CheckForDud( 50 );
+                isDud = CheckForDud( 20 );
             else
                 isDud = CheckForDud( 80 );
                 
