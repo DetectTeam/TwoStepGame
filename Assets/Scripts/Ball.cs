@@ -14,6 +14,7 @@ public class Ball : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 10;
 
+
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -34,19 +35,20 @@ public class Ball : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D col)
-    {
+    {    
         if( isDud )
         {
             if( col.tag == "Enemy" || col.tag == "Wall"  )
             {
                 Debug.Log( "is dud" );
                 Messenger.Broadcast( "EnableReloadButtons" );
-                Destroy( gameObject );    
+                Destroy( gameObject );  
+
             }
         }
         else
         {
-            if( col.tag == "Enemy" )
+            if( col.tag == "Enemy"  )
             {
                 Messenger.Broadcast( "EnableReloadButtons" );
                 Destroy( gameObject );
@@ -54,18 +56,23 @@ public class Ball : MonoBehaviour
         } 
     }
 
+    private void OnCollisionEnter2D( Collision2D col )
+    {
+        lifeSpan --;
+
+        if( lifeSpan == 0 )
+            Destroy( gameObject );
+    }
+
     private IEnumerator BallLifeSpan()
     {
         Debug.Log( "Ball Life Span..." );
         yield return new WaitForSeconds( lifeSpan );
         
-
         Messenger.Broadcast( "EnableReloadButtons" );
         Destroy( gameObject );
    
     }
-
-  
 
     private void OnBecameInvisible() 
     {

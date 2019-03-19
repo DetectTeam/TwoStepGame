@@ -21,12 +21,17 @@ public class BallLauncher : MonoBehaviour
     private bool isDud;
     [SerializeField] private bool needReload;
    
-
     [SerializeField] private GameObject ballPrefab;
     [SerializeField] private GameObject dudBallPrefab;
 
     [SerializeField] private Vector3 startPosition;
     [SerializeField] private Vector3 endPosition;
+
+    [SerializeField] private bool isWhiteBullet = true;
+
+    [SerializeField] private Color white;
+    [SerializeField] private Color red;
+
 
     
 
@@ -34,7 +39,13 @@ public class BallLauncher : MonoBehaviour
     {
         blockSpawner = FindObjectOfType<BlockSpawner>();
         launchPreview = GetComponent<LaunchPreview>();
+
         //CreateBall();
+    }
+
+    private void start()
+    {
+        launchPreview.SetStartPoint(transform.position);
     }
 
     public void ReturnBall()
@@ -50,11 +61,15 @@ public class BallLauncher : MonoBehaviour
     private GameObject CreateBall( bool b )
     {
         GameObject ball = null;
-        
-        if( b )    
-            ball = Instantiate( ballPrefab ) as GameObject;
+
+        if( b )
+        { 
+            ball = Instantiate( dudBallPrefab ) as GameObject;
+        }
         else
-             ball = Instantiate( dudBallPrefab ) as GameObject;
+        {
+             ball = Instantiate( ballPrefab ) as GameObject;
+        }
         //balls.Add(ball);
        // ballsReady++;
 
@@ -106,21 +121,31 @@ public class BallLauncher : MonoBehaviour
         direction.Normalize();
 
         if( !needReload )
-        {
-            isDud = CheckForDud();
+        {     
+            if ( isWhiteBullet )
+                isDud = CheckForDud( 50 );
+            else
+                isDud = CheckForDud( 80 );
                 
-            GameObject ball = CreateBall( isDud );
+            GameObject ball = CreateBall( isDud  );
 
             ball.transform.position = transform.position;
+
+            if( isWhiteBullet )
+                ball.GetComponent<SpriteRenderer>().color = white;
+            else
+                ball.GetComponent<SpriteRenderer>().color = red;
+              
             ball.gameObject.SetActive(true);
             ball.GetComponent<Rigidbody2D>().AddForce(-direction);
+
             needReload = true;
 
-            }
+        }
 
-            yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.25f);
 
-            DisableDrag();
+        DisableDrag();
 
             
         
@@ -143,12 +168,15 @@ public class BallLauncher : MonoBehaviour
         startPosition = worldPosition;
     }
 
-    public bool CheckForDud()
+    public bool CheckForDud( float percentage )
     {
         bool b;
-        
+        var rand = Random.value;
+
+        Debug.Log( "Check For Dud: " + rand + " " + ( percentage / 100 ) );
+
         //Weighted Random goes here
-       if( Random.value < 0.7f )
+       if( rand < ( percentage / 100 ) )
         b = true;
        else
         b = false;
@@ -175,5 +203,18 @@ public class BallLauncher : MonoBehaviour
     {
         isDraggable = true;
         //GetComponent<Collider2D>().enabled = true;
+    }
+
+    public void BulletColourProbability( float percentage )
+    {  
+       
+        var rand = Random.value;
+
+        Debug.Log( "Rand: " + rand + " " + percentage / 100 );
+        
+        if ( rand < ( percentage / 100 ) )
+            isWhiteBullet = true;
+        else 
+            isWhiteBullet = false;             
     }
 }

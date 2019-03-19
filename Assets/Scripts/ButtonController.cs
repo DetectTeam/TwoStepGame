@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonController : MonoBehaviour {
 
@@ -12,6 +13,9 @@ public class ButtonController : MonoBehaviour {
 	{
 		Messenger.AddListener( "EnableReloadButtons" , EnableReloadButton );
 		Messenger.AddListener( "DisableReloadButtons" , DisableReloadButton );
+
+		Messenger.MarkAsPermanent( "EnableReloadButtons" );
+		Messenger.MarkAsPermanent( "DisableReloadButtons" );
 	}
 
 	private void OnDisable()
@@ -30,6 +34,11 @@ public class ButtonController : MonoBehaviour {
 	{
 		leftButton.interactable = false;
 		rightButton.interactable = false;
+	}
+
+	public void LoadScene()
+	{
+		SceneManager.LoadScene( "Game" );
 	}
 
 }
