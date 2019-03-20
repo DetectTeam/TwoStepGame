@@ -9,6 +9,8 @@ public class Spawner : MonoBehaviour {
 
 	[SerializeField] private Transform target;
 
+	
+
 	[SerializeField] private float delay;
 	// Use this for initialization
 	private IEnumerator Start () {
@@ -19,7 +21,7 @@ public class Spawner : MonoBehaviour {
 			GameObject go = ObjectPooler.SharedInstance.GetPooledObject( 0 );
 
 			//spawn at a random location on screen within top third of screen.
-			go.transform.position =  new Vector2( Random.Range( -2f, 2f ),Random.Range( 4.0f, 2.0f ) );
+			go.transform.position =  new Vector2( Random.Range( -2f, 2f ),Random.Range( 5.0f, 4.5f ) );
 			go.transform.rotation = Quaternion.identity;
 			Zombie zombie = go.GetComponent<Zombie>();
 			//zombie.Target = target;
