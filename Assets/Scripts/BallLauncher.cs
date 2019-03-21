@@ -32,7 +32,7 @@ public class BallLauncher : MonoBehaviour
     [SerializeField] private Color white;
     [SerializeField] private Color red;
 
-
+     private IEnumerator coroutine;
     
 
     private void Awake()
@@ -81,37 +81,63 @@ public class BallLauncher : MonoBehaviour
         if( !isDraggable )
             return;
        
-        // if( !EventSystem.current.IsPointerOverGameObject() )
-        // {
-        //     return;
-        // }
+     
 
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.back * -10;
                 
         if (Input.GetMouseButtonDown(0))
         {
-            StartDrag(worldPosition);
+            if (EventSystem.current.IsPointerOverGameObject(  ))
+            {
+                Debug.Log("Start");
+            }
+            else
+            {
+                  StartDrag(worldPosition);
+            }
+
+            TestHit();
+            
+          
         }
         else if (Input.GetMouseButton(0))
         {
-            ContinueDrag(worldPosition);
+            if (EventSystem.current.IsPointerOverGameObject(  ))
+            {
+                Debug.Log("DRag");
+            }
+            else
+            {
+                ContinueDrag(worldPosition);
+            }    
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            EndDrag(worldPosition);
+            if (EventSystem.current.IsPointerOverGameObject(  ))
+            {
+                Debug.Log("END");
+            }
+            else
+            {
+                EndDrag(worldPosition);
+            }
+            
         }       
     }
 
     private void EndDrag( Vector3 worldPosition )
     {
-        Debug.Log( "End drag" );
+        Debug.Log( "End drag is called......." );
         
         float distance = Vector3.Distance( startPosition , worldPosition );
         Debug.Log( "Distance : " + distance );
         if( distance > 1.0f )
         {
-            StartCoroutine(LaunchBalls());
             Messenger.Broadcast( "DisableReloadButtons" );
+            coroutine = LaunchBalls();
+            StartCoroutine( coroutine );
+            distance = 0;
+
         }
     }
 
@@ -146,6 +172,14 @@ public class BallLauncher : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
 
         DisableDrag();
+
+        yield return new WaitForSeconds( 1.0f );
+
+        Messenger.Broadcast( "EnableReloadButtons" );
+
+        GetComponent<BallLauncher>().enabled = false;
+
+        StopCoroutine( coroutine );
 
             
         
@@ -207,7 +241,6 @@ public class BallLauncher : MonoBehaviour
 
     public void BulletColourProbability( float percentage )
     {  
-       
         var rand = Random.value;
 
         Debug.Log( "Rand: " + rand + " " + percentage / 100 );
@@ -217,4 +250,16 @@ public class BallLauncher : MonoBehaviour
         else 
             isWhiteBullet = false;             
     }
+
+    private void TestHit()
+ {
+      Ray ray;
+      RaycastHit hit;
+     
+     ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+         if(Physics.Raycast(ray, out hit))
+         {
+             Debug.Log ( hit.collider.name );
+         }
+ }
 }

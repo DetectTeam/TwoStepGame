@@ -41,7 +41,7 @@ public class Ball : MonoBehaviour
             if( col.tag == "Enemy" || col.tag == "Wall"  )
             {
                 Debug.Log( "is dud" );
-                Messenger.Broadcast( "EnableReloadButtons" );
+               // Messenger.Broadcast( "EnableReloadButtons" );
                 Destroy( gameObject );  
 
             }
@@ -50,7 +50,7 @@ public class Ball : MonoBehaviour
         {
             if( col.tag == "Enemy"  )
             {
-                Messenger.Broadcast( "EnableReloadButtons" );
+                //Messenger.Broadcast( "EnableReloadButtons" );
                 Destroy( gameObject );
             }
         } 
@@ -69,14 +69,14 @@ public class Ball : MonoBehaviour
         Debug.Log( "Ball Life Span..." );
         yield return new WaitForSeconds( lifeSpan );
         
-        Messenger.Broadcast( "EnableReloadButtons" );
+        //Messenger.Broadcast( "EnableReloadButtons" );
         Destroy( gameObject );
    
     }
 
     private void OnBecameInvisible() 
     {
-         Messenger.Broadcast( "EnableReloadButtons" );
+         //Messenger.Broadcast( "EnableReloadButtons" );
          Destroy(gameObject);
      }
 }
