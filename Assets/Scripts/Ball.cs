@@ -11,8 +11,8 @@ public class Ball : MonoBehaviour
     [SerializeField] private Button leftButton;
     [SerializeField] private Button rightButton;
     
-    [SerializeField]
-    private float moveSpeed = 10;
+   
+    [SerializeField] private float moveSpeed = 10;
 
 
     private void Awake()
@@ -29,7 +29,7 @@ public class Ball : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         rigidbody2D.velocity = rigidbody2D.velocity.normalized * moveSpeed;
     }

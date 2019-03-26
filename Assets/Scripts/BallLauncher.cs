@@ -14,6 +14,7 @@ public class BallLauncher : MonoBehaviour
     private int ballsReady;
 
     private bool isDraggable = true;
+    public bool IsDraggable { get{ return isDraggable; } set{ isDraggable = value; } }
 
    [SerializeField] private Button leftButton;
    [SerializeField] private Button rightButton;
@@ -58,7 +59,7 @@ public class BallLauncher : MonoBehaviour
         }
     }
 
-    private GameObject CreateBall( bool b )
+    public GameObject CreateBall( bool b )
     {
         GameObject ball = null;
 
@@ -81,8 +82,6 @@ public class BallLauncher : MonoBehaviour
         if( !isDraggable )
             return;
        
-     
-
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.back * -10;
                 
         if (Input.GetMouseButtonDown(0))
@@ -139,6 +138,12 @@ public class BallLauncher : MonoBehaviour
             distance = 0;
 
         }
+    }
+
+    public void Launch()
+    {
+        var coroutine = LaunchBalls();
+        StartCoroutine( coroutine );
     }
 
     private IEnumerator LaunchBalls()
@@ -237,6 +242,7 @@ public class BallLauncher : MonoBehaviour
     {
         isDraggable = true;
         //GetComponent<Collider2D>().enabled = true;
+         GetComponent<BallLauncher>().enabled = true;
     }
 
     public void BulletColourProbability( float percentage )
@@ -252,14 +258,14 @@ public class BallLauncher : MonoBehaviour
     }
 
     private void TestHit()
- {
-      Ray ray;
-      RaycastHit hit;
+    {
+          Ray ray;
+        RaycastHit hit;
      
-     ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
          if(Physics.Raycast(ray, out hit))
          {
              Debug.Log ( hit.collider.name );
          }
- }
+    }
 }
