@@ -89,7 +89,7 @@ public class Player : MonoBehaviour
             GameObject effectObj = Instantiate(WallBounceEffectObj, other.contacts[0].point, Quaternion.identity);
             Destroy(effectObj, 0.5f);
 
-            SetBackgroundColor();
+            //SetBackgroundColor();
         }
 
         if (other.gameObject.tag == "Triangle" && isDead == false)

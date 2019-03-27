@@ -8,6 +8,12 @@ TextureImporter:
     21300006: coins_3
     21300008: coins_4
     21300010: coins_5
+    21300012: coins_6
+    21300014: coins_7
+    21300016: coins_8
+    21300018: coins_9
+    21300020: coins_10
+    21300022: coins_11
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -123,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: coins_0
+      name: coins_6
       rect:
         serializedVersion: 2
         x: 0
-        y: 15
-        width: 113
-        height: 155
+        y: 741
+        width: 456
+        height: 459
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,79 +143,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae614063aa7de45fc9e3cd3d36c048bc
+      spriteID: 0104a111009a04621889ab110b073ea2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: coins_1
-      rect:
-        serializedVersion: 2
-        x: 121
-        y: 15
-        width: 107
-        height: 156
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 349df5b8ada084cc2887af614a9db0ff
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: coins_2
-      rect:
-        serializedVersion: 2
-        x: 239
-        y: 14
-        width: 110
-        height: 156
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 728444a45b0c247de883deb3a2bcfdf1
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: coins_3
-      rect:
-        serializedVersion: 2
-        x: 366
-        y: 15
-        width: 87
-        height: 156
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cbdc106dfb9a740688284ccca6a923bd
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: coins_4
+      name: coins_7
       rect:
         serializedVersion: 2
         x: 482
-        y: 15
-        width: 96
-        height: 158
+        y: 728
+        width: 402
+        height: 472
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -217,19 +163,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8602101f50da4550832a6abf703b4ae
+      spriteID: 3011e207a1a7b4d92ad2f99b2a119e35
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: coins_5
+      name: coins_8
       rect:
         serializedVersion: 2
-        x: 597
-        y: 17
-        width: 103
-        height: 161
+        x: 913
+        y: 719
+        width: 275
+        height: 481
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,7 +183,67 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b22582e7a0c845048cfcc22cbceff3e
+      spriteID: 90305edfe4ed0404a9d07d1deba97d67
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coins_9
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 204
+        width: 295
+        height: 475
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d97164724b2e34b67adb60f433161489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coins_10
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 217
+        width: 271
+        height: 468
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87be907cf381a40cdbc99023895a18c3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coins_11
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 228
+        width: 410
+        height: 475
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ca36200a64794812912855411bd477f
       vertices: []
       indices: 
       edges: []
