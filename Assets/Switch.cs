@@ -33,7 +33,7 @@ public class Switch : MonoBehaviour
 
         for( int x = 0; x < delay; x++ )
         {
-            counter.text = ( delay - x ).ToString();
+            //counter.text = ( delay - x ).ToString();
             yield return new WaitForSeconds( 1f );
            
         }

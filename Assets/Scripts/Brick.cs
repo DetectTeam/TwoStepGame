@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Brick : MonoBehaviour
+public class Bricks : MonoBehaviour
 {
    
     [SerializeField] private bool isBreakable;
