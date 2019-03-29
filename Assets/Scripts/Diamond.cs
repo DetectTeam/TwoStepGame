@@ -6,7 +6,7 @@ public class Diamond : MonoBehaviour
 {
      private void OnTriggerEnter2D( Collider2D col )
     {
-        if( col.tag == "Ball" )
+        if( col.tag == "Ball" || col.tag == "Dud" )
         {
            Destroy( gameObject );
         }

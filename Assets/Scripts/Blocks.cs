@@ -6,19 +6,23 @@ public class Blocks : MonoBehaviour
 {
    
     [SerializeField] private bool isBreakable;
-    [SerializeField] private int hitTotal;
+    [SerializeField] private float hitTotal;
 
 
     private void OnCollisionEnter2D(Collision2D col)
     {
         if( col.gameObject.tag == "Ball" && isBreakable )
         {
-            Debug.Log( "HIT" );
-            hitTotal --;
-            if( hitTotal == 0 )
-            {
-                Destroy( gameObject );
-            }
+            hitTotal  = hitTotal - 3f;
+        }
+        else if( col.gameObject.CompareTag( "Dud" ) && isBreakable )
+        {
+             hitTotal  = hitTotal - 1.5f; 
+        }
+
+        if( hitTotal <= 0 )
+        {
+            Destroy( gameObject );
         }
 
     }

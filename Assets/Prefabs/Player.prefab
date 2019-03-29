@@ -338,7 +338,7 @@ MonoBehaviour:
   lifeSpan: 20
   leftButton: {fileID: 0}
   rightButton: {fileID: 0}
-  moveSpeed: 20
+  moveSpeed: 25
 --- !u!114 &7545659545354012782
 MonoBehaviour:
   m_ObjectHideFlags: 0

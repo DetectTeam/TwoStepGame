@@ -46,6 +46,11 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private Color white;
     [SerializeField] private Color red;
+    [SerializeField] private Color grey;
+
+    [SerializeField] private GameObject currentBall;
+    [SerializeField] private SpriteRenderer ballContainer;
+    [SerializeField] private GameObject currentBallIcon;
 
 
     public enum Direction
@@ -57,6 +62,8 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         compass.transform.rotation = Quaternion.identity;
+        BulletColourProbability( 70 );
+        BuildBullet();
     }
 
 
@@ -70,29 +77,31 @@ public class GameController : MonoBehaviour
 		///iTween.LookUpdate( compass ,iTween.Hash( "looktarget", worldPos, "time", 2, "axis", "x" ) );
       
         //Get the Screen positions of the object
-         Vector2 positionOnScreen = Camera.main.WorldToViewportPoint ( compass.transform.position );
+        Vector2 positionOnScreen = Camera.main.ScreenToWorldPoint ( compass.transform.position );
          
          //Get the Screen position of the mouse
-         Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
-         
-         //Get the angle between the points
-         angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
-         
-        angle+= 80;
-       
+         Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToWorldPoint( Input.mousePosition );
 
-         if( angle >= 80 )
-            angle = 80;
+         Vector2 direction = new Vector2( mouseOnScreen.x - compass.transform.position.x,
+                                          mouseOnScreen.y - compass.transform.position.y );
 
-         if( angle <= -80 )
-            angle = -80;  
- 
-         //Ta Daaa
-         compass.transform.rotation =  Quaternion.Euler ( new Vector3( 0f,0f,angle ) );
+         //compass.transform.up = direction;
+         
+        //  //Get the angle between the points
+        angle = AngleBetweenTwoPoints( compass.transform.position, mouseOnScreen );
+         
+        // angle+= 80;
+         Debug.Log( ":/ " + angle  );
+
+        if( !IsOverUI() )
+            compass.transform.up = direction;
+        
+        //  //Ta Daaa
+        //  compass.transform.rotation =  Quaternion.Euler ( new Vector3( 0f,0f,angle ) );
 
          if ( Input.GetMouseButtonUp(0)  && !IsOverUI() && isReloaded )
          {
-            Fire();
+           // Fire();
             isReloaded = false;
          }
 
@@ -200,30 +209,18 @@ public class GameController : MonoBehaviour
         //  compass.transform.rotation = Quaternion.Lerp ( compass.transform.rotation, targetRotation , ( Time.time * speed ) ); 
     }
 
-    private void Fire()
+    public void Fire()
     {
-        //var ball = Instantiate( ballPrefab, muzzle.transform.position, muzzle.transform.rotation ) as GameObject;
-        //ball.gameObject.SetActive(true);
+        ballContainer.color = grey;
+        currentBallIcon.SetActive( false );
 
-        if ( isWhiteBullet )
-                isDud = CheckForDud( 20 );
-            else
-                isDud = CheckForDud( 80 );
+        currentBall.transform.position = muzzle.transform.position;
+        currentBall.transform.rotation = muzzle.transform.rotation;
 
-        GameObject ball = CreateBall( isDud  );
+        currentBall.SetActive(true);
 
-        ball.transform.position = muzzle.transform.position;
-        ball.transform.rotation = muzzle.transform.rotation;
-
-         if( isWhiteBullet )
-            ball.GetComponent<SpriteRenderer>().color = white;
-        else
-            ball.GetComponent<SpriteRenderer>().color = red;
-        
-        ball.gameObject.SetActive(true);
-        
-       // ball.GetComponent<Rigidbody2D>().AddForce(-direction);
-        ball.GetComponent<Rigidbody2D>().AddForce( muzzle.transform.up * 100 );
+        // ball.GetComponent<Rigidbody2D>().AddForce(-direction);
+        currentBall.GetComponent<Rigidbody2D>().AddForce( muzzle.transform.up * 100 );
     }
 
     public void Reload()
@@ -305,6 +302,7 @@ public class GameController : MonoBehaviour
         if( b )
         { 
             ball = Instantiate( dudBallPrefab ) as GameObject;
+
         }
         else
         {
@@ -313,6 +311,34 @@ public class GameController : MonoBehaviour
      
         return ball;
     }
-    
-   
+
+
+    public void BuildBullet()
+    {
+        if ( isWhiteBullet )
+            isDud = CheckForDud( 20 );
+        else
+            isDud = CheckForDud( 80 );
+
+        GameObject ball = CreateBall( isDud  );
+
+        if( isDud )
+            currentBallIcon.SetActive( true );
+        else
+            currentBallIcon.SetActive( false );   
+
+        if( isWhiteBullet )
+        {
+            ball.GetComponent<SpriteRenderer>().color = white;
+            ballContainer.color = white;
+        }
+        else
+        {
+            ball.GetComponent<SpriteRenderer>().color = red;
+            ballContainer.color = red;
+        }
+
+        currentBall = ball;
+        currentBall.SetActive( false );
+    }
 }

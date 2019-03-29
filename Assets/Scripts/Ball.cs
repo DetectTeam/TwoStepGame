@@ -62,6 +62,12 @@ public class Ball : MonoBehaviour
 
         if( lifeSpan == 0 )
             Destroy( gameObject );
+
+        if( col.gameObject.CompareTag( "Slot" )  )
+        {
+            //Messenger.Broadcast( "EnableReloadButtons" );
+            Destroy( gameObject );
+        }
     }
 
     private IEnumerator BallLifeSpan()
