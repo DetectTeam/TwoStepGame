@@ -5,6 +5,7 @@ using UnityEngine;
 public class Gate : MonoBehaviour
 {
     [SerializeField] private GameObject gateBlocks;
+    [SerializeField] private List<GameObject> blocks = new List<GameObject>();
     [SerializeField] private float delay;
 
     private void OnEnable()
@@ -37,4 +38,5 @@ public class Gate : MonoBehaviour
         yield return new WaitForSeconds( delay );
         gateBlocks.SetActive( true );
     }
+
 }

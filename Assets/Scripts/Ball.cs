@@ -42,7 +42,7 @@ public class Ball : MonoBehaviour
             {
                 Debug.Log( "is dud" );
                // Messenger.Broadcast( "EnableReloadButtons" );
-                Destroy( gameObject );  
+                gameObject.SetActive( false );
 
             }
         }
@@ -51,7 +51,7 @@ public class Ball : MonoBehaviour
             if( col.tag == "Enemy"  )
             {
                 //Messenger.Broadcast( "EnableReloadButtons" );
-                Destroy( gameObject );
+                gameObject.SetActive( false );
             }
         } 
     }
@@ -61,12 +61,12 @@ public class Ball : MonoBehaviour
         lifeSpan --;
 
         if( lifeSpan == 0 )
-            Destroy( gameObject );
+            gameObject.SetActive( false );
 
         if( col.gameObject.CompareTag( "Slot" )  )
         {
             //Messenger.Broadcast( "EnableReloadButtons" );
-            Destroy( gameObject );
+            gameObject.SetActive( false );
         }
     }
 
@@ -76,13 +76,13 @@ public class Ball : MonoBehaviour
         yield return new WaitForSeconds( lifeSpan );
         
         //Messenger.Broadcast( "EnableReloadButtons" );
-        Destroy( gameObject );
+        gameObject.SetActive( false );
    
     }
 
     private void OnBecameInvisible() 
     {
          //Messenger.Broadcast( "EnableReloadButtons" );
-         Destroy(gameObject);
+         gameObject.SetActive( false );
      }
 }

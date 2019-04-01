@@ -52,6 +52,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private SpriteRenderer ballContainer;
     [SerializeField] private GameObject currentBallIcon;
 
+    [SerializeField] private float percentageWhiteBallIsDud;
+    [SerializeField] private float percentageRedBallIsDud;
+
 
     public enum Direction
     {
@@ -91,7 +94,7 @@ public class GameController : MonoBehaviour
         angle = AngleBetweenTwoPoints( compass.transform.position, mouseOnScreen );
          
         // angle+= 80;
-         Debug.Log( ":/ " + angle  );
+      
 
         if( !IsOverUI() )
             compass.transform.up = direction;
@@ -101,14 +104,11 @@ public class GameController : MonoBehaviour
 
          if ( Input.GetMouseButtonUp(0)  && !IsOverUI() && isReloaded )
          {
-           // Fire();
+            Fire();
             isReloaded = false;
          }
 
-		//fire:
-		// if(Input.GetMouseButtonDown(0)){
-		// 	Fire();
-		// }
+		
 	}
 
      float AngleBetweenTwoPoints(Vector3 a, Vector3 b) {
@@ -221,18 +221,19 @@ public class GameController : MonoBehaviour
 
         // ball.GetComponent<Rigidbody2D>().AddForce(-direction);
         currentBall.GetComponent<Rigidbody2D>().AddForce( muzzle.transform.up * 100 );
+        StartCoroutine( EnableReloadButtons( ) );
     }
 
     public void Reload()
     {
         isReloaded = true;
         Messenger.Broadcast( "DisableReloadButtons" );
-        StartCoroutine( EnableReloadButtons( ) );
+       
     }
 
     private IEnumerator EnableReloadButtons()
     {
-        yield return new WaitForSeconds( 1.0f );
+        yield return new WaitForSeconds( 0.25f );
          Messenger.Broadcast( "EnableReloadButtons" );
     }
 
@@ -270,7 +271,7 @@ public class GameController : MonoBehaviour
         bool b;
         var rand = Random.value;
 
-        Debug.Log( "Check For Dud: " + rand + " " + ( percentage / 100 ) );
+        //Debug.Log( "Check For Dud: " + rand + " " + ( percentage / 100 ) );
 
         //Weighted Random goes here
        if( rand < ( percentage / 100 ) )
@@ -286,7 +287,7 @@ public class GameController : MonoBehaviour
         var rand = Random.value;
         bool b = false;
 
-        Debug.Log( "Rand: " + rand + " " + percentage / 100 );
+        //Debug.Log( "Rand: " + rand + " " + percentage / 100 );
         
         if ( rand < ( percentage / 100 ) )
             isWhiteBullet = true;
@@ -316,9 +317,9 @@ public class GameController : MonoBehaviour
     public void BuildBullet()
     {
         if ( isWhiteBullet )
-            isDud = CheckForDud( 20 );
+            isDud = CheckForDud( percentageWhiteBallIsDud);
         else
-            isDud = CheckForDud( 80 );
+            isDud = CheckForDud( percentageRedBallIsDud );
 
         GameObject ball = CreateBall( isDud  );
 
