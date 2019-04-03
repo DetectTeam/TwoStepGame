@@ -11,7 +11,7 @@ public class BallReturn : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        ballLauncher.ReturnBall();
+       // ballLauncher.ReturnBall();
         collision.collider.gameObject.SetActive(false);
     }
 }
