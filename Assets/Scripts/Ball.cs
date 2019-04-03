@@ -13,6 +13,7 @@ public class Ball : MonoBehaviour
     
    
     [SerializeField] private float moveSpeed = 10;
+    public float MoveSpeed { get{ return moveSpeed; } set{ moveSpeed = value; } }
 
 
     private void Awake()
@@ -63,12 +64,13 @@ public class Ball : MonoBehaviour
         if( lifeSpan == 0 )
             gameObject.SetActive( false );
 
-        if( col.gameObject.CompareTag( "Slot" )  )
+        if( col.gameObject.CompareTag( "Slot" ) || col.gameObject.CompareTag( "Crusher" )  )
         {
             //Messenger.Broadcast( "EnableReloadButtons" );
             gameObject.SetActive( false );
         }
     }
+
 
     private IEnumerator BallLifeSpan()
     {

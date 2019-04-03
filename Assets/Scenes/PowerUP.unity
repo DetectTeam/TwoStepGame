@@ -3430,6 +3430,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PurpleGate
       objectReference: {fileID: 0}
+    - target: {fileID: 5657684774597112080, guid: 1a81ae28aeb9d4442bc3368dd1771a89,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 562110816420302093, guid: 1a81ae28aeb9d4442bc3368dd1771a89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3575,11 +3580,6 @@ PrefabInstance:
       propertyPath: gateBlocks
       value: 
       objectReference: {fileID: 1855381051}
-    - target: {fileID: 5657684774597112080, guid: 1a81ae28aeb9d4442bc3368dd1771a89,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6315011594552995340, guid: 1a81ae28aeb9d4442bc3368dd1771a89,
         type: 3}
       propertyPath: m_CollisionDetection
@@ -12242,6 +12242,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 1956188153913557112, guid: 993459329cb964c7e9fa4556806aae18,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.990566
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956188153913557112, guid: 993459329cb964c7e9fa4556806aae18,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.45194402
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956188153913557112, guid: 993459329cb964c7e9fa4556806aae18,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.042052314
+      objectReference: {fileID: 0}
     - target: {fileID: 7402714865664044993, guid: 993459329cb964c7e9fa4556806aae18,
         type: 3}
       propertyPath: gate
@@ -12262,21 +12277,6 @@ PrefabInstance:
       propertyPath: halfGate
       value: 
       objectReference: {fileID: 1689483517}
-    - target: {fileID: 1956188153913557112, guid: 993459329cb964c7e9fa4556806aae18,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.990566
-      objectReference: {fileID: 0}
-    - target: {fileID: 1956188153913557112, guid: 993459329cb964c7e9fa4556806aae18,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.45194402
-      objectReference: {fileID: 0}
-    - target: {fileID: 1956188153913557112, guid: 993459329cb964c7e9fa4556806aae18,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.042052314
-      objectReference: {fileID: 0}
     - target: {fileID: 707153783904876845, guid: 993459329cb964c7e9fa4556806aae18,
         type: 3}
       propertyPath: m_inputSource
@@ -13033,6 +13033,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OrangeGate
       objectReference: {fileID: 0}
+    - target: {fileID: 5657684774597112080, guid: 1a81ae28aeb9d4442bc3368dd1771a89,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 562110816420302093, guid: 1a81ae28aeb9d4442bc3368dd1771a89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13183,11 +13188,6 @@ PrefabInstance:
       propertyPath: gateBlocks
       value: 
       objectReference: {fileID: 950360174}
-    - target: {fileID: 5657684774597112080, guid: 1a81ae28aeb9d4442bc3368dd1771a89,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1256679331, guid: 1a81ae28aeb9d4442bc3368dd1771a89, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -13850,6 +13850,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 1956188153913557112, guid: 993459329cb964c7e9fa4556806aae18,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956188153913557112, guid: 993459329cb964c7e9fa4556806aae18,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.31764707
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956188153913557112, guid: 993459329cb964c7e9fa4556806aae18,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.5647059
+      objectReference: {fileID: 0}
     - target: {fileID: 7402714865664044993, guid: 993459329cb964c7e9fa4556806aae18,
         type: 3}
       propertyPath: gate
@@ -13870,21 +13885,6 @@ PrefabInstance:
       propertyPath: halfGate
       value: 
       objectReference: {fileID: 398582570}
-    - target: {fileID: 1956188153913557112, guid: 993459329cb964c7e9fa4556806aae18,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.5019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 1956188153913557112, guid: 993459329cb964c7e9fa4556806aae18,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.31764707
-      objectReference: {fileID: 0}
-    - target: {fileID: 1956188153913557112, guid: 993459329cb964c7e9fa4556806aae18,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.5647059
-      objectReference: {fileID: 0}
     - target: {fileID: 6982601510342917480, guid: 993459329cb964c7e9fa4556806aae18,
         type: 3}
       propertyPath: m_Mesh
@@ -14441,6 +14441,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4522866543900154, guid: 0c92169a1bafb4147a5c4eb7e0d8b905, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 4522866543900154, guid: 0c92169a1bafb4147a5c4eb7e0d8b905, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4522866543900154, guid: 0c92169a1bafb4147a5c4eb7e0d8b905, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4522866543900154, guid: 0c92169a1bafb4147a5c4eb7e0d8b905, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 4097427271878994, guid: 0c92169a1bafb4147a5c4eb7e0d8b905, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -14485,30 +14501,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1800
       objectReference: {fileID: 0}
-    - target: {fileID: 4422177495055844, guid: 0c92169a1bafb4147a5c4eb7e0d8b905, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -9.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 4422177495055844, guid: 0c92169a1bafb4147a5c4eb7e0d8b905, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4522866543900154, guid: 0c92169a1bafb4147a5c4eb7e0d8b905, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.81
-      objectReference: {fileID: 0}
-    - target: {fileID: 4522866543900154, guid: 0c92169a1bafb4147a5c4eb7e0d8b905, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4522866543900154, guid: 0c92169a1bafb4147a5c4eb7e0d8b905, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2000
-      objectReference: {fileID: 0}
-    - target: {fileID: 4522866543900154, guid: 0c92169a1bafb4147a5c4eb7e0d8b905, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.05
-      objectReference: {fileID: 0}
     - target: {fileID: 4897552113174492, guid: 0c92169a1bafb4147a5c4eb7e0d8b905, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.8
@@ -14524,6 +14516,14 @@ PrefabInstance:
     - target: {fileID: 4897552113174492, guid: 0c92169a1bafb4147a5c4eb7e0d8b905, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422177495055844, guid: 0c92169a1bafb4147a5c4eb7e0d8b905, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422177495055844, guid: 0c92169a1bafb4147a5c4eb7e0d8b905, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 212550460605323604, guid: 0c92169a1bafb4147a5c4eb7e0d8b905,
         type: 3}

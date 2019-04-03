@@ -9,6 +9,7 @@ TagManager:
   - Dud
   - Wall
   - Slot
+  - Crusher
   layers:
   - Default
   - TransparentFX

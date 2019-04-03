@@ -55,6 +55,17 @@ public class GameController : MonoBehaviour
     [SerializeField] private float percentageWhiteBallIsDud;
     [SerializeField] private float percentageRedBallIsDud;
 
+    [SerializeField] private float ballSpeed = 20f;
+    private float originalBallSpeed;
+
+
+     [SerializeField] private float mouseXThreshold = 0.01f;
+     [SerializeField] private float mouseYThreshold = 0.01f;
+     [SerializeField] private bool isMoving;
+
+     [SerializeField] private GameObject speedometer;
+     private TextMeshPro speedometerText;
+
 
     public enum Direction
     {
@@ -67,6 +78,12 @@ public class GameController : MonoBehaviour
         compass.transform.rotation = Quaternion.identity;
         BulletColourProbability( 70 );
         BuildBullet();
+        isReloaded = true;
+
+        originalBallSpeed = ballSpeed;
+
+        speedometerText = speedometer.GetComponent<TextMeshPro>();
+        
     }
 
 
@@ -74,44 +91,98 @@ public class GameController : MonoBehaviour
 
 	private void Update()
     {
+            
         //rotation:
-		//Vector3 mousePos = new Vector3( Input.mousePosition.x,Input.mousePosition.y,Camera.main.transform.position.y );
-		//Vector3 worldPos = Camera.main.ScreenToWorldPoint( mousePos );
-		///iTween.LookUpdate( compass ,iTween.Hash( "looktarget", worldPos, "time", 2, "axis", "x" ) );
-      
+        //Vector3 mousePos = new Vector3( Input.mousePosition.x,Input.mousePosition.y,Camera.main.transform.position.y );
+        //Vector3 worldPos = Camera.main.ScreenToWorldPoint( mousePos );
+        ///iTween.LookUpdate( compass ,iTween.Hash( "looktarget", worldPos, "time", 2, "axis", "x" ) );
+
         //Get the Screen positions of the object
-        Vector2 positionOnScreen = Camera.main.ScreenToWorldPoint ( compass.transform.position );
-         
-         //Get the Screen position of the mouse
-         Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToWorldPoint( Input.mousePosition );
+        Vector2 positionOnScreen = Camera.main.ScreenToWorldPoint(compass.transform.position);
 
-         Vector2 direction = new Vector2( mouseOnScreen.x - compass.transform.position.x,
-                                          mouseOnScreen.y - compass.transform.position.y );
+        //Get the Screen position of the mouse
+        Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-         //compass.transform.up = direction;
-         
+        Vector2 direction = new Vector2(mouseOnScreen.x - compass.transform.position.x,
+                                         mouseOnScreen.y - compass.transform.position.y);
+
+        //compass.transform.up = direction;
+
         //  //Get the angle between the points
-        angle = AngleBetweenTwoPoints( compass.transform.position, mouseOnScreen );
-         
-        // angle+= 80;
-      
+        angle = AngleBetweenTwoPoints(compass.transform.position, mouseOnScreen);
 
-        if( !IsOverUI() )
+        // angle+= 80;
+
+
+        if (!IsOverUI())
             compass.transform.up = direction;
-        
+
         //  //Ta Daaa
         //  compass.transform.rotation =  Quaternion.Euler ( new Vector3( 0f,0f,angle ) );
+       
+      if( Input.GetMouseButton(0) && !IsOverUI() && isReloaded )
+       {
 
-         if ( Input.GetMouseButtonUp(0)  && !IsOverUI() && isReloaded )
-         {
+            if ( !HasMouseMoved() )
+            {
+                ChangeBallSpeed( mouseOnScreen );   
+            }
+            else
+            {     
+                speedometer.SetActive( false );
+                isMoving = true;
+                ballSpeed = 20;
+                s = 20;
+            }
+       }
+
+        if (Input.GetMouseButtonUp(0) && !IsOverUI() && isReloaded)
+        {
             Fire();
             isReloaded = false;
-         }
+            speedometer.SetActive( false );
+            timeCount = 0;
+            s = 20;
+            speedometerText.SetText("");
 
-		
-	}
+        }
+    }
 
-     float AngleBetweenTwoPoints(Vector3 a, Vector3 b) {
+    private int count = 0;
+    private int s = 20;
+
+    private float speedDelay = 1.0f;
+    private float timeCount = 0;
+    
+    private void ChangeBallSpeed( Vector2 mouseOnScreen )
+    {   
+            timeCount += Time.deltaTime;
+            if( timeCount < speedDelay )
+                return;
+
+            speedometer.SetActive( true );
+
+            ballSpeed += 0.1f;
+            count ++;
+
+            isMoving = false;
+                 
+            if (ballSpeed >= 40)
+                ballSpeed = 40; 
+
+            if( count == 10 )
+            {
+                  s = s + 1;
+                if( s > 40 )
+                        s = 40;
+                    speedometerText.SetText( s.ToString() );
+                    count = 0;
+            }
+
+                speedometer.transform.position = new Vector2( mouseOnScreen.x,  mouseOnScreen.y + 1.0f );          
+    }
+
+    float AngleBetweenTwoPoints(Vector3 a, Vector3 b) {
          return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
      }
 
@@ -135,6 +206,7 @@ public class GameController : MonoBehaviour
         initialPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + offset;
     }
 
+    [SerializeField] private float dist;
     private void OnMouseDrag()
     {
         
@@ -142,7 +214,15 @@ public class GameController : MonoBehaviour
        //CalculateClickPosition();
        //CalculateDirection();
 
-       float dist = Vector3.Distance(initialPosition, cursorPosition);
+       dist = Vector3.Distance(initialPosition, cursorPosition);
+
+       if( dist > 0.25f )
+       {
+         ballSpeed = ballSpeed  + 0.15f;
+             
+             if( ballSpeed >= 40 )
+                ballSpeed = 40;
+       }
        
        //if( dist > 0.5f )
         //RotateCompass();
@@ -217,11 +297,15 @@ public class GameController : MonoBehaviour
         currentBall.transform.position = muzzle.transform.position;
         currentBall.transform.rotation = muzzle.transform.rotation;
 
+        currentBall.GetComponent<Ball>().MoveSpeed = ballSpeed;
+
         currentBall.SetActive(true);
 
         // ball.GetComponent<Rigidbody2D>().AddForce(-direction);
         currentBall.GetComponent<Rigidbody2D>().AddForce( muzzle.transform.up * 100 );
         StartCoroutine( EnableReloadButtons( ) );
+
+        ballSpeed = originalBallSpeed;
     }
 
     public void Reload()
@@ -265,6 +349,12 @@ public class GameController : MonoBehaviour
 
         return false;
     } 
+
+    bool HasMouseMoved()
+     {
+         //I feel dirty even doing this 
+         return (Input.GetAxis("Mouse X") != 0) || (Input.GetAxis("Mouse Y") != 0);
+     }
 
     public bool CheckForDud( float percentage )
     {

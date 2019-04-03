@@ -86,16 +86,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5969082537451822569, guid: 1ab916b071c2341208b82297890a1918,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerDud
-      objectReference: {fileID: 0}
-    - target: {fileID: 5969082537451822569, guid: 1ab916b071c2341208b82297890a1918,
-        type: 3}
-      propertyPath: m_TagString
-      value: Dud
-      objectReference: {fileID: 0}
     - target: {fileID: 5969082537451822572, guid: 1ab916b071c2341208b82297890a1918,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -151,10 +141,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5969082537451822569, guid: 1ab916b071c2341208b82297890a1918,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerDud
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969082537451822569, guid: 1ab916b071c2341208b82297890a1918,
+        type: 3}
+      propertyPath: m_TagString
+      value: Dud
+      objectReference: {fileID: 0}
     - target: {fileID: 6499786872812516328, guid: 1ab916b071c2341208b82297890a1918,
         type: 3}
       propertyPath: lifeSpan
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499786872812516328, guid: 1ab916b071c2341208b82297890a1918,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ab916b071c2341208b82297890a1918, type: 3}

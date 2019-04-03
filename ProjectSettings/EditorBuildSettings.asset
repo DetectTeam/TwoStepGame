@@ -23,7 +23,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Puzzle2.unity
     guid: dbf682f2dceda4d13aa59e11f9c68805
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PowerUP.unity
     guid: 0e8aa067287954401b9a1e76e292a5dc
+  - enabled: 1
+    path: Assets/Scenes/Puzzle02.unity
+    guid: 4e2700ef85ef54959ab89b2cb6f7bd58
   m_configObjects: {}
