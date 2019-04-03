@@ -149,7 +149,7 @@ public class GameController : MonoBehaviour
     }
 
     private int count = 0;
-    private int s = 20;
+    private int s = 25;
 
     private float speedDelay = 1.0f;
     private float timeCount = 0;
@@ -386,7 +386,7 @@ public class GameController : MonoBehaviour
         
     }
 
-      public GameObject CreateBall( bool b )
+    public GameObject CreateBall( bool b )
     {
         GameObject ball = null;
 

@@ -3,40 +3,53 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using TMPro;
 
 public class BallLauncher : MonoBehaviour
 {
     private Vector3 startDragPosition;
     private Vector3 endDragPosition;
+
+    [SerializeField] private Vector3 startPosition;
+    [SerializeField] private Vector3 endPosition;
+    
     private BlockSpawner blockSpawner;
+    
     [SerializeField] private LaunchPreview launchPreview;
+    
     private List<Ball> balls = new List<Ball>();
+    
     private int ballsReady;
 
     private bool isDraggable = true;
     public bool IsDraggable { get{ return isDraggable; } set{ isDraggable = value; } }
-
-   [SerializeField] private Button leftButton;
-   [SerializeField] private Button rightButton;
- 
+     [SerializeField] private bool isWhiteBullet = true;
     private bool isDud;
     [SerializeField] private bool needReload;
+    [SerializeField] private bool ballSpeedScontrolHasStarted;
+
+    [SerializeField] private Button leftButton;
+    [SerializeField] private Button rightButton;
+ 
    
     [SerializeField] private GameObject ballPrefab;
     [SerializeField] private GameObject dudBallPrefab;
-
-    [SerializeField] private Vector3 startPosition;
-    [SerializeField] private Vector3 endPosition;
-
-    [SerializeField] private bool isWhiteBullet = true;
 
     [SerializeField] private Color white;
     [SerializeField] private Color red;
 
      private IEnumerator coroutine;
 
+     private IEnumerator ballSpeedControl;
 
-    
+     [SerializeField] private float ballSpeed = 25;
+     [SerializeField] private float percentageWhiteBallIsDud;
+    [SerializeField] private float percentageRedBallIsDud;
+    [SerializeField] private float speedLimit;
+    [SerializeField] private float distance;
+
+     [SerializeField] private TextMeshPro speedText;
+
 
     private void Awake()
     {
@@ -48,18 +61,18 @@ public class BallLauncher : MonoBehaviour
 
     private void start()
     {
-        launchPreview.SetStartPoint(transform.position);
+        launchPreview.SetStartPoint(transform.position);  
     }
 
-    public void ReturnBall()
-    {
-        ballsReady++;
-        if (ballsReady == balls.Count)
-        {
-            blockSpawner.SpawnRowOfBlocks();
-            //CreateBall();
-        }
-    }
+    // public void ReturnBall()
+    // {
+    //     ballsReady++;
+    //     if (ballsReady == balls.Count)
+    //     {
+    //         blockSpawner.SpawnRowOfBlocks();
+    //         //CreateBall();
+    //     }
+    // }
 
     public GameObject CreateBall( bool b )
     {
@@ -81,43 +94,46 @@ public class BallLauncher : MonoBehaviour
 
     private void Update()
     {
-        if( !isDraggable )
+        if (!isDraggable)
             return;
-       
+
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.back * -10;
 
-      
+        distance = Vector3.Distance(startPosition, worldPosition);
 
+        BallControl(worldPosition);
+    }
 
+    private void BallControl(Vector3 worldPosition)
+    {
         if (Input.GetMouseButtonDown(0))
         {
-            if (EventSystem.current.IsPointerOverGameObject(  ))
+            if (EventSystem.current.IsPointerOverGameObject())
             {
                 Debug.Log("Start");
             }
             else
             {
-                  StartDrag(worldPosition);
+                StartDrag(worldPosition);
             }
 
             TestHit();
-            
-          
+
         }
         else if (Input.GetMouseButton(0))
         {
-            if (EventSystem.current.IsPointerOverGameObject(  ))
+            if (EventSystem.current.IsPointerOverGameObject())
             {
                 Debug.Log("DRag");
             }
             else
             {
                 ContinueDrag(worldPosition);
-            }    
+            }
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            if (EventSystem.current.IsPointerOverGameObject(  ))
+            if (EventSystem.current.IsPointerOverGameObject())
             {
                 Debug.Log("END");
             }
@@ -125,23 +141,54 @@ public class BallLauncher : MonoBehaviour
             {
                 EndDrag(worldPosition);
             }
-            
-        }       
+
+        }
+    }
+
+    private void StartDrag(Vector3 worldPosition)
+    {
+        startDragPosition = worldPosition;
+        launchPreview.SetStartPoint(transform.position);
+        startPosition = worldPosition;
+
+        ballSpeedScontrolHasStarted = false;
+        ballSpeed = 20;
+
+        ballSpeedControl = BallSpeedControl();   
+    }
+
+    private void ContinueDrag(Vector3 worldPosition)
+    {
+        if( distance > 2.0f && !ballSpeedScontrolHasStarted )
+        { 
+            if( ballSpeedControl != null )
+                StartCoroutine( ballSpeedControl );
+        } 
+           
+        endDragPosition = worldPosition;
+
+        Vector3 direction = endDragPosition - startDragPosition;
+
+        launchPreview.SetEndPoint(transform.position - direction);
     }
 
     private void EndDrag( Vector3 worldPosition )
     {
-        Debug.Log( "End drag is called......." );
-        
         float distance = Vector3.Distance( startPosition , worldPosition );
         Debug.Log( "Distance : " + distance );
         if( distance > 1.0f )
         {
             Messenger.Broadcast( "DisableReloadButtons" );
+
+           speedText.gameObject.SetActive( false );
+            
+            if( ballSpeedControl != null )
+                StopCoroutine( ballSpeedControl );
+            
             coroutine = LaunchBalls();
             StartCoroutine( coroutine );
+            
             distance = 0;
-
         }
     }
 
@@ -159,9 +206,9 @@ public class BallLauncher : MonoBehaviour
         if( !needReload )
         {     
             if ( isWhiteBullet )
-                isDud = CheckForDud( 20 );
+                isDud = CheckForDud( percentageWhiteBallIsDud );
             else
-                isDud = CheckForDud( 80 );
+                isDud = CheckForDud( percentageRedBallIsDud );
                 
             GameObject ball = CreateBall( isDud  );
 
@@ -172,11 +219,12 @@ public class BallLauncher : MonoBehaviour
             else
                 ball.GetComponent<SpriteRenderer>().color = red;
               
+
+            ball.GetComponent<Ball>().MoveSpeed = ballSpeed;  
             ball.gameObject.SetActive(true);
             ball.GetComponent<Rigidbody2D>().AddForce(-direction);
 
             needReload = true;
-
         }
 
         yield return new WaitForSeconds(0.25f);
@@ -189,27 +237,8 @@ public class BallLauncher : MonoBehaviour
 
         GetComponent<BallLauncher>().enabled = false;
 
-        StopCoroutine( coroutine );
-
-            
-        
+        StopCoroutine( coroutine ); 
        // ballsReady = 0;
-    }
-
-    private void ContinueDrag(Vector3 worldPosition)
-    {
-        endDragPosition = worldPosition;
-
-        Vector3 direction = endDragPosition - startDragPosition;
-
-        launchPreview.SetEndPoint(transform.position - direction);
-    }
-
-    private void StartDrag(Vector3 worldPosition)
-    {
-        startDragPosition = worldPosition;
-        launchPreview.SetStartPoint(transform.position);
-        startPosition = worldPosition;
     }
 
     public bool CheckForDud( float percentage )
@@ -272,5 +301,37 @@ public class BallLauncher : MonoBehaviour
          {
              Debug.Log ( hit.collider.name );
          }
+    }
+
+    private IEnumerator BallSpeedControl()
+    {
+        ballSpeedScontrolHasStarted = true;
+
+        Debug.Log( "Starting speed...." );
+        speedText.SetText( "20" );
+        speedText.gameObject.SetActive( true );
+        
+        while( true )
+        {
+            
+            yield return new WaitForSeconds( 0.15f );
+
+            if( distance > 2 )
+            {
+                ballSpeed ++;
+
+                if( ballSpeed > speedLimit )
+                    ballSpeed = speedLimit;
+            }
+            else
+            {
+                ballSpeed --;
+                if( ballSpeed < 20 )
+                    ballSpeed = 20;
+            }
+
+            Debug.Log( "Ballspeed " + ballSpeed );
+            speedText.SetText( ballSpeed.ToString() );
+        }
     }
 }

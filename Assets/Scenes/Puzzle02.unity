@@ -281,7 +281,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 1610454160}
         m_MethodName: BulletColourProbability
         m_Mode: 4
@@ -303,7 +303,7 @@ MonoBehaviour:
           m_FloatArgument: 70
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 1039452797}
         m_MethodName: IncrementCount
         m_Mode: 1
@@ -312,6 +312,28 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 535339348}
+        m_MethodName: Reload
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 535339348}
+        m_MethodName: BulletColourProbability
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 70
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -1205,6 +1227,71 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9767745675864bf48dfe3c5aa366d98, type: 3}
+--- !u!1 &535339343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1181849009333078, guid: 0047be61701ab4b0bb446ea25e947530,
+    type: 3}
+  m_PrefabInstance: {fileID: 768421708}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &535339344
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535339343}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6, y: 6}
+    newSize: {x: 0.2, y: 0.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5}
+  m_EdgeRadius: 0
+--- !u!50 &535339345
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535339343}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
+--- !u!114 &535339348 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114591986558314028, guid: 0047be61701ab4b0bb446ea25e947530,
+    type: 3}
+  m_PrefabInstance: {fileID: 768421708}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535339343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3467d9cca0722384d9df0ce340911c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &561105990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1369,7 +1456,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 1610454160}
         m_MethodName: BulletColourProbability
         m_Mode: 4
@@ -1380,7 +1467,7 @@ MonoBehaviour:
           m_FloatArgument: 30
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 1610454160}
         m_MethodName: BuildBullet
         m_Mode: 1
@@ -1391,7 +1478,7 @@ MonoBehaviour:
           m_FloatArgument: 30
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 1039452797}
         m_MethodName: IncrementCount
         m_Mode: 1
@@ -1400,6 +1487,28 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 535339348}
+        m_MethodName: Reload
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 535339348}
+        m_MethodName: BulletColourProbability
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 30
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -1613,6 +1722,175 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 708492156}
   m_CullTransparentMesh: 0
+--- !u!1001 &768421708
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1181849009333078, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_Name
+      value: BallLauncher
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181849009333078, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.557457
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591986558314028, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: ballContainer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591986558314028, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: ballPrefab
+      value: 
+      objectReference: {fileID: 5969082537451822569, guid: 1ab916b071c2341208b82297890a1918,
+        type: 3}
+    - target: {fileID: 114591986558314028, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: dudBallPrefab
+      value: 
+      objectReference: {fileID: 1942998456972284618, guid: c8ccb7d1af7694fada926c7acb6fd05f,
+        type: 3}
+    - target: {fileID: 114591986558314028, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: leftButton
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591986558314028, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: rightButton
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591986558314028, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: white.r
+      value: 0.9672036
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591986558314028, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: white.g
+      value: 0.97376734
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591986558314028, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: white.b
+      value: 0.990566
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591986558314028, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: white.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591986558314028, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: red.r
+      value: 0.9622642
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591986558314028, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: red.g
+      value: 0.031772893
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591986558314028, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: red.b
+      value: 0.031772893
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591986558314028, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: red.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591986558314028, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: isWhiteBullet
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591986558314028, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: percentageWhiteBallIsDud
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591986558314028, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: percentageRedBallIsDud
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591986558314028, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: speedLimit
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 212999838416049106, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a08887a4b59fb4ec9a4987bc863e7100,
+        type: 3}
+    - target: {fileID: 212999838416049106, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212999838416049106, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 120282383444606600, guid: 0047be61701ab4b0bb446ea25e947530,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
 --- !u!1 &797845894
 GameObject:
   m_ObjectHideFlags: 0
@@ -4285,7 +4563,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1580653152
 Transform:
   m_ObjectHideFlags: 0
