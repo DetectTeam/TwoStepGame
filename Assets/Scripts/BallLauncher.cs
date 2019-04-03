@@ -314,7 +314,7 @@ public class BallLauncher : MonoBehaviour
         while( true )
         {
             
-            yield return new WaitForSeconds( 0.15f );
+            yield return new WaitForSeconds( 0.1f );
 
             if( distance > 2 )
             {
