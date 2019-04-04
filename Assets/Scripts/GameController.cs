@@ -4,6 +4,12 @@ using UnityEngine.EventSystems;
 using UnityEngine;
 using TMPro;
 
+public class BallInfo
+{
+        public bool IsDud{get; set;}
+        public bool IsWhite{get; set;}
+}
+
 public class GameController : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -55,7 +61,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private float percentageWhiteBallIsDud;
     [SerializeField] private float percentageRedBallIsDud;
 
-    [SerializeField] private float ballSpeed = 20f;
+    [SerializeField] private float ballSpeed = 35f;
     private float originalBallSpeed;
 
 
@@ -66,19 +72,24 @@ public class GameController : MonoBehaviour
      [SerializeField] private GameObject speedometer;
      private TextMeshPro speedometerText;
 
+     [SerializeField] private BallInfo activeBall;
+     public BallInfo ActiveBall { get{ return activeBall; } set{ activeBall = value; } }
+
+    public bool hasAimed = false;
 
     public enum Direction
     {
         LEFT,
         RIGHT
     }
+  
 
     private void Start()
     {
         compass.transform.rotation = Quaternion.identity;
-        BulletColourProbability( 70 );
-        BuildBullet();
-        isReloaded = true;
+        //BulletColourProbability( 70 );
+       // BuildBullet();
+        //isReloaded = true;
 
         originalBallSpeed = ballSpeed;
 
@@ -109,12 +120,13 @@ public class GameController : MonoBehaviour
         //compass.transform.up = direction;
 
         //  //Get the angle between the points
-        angle = AngleBetweenTwoPoints(compass.transform.position, mouseOnScreen);
+       
+            angle = AngleBetweenTwoPoints(compass.transform.position, mouseOnScreen);
 
         // angle+= 80;
 
 
-        if (!IsOverUI())
+        if (!IsOverUI() && !hasAimed )
             compass.transform.up = direction;
 
         //  //Ta Daaa
@@ -138,12 +150,9 @@ public class GameController : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && !IsOverUI() && isReloaded)
         {
-            Fire();
-            isReloaded = false;
-            speedometer.SetActive( false );
-            timeCount = 0;
-            s = 20;
-            speedometerText.SetText("");
+            hasAimed = true;
+            //Fire();
+          
 
         }
     }
@@ -167,14 +176,14 @@ public class GameController : MonoBehaviour
 
             isMoving = false;
                  
-            if (ballSpeed >= 40)
-                ballSpeed = 40; 
+            if (ballSpeed >= 55)
+                ballSpeed = 55; 
 
             if( count == 10 )
             {
                   s = s + 1;
-                if( s > 40 )
-                        s = 40;
+                if( s > 55 )
+                        s = 55;
                     speedometerText.SetText( s.ToString() );
                     count = 0;
             }
@@ -209,8 +218,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private float dist;
     private void OnMouseDrag()
     {
-        
-
+    
        //CalculateClickPosition();
        //CalculateDirection();
 
@@ -220,8 +228,8 @@ public class GameController : MonoBehaviour
        {
          ballSpeed = ballSpeed  + 0.15f;
              
-             if( ballSpeed >= 40 )
-                ballSpeed = 40;
+             if( ballSpeed >= 55 )
+                ballSpeed = 55;
        }
        
        //if( dist > 0.5f )
@@ -233,8 +241,9 @@ public class GameController : MonoBehaviour
         mouseDrag = false;
         float dist = Vector3.Distance(initialPosition, cursorPosition);
 
-        if( dist < 0.3f ) 
-            Fire();
+        //if( dist < 0.3f ) 
+            //hasAimed = true;
+            //Fire();
     }
 
     private void CalculateClickPosition()
@@ -306,6 +315,15 @@ public class GameController : MonoBehaviour
         StartCoroutine( EnableReloadButtons( ) );
 
         ballSpeed = originalBallSpeed;
+
+        isReloaded = false;
+        speedometer.SetActive( false );
+        timeCount = 0;
+        s = 20;
+        speedometerText.SetText("");
+        hasAimed = false;
+
+        compass.transform.up = Vector3.up;
     }
 
     public void Reload()
@@ -386,6 +404,7 @@ public class GameController : MonoBehaviour
         
     }
 
+    
     public GameObject CreateBall( bool b )
     {
         GameObject ball = null;
@@ -397,36 +416,57 @@ public class GameController : MonoBehaviour
         }
         else
         {
-             ball = Instantiate( ballPrefab ) as GameObject;
+            ball = Instantiate( ballPrefab ) as GameObject;
+            
+            if( !isWhiteBullet )
+            {
+                var light = ball.transform.Find( "PlayerLight" );
+                if( light != null )
+                {
+                   light.GetComponent<Light>().color = red;
+                }
+            }
         }
      
         return ball;
     }
 
+    [SerializeField] private GameObject ball;
+    public GameObject Ball { get{ return ball; }  }
 
     public void BuildBullet()
     {
+        activeBall = new BallInfo();
+       
         if ( isWhiteBullet )
-            isDud = CheckForDud( percentageWhiteBallIsDud);
+        {
+            activeBall.IsWhite = true;
+            isDud = CheckForDud( percentageWhiteBallIsDud);  
+        }
         else
+        {
+            activeBall.IsWhite = false;
             isDud = CheckForDud( percentageRedBallIsDud );
+        }
 
-        GameObject ball = CreateBall( isDud  );
+        activeBall.IsDud = isDud;
 
-        if( isDud )
-            currentBallIcon.SetActive( true );
-        else
-            currentBallIcon.SetActive( false );   
+        ball = CreateBall( isDud  );
+
+        // if( isDud )
+        //     currentBallIcon.SetActive( true );
+        // else
+        //     currentBallIcon.SetActive( false );   
 
         if( isWhiteBullet )
         {
             ball.GetComponent<SpriteRenderer>().color = white;
-            ballContainer.color = white;
+            //ballContainer.color = white;
         }
         else
         {
             ball.GetComponent<SpriteRenderer>().color = red;
-            ballContainer.color = red;
+           // ballContainer.color = red;
         }
 
         currentBall = ball;

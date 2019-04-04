@@ -37,9 +37,8 @@ public class Switch : MonoBehaviour
         float H, S, V;
 
         Color switchColor = foreGround.color;
-        
     
-
+        Debug.Log( ballType );
         if( ballType == "Dud" )
         {
             Debug.Log( "DUD HIT ME" );

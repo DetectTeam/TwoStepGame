@@ -25,8 +25,10 @@ public class Ball : MonoBehaviour
     {
         if( isDud )
         {
-            moveSpeed = 3;
+            //moveSpeed = 3;
             StartCoroutine( BallLifeSpan() );
+
+             Physics2D.IgnoreLayerCollision( 8, 11, true );
         }
     }
 

@@ -43,7 +43,7 @@ public class BatEnemy : MonoBehaviour
             facingRight = false;
         }
         
-        if( Mathf.Abs( pos.x ) >= 6f )
+        if( Mathf.Abs( pos.x ) >= 6f && pos.y >= -2.0f ) 
             MoveDown();
 
         // if( ( ( facingRight ) && (localScale.x < 0 ) ) || ( ( !facingRight ) && ( localScale.x > 0 ) ) )
@@ -63,6 +63,11 @@ public class BatEnemy : MonoBehaviour
     private void MoveDown()
     {
         pos -= transform.up * Time.deltaTime * moveSpeed;
+    }
+
+     private void MoveUp()
+    {
+        pos += transform.up * Time.deltaTime * moveSpeed;
     }
 
 
