@@ -418,7 +418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 41419732}
   - component: {fileID: 41419733}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CompassBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -555,7 +555,7 @@ GameObject:
   m_Component:
   - component: {fileID: 140220990}
   - component: {fileID: 140220991}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: leftBallSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
@@ -722,7 +722,7 @@ GameObject:
   m_Component:
   - component: {fileID: 207007164}
   - component: {fileID: 207007165}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LoadedBallContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3046,7 +3046,7 @@ GameObject:
   - component: {fileID: 432827140}
   - component: {fileID: 432827139}
   - component: {fileID: 432827138}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RightGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3064,7 +3064,7 @@ SurfaceEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3639
   m_Speed: -8
   m_SpeedVariation: 0
   m_ForceScale: 0.1
@@ -4474,6 +4474,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pointer
       objectReference: {fileID: 0}
+    - target: {fileID: 1349544225407971075, guid: f9767745675864bf48dfe3c5aa366d98,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1349544225407971072, guid: f9767745675864bf48dfe3c5aa366d98,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4612,7 +4617,7 @@ GameObject:
   m_Component:
   - component: {fileID: 550846317}
   - component: {fileID: 550846316}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RightBallSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
@@ -4943,7 +4948,7 @@ GameObject:
   - component: {fileID: 640732939}
   - component: {fileID: 640732938}
   - component: {fileID: 640732940}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BallDestroyer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5092,6 +5097,38 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1132713249}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &669401947 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6225731514486717887, guid: 5e3cd513dfc2c4d279def086803a4e9f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1710836830}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &669401949
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669401947}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 22e1f9e057c3b4a40b1f1288ddb16e11, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.6, y: -0.15}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3, y: 0.75}
+  m_EdgeRadius: 0
 --- !u!1 &671032806
 GameObject:
   m_ObjectHideFlags: 0
@@ -6808,7 +6845,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 973419608}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Compass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9590,6 +9627,12 @@ TilemapCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+--- !u!1 &1208168392 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 863270905257431248, guid: 5e3cd513dfc2c4d279def086803a4e9f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1710836830}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1292988896
 GameObject:
   m_ObjectHideFlags: 0
@@ -9825,6 +9868,12 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!1 &1309707781 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 863270907185859333, guid: 5e3cd513dfc2c4d279def086803a4e9f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1710836830}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1328966587
 GameObject:
   m_ObjectHideFlags: 0
@@ -10772,7 +10821,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1487415078}
   - component: {fileID: 1487415079}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CurrentBulletIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10998,7 +11047,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1580653152}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ManualControls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12284,7 +12333,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1607067473}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -12317,7 +12366,7 @@ GameObject:
   - component: {fileID: 1610454162}
   - component: {fileID: 1610454161}
   - component: {fileID: 1610454160}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GameControls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12838,6 +12887,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694289216}
   m_CullTransparentMesh: 0
+--- !u!1 &1696635442 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8859495249081818974, guid: 5e3cd513dfc2c4d279def086803a4e9f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1710836830}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1710836830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12905,6 +12960,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9104491132819906995, guid: 5e3cd513dfc2c4d279def086803a4e9f,
+        type: 3}
+      propertyPath: halfGate
+      value: 
+      objectReference: {fileID: 1208168392}
     - target: {fileID: 8648372073344561946, guid: 5e3cd513dfc2c4d279def086803a4e9f,
         type: 3}
       propertyPath: m_Mesh
@@ -12920,6 +12980,11 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8640515326584760575, guid: 5e3cd513dfc2c4d279def086803a4e9f,
+        type: 3}
+      propertyPath: halfGate
+      value: 
+      objectReference: {fileID: 1696635442}
     - target: {fileID: 8193683855620176470, guid: 5e3cd513dfc2c4d279def086803a4e9f,
         type: 3}
       propertyPath: m_Mesh
@@ -12935,6 +13000,11 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9104491132696114961, guid: 5e3cd513dfc2c4d279def086803a4e9f,
+        type: 3}
+      propertyPath: halfGate
+      value: 
+      objectReference: {fileID: 1309707781}
     - target: {fileID: 8648372073468224952, guid: 5e3cd513dfc2c4d279def086803a4e9f,
         type: 3}
       propertyPath: m_Mesh
@@ -13089,7 +13159,7 @@ GameObject:
   - component: {fileID: 1845141265}
   - component: {fileID: 1845141264}
   - component: {fileID: 1845141266}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LeftGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13147,7 +13217,7 @@ SurfaceEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3639
   m_Speed: 8
   m_SpeedVariation: 0
   m_ForceScale: 0.1
@@ -15500,7 +15570,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1999425230}
   - component: {fileID: 1999425231}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CurrentBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
