@@ -2978,7 +2978,7 @@ MonoBehaviour:
           m_FloatArgument: 70
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 0
+        m_CallState: 2
       - m_Target: {fileID: 1319860485}
         m_MethodName: BulletColourProbability
         m_Mode: 4
@@ -2989,7 +2989,7 @@ MonoBehaviour:
           m_FloatArgument: 70
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1001 &665838995
@@ -3175,51 +3175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1181849009333078, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -7.87
-      objectReference: {fileID: 0}
-    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4.557457
-      objectReference: {fileID: 0}
-    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
-      propertyPath: m_LocalRotation.w
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 114591986558314028, guid: 0047be61701ab4b0bb446ea25e947530,
         type: 3}
@@ -3292,6 +3248,50 @@ PrefabInstance:
         type: 3}
       propertyPath: isWhiteBullet
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.557457
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595116586412182, guid: 0047be61701ab4b0bb446ea25e947530, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 212999838416049106, guid: 0047be61701ab4b0bb446ea25e947530,
         type: 3}
@@ -3922,7 +3922,7 @@ MonoBehaviour:
           m_FloatArgument: 30
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 0
+        m_CallState: 2
       - m_Target: {fileID: 1319860485}
         m_MethodName: BulletColourProbability
         m_Mode: 4
@@ -3933,7 +3933,7 @@ MonoBehaviour:
           m_FloatArgument: 30
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1001 &854073048
@@ -5944,7 +5944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1283374231
 Transform:
   m_ObjectHideFlags: 0

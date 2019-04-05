@@ -45,7 +45,8 @@ public class Ball : MonoBehaviour
             {
                 Debug.Log( "is dud" );
                // Messenger.Broadcast( "EnableReloadButtons" );
-                gameObject.SetActive( false );
+                //gameObject.SetActive( false );
+                Destroy( gameObject );
 
             }
         }
@@ -54,7 +55,8 @@ public class Ball : MonoBehaviour
             if( col.tag == "Enemy"  )
             {
                 //Messenger.Broadcast( "EnableReloadButtons" );
-                gameObject.SetActive( false );
+                //gameObject.SetActive( false );
+                Destroy( gameObject );
             }
         } 
     }
@@ -69,7 +71,8 @@ public class Ball : MonoBehaviour
         if( col.gameObject.CompareTag( "Slot" ) || col.gameObject.CompareTag( "Crusher" )  )
         {
             //Messenger.Broadcast( "EnableReloadButtons" );
-            gameObject.SetActive( false );
+            //gameObject.SetActive( false );
+            Destroy( gameObject );
         }
     }
 
@@ -87,6 +90,7 @@ public class Ball : MonoBehaviour
     private void OnBecameInvisible() 
     {
          //Messenger.Broadcast( "EnableReloadButtons" );
-         gameObject.SetActive( false );
+         //gameObject.SetActive( false );
+         Destroy( gameObject );
      }
 }
