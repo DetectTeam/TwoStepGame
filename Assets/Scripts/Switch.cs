@@ -9,7 +9,8 @@ public class Switch : MonoBehaviour
     [SerializeField] private GameObject gate;
     [SerializeField] private GameObject halfGate;
     [SerializeField] private TextMeshPro counter;
-    [SerializeField] private SpriteRenderer foreGround;
+    private string ballType;
+   // [SerializeField] private SpriteRenderer foreGround;
 
     private IEnumerator gateControl;
     // Start is called before the first frame update
@@ -20,23 +21,30 @@ public class Switch : MonoBehaviour
 
         if( !counter )
             Debug.Log( "Counter not set..." );
+
+            
     }
 
     private void OnTriggerEnter2D( Collider2D collider )
     {
       if( collider.CompareTag( "Ball" ) || collider.CompareTag( "Dud" ) )
       {
-          gateControl = GateControl( collider.tag );
-          StopCoroutine( gateControl );
+
+          ballType = collider.tag;
+         
+          if( gateControl != null )
+            StopCoroutine( gateControl );
+          
+          gateControl = GateControl(  );
           StartCoroutine( gateControl );
       }
     }
 
-    private IEnumerator GateControl( string ballType )
+    private IEnumerator GateControl(  )
     {
         float H, S, V;
 
-        Color switchColor = foreGround.color;
+        //Color switchColor = foreGround.color;
     
         Debug.Log( ballType );
         if( ballType == "Dud" )
@@ -63,8 +71,8 @@ public class Switch : MonoBehaviour
     
         
 
-        Color.RGBToHSV(  switchColor , out H, out S, out V );
-        ChangeHue( H + 0.025f );
+        //Color.RGBToHSV(  switchColor , out H, out S, out V );
+       // ChangeHue( H + 0.025f );
 
         for( int x = 0; x < delay; x++ )
         {
@@ -72,17 +80,20 @@ public class Switch : MonoBehaviour
             yield return new WaitForSeconds( 1f );
         }
 
-        ChangeHue( H );
+       // ChangeHue( H );
 
-        counter.text = "";
+        //counter.text = "";
+
+        Debug.Log( "Got this far 2" );
 
         gate.SetActive( true );
         GetComponent<Collider2D>().enabled = true;
+        GetComponent<Lever>().Reset();
     }
 
     private void ChangeHue( float hueValue )
     {
-        foreGround.color = Color.HSVToRGB(hueValue, 0.6f, 0.8f); 
+        //foreGround.color = Color.HSVToRGB(hueValue, 0.6f, 0.8f); 
     }
  
 }
