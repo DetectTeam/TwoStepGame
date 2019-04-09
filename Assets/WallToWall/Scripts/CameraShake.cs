@@ -4,11 +4,26 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
+    private IEnumerator cameraShake;
 
+    private void OnEnable()
+    {
+        Messenger.AddListener( "ShakeCamera", ShakeCamera );
+    }
+
+    private void OnDisable()
+    {
+        Messenger.RemoveListener( "ShakeCamera", ShakeCamera );
+    }
+
+    public void ShakeCamera()
+    {
+        cameraShake = Shake( 1.0f, 1.0f );
+        StartCoroutine( cameraShake );
+    }
 
     public IEnumerator Shake(float duration, float magnitude)
     {
-
         Vector3 originalPos = transform.localPosition;
         float elapsed = 0.0f;
 
@@ -21,6 +36,7 @@ public class CameraShake : MonoBehaviour
             elapsed += Time.unscaledDeltaTime;
             yield return null;
         }
+        
         transform.localPosition = originalPos;
     }
 

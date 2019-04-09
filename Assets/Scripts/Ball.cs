@@ -41,7 +41,7 @@ public class Ball : MonoBehaviour
     {    
         if( isDud )
         {
-            if( col.tag == "Enemy" || col.tag == "Wall"  )
+            if( col.tag == "Enemy"  )
             {
                 Debug.Log( "is dud" );
                // Messenger.Broadcast( "EnableReloadButtons" );
