@@ -18,7 +18,7 @@ public class CameraShake : MonoBehaviour
 
     public void ShakeCamera()
     {
-        cameraShake = Shake( 1.0f, 1.0f );
+        cameraShake = Shake( 0.25f, 0.25f );
         StartCoroutine( cameraShake );
     }
 
@@ -36,7 +36,7 @@ public class CameraShake : MonoBehaviour
             elapsed += Time.unscaledDeltaTime;
             yield return null;
         }
-        
+
         transform.localPosition = originalPos;
     }
 

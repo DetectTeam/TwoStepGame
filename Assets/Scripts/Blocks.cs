@@ -17,16 +17,20 @@ public class Blocks : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        
+        
         if( col.CompareTag( "Ball" ) && isBreakable )
         {
             hitTotal  = hitTotal - 3f;
+            Messenger.Broadcast( "ShakeCamera" );
         }
         else if( col.CompareTag( "Dud" ) && isBreakable )
         {  
+             Messenger.Broadcast( "ShakeCamera" );
              blockSprite.sprite = damagedBlock;
              hitTotal  = hitTotal - 1.5f; 
              
-             if( hitTotal > 0 )
+             if( hitTotal >= 0 )
                 Destroy( col.gameObject );
 
            
