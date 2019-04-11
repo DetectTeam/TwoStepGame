@@ -408,11 +408,12 @@ public class GameController : MonoBehaviour
     public GameObject CreateBall( bool b )
     {
         GameObject ball = null;
+        SessionManager.Instance.IsBallDud = b;
 
         if( b )
         { 
             ball = Instantiate( dudBallPrefab ) as GameObject;
-
+          
         }
         else
         {
@@ -462,11 +463,13 @@ public class GameController : MonoBehaviour
         {
             ball.GetComponent<SpriteRenderer>().color = white;
             //ballContainer.color = white;
+            SessionManager.Instance.BallColour = "Green";
         }
         else
         {
             ball.GetComponent<SpriteRenderer>().color = red;
            // ballContainer.color = red;
+            SessionManager.Instance.BallColour = "Red";
         }
 
         currentBall = ball;

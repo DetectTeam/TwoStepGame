@@ -13,7 +13,15 @@ public class SessionManager : MonoBehaviour
 
     [SerializeField] private float timeBetweenButtonPresses;
 
-    private IEnumerator timer;
+    [SerializeField] private string ballColour;
+    public string BallColour { get{ return ballColour; } set{ ballColour = value; } } 
+
+    [SerializeField] private bool isBallDud;
+    public bool IsBallDud { get{ return isBallDud; } set{ isBallDud = value; } }
+
+    private string buttonChoice;
+
+    private Coroutine timer;
 
     private void Awake()
     {
@@ -25,7 +33,7 @@ public class SessionManager : MonoBehaviour
 
     private void Start()
     {
-        
+        startTime = 0;
     }
 
     // Start is called before the first frame update
@@ -49,30 +57,35 @@ public class SessionManager : MonoBehaviour
     }
 
 
+    private float startTime;
+    private float endTime;
     //Record time between button presses
-    private void StartTimer()
+    public void StartTimer()
     {
-        timer = Timer();
-        StartCoroutine( timer );
+        //StartCoroutine( "Timer" );
     }
 
+    private bool isTimerRunning = false;
     private IEnumerator Timer()
     {
-        yield return null;
-        timeBetweenButtonPresses += Time.time;
+        while( true )
+        {
+            yield return null;
+            timeBetweenButtonPresses += Time.time;
+        }
     }
 
-    private void StopTimer()
+    public void TimeBetweenButtonPresses()
     {
-        if( timer != null )
-            StopCoroutine( timer );
-        
-        //Record Time
-       buttonPress.TimeToPressFireButton = timeBetweenButtonPresses;
+        endTime = Time.time;
+     
+        Debug.Log( endTime - startTime );
+        buttonPress.TimeToPressFireButton = ( endTime - startTime ) ;
+        startTime = endTime;
     }
     //Ends
 
-    private void DetermineTransitionType( bool buttonPressed, bool ballColour )
+    public void DetermineTransitionType( bool buttonPressed, bool ballColour )
     {
         if( buttonPressed ) //true = left false = right
         {
@@ -97,16 +110,66 @@ public class SessionManager : MonoBehaviour
                 buttonPress.Transition = "Common";
             }
         }
-
     }
 
-    private void SetTrialNumber()
+    public void SetTrialNumber()
     { 
         trialNumber ++; //PlayerPref this value
         buttonPress.TrialNumber = trialNumber;
     }
 
-    private void SaveSession()
+    public void SetChoice( string choice )
+    {
+        Debug.Log( choice );
+        buttonPress.Choice = choice;
+        buttonChoice = choice;
+    }
+
+   
+
+    public void SetBallColour()
+    {
+        Debug.Log( ballColour );
+        buttonPress.BallColour = ballColour;
+    }
+
+    public void SetBallType()
+    {
+        if( isBallDud )
+            buttonPress.Reward = 0;
+        else
+            buttonPress.Reward = 1;
+
+        Debug.Log( "Reward: " + isBallDud );
+    }
+
+    public void SetTransition()
+    {
+        if( buttonChoice == "Left" && ballColour == "Green" )
+            buttonPress.Transition = "Common";
+        else if( buttonChoice == "Left" && ballColour == "Red" )
+             buttonPress.Transition = "Rare";
+        else if( buttonChoice == "Right" && ballColour == "Red" )
+                buttonPress.Transition = "Common";
+        else if( buttonChoice == "Right" && ballColour == "Green"  )
+             buttonPress.Transition = "Rare";
+
+        Debug.Log( buttonPress.Transition );
+    }
+
+    public void SetGreenProbability( float prob )
+    {
+        buttonPress.ProbabilityGreen = prob;
+        Debug.Log( prob );
+    }
+
+    public void SetRedProbability( float prob)
+    {
+        buttonPress.ProbabilityRed = prob;
+        Debug.Log( prob );
+    }
+
+    public void SaveSession()
     {
         //Serialize Session....
     }

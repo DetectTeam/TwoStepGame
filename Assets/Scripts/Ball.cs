@@ -15,6 +15,8 @@ public class Ball : MonoBehaviour
     [SerializeField] private float moveSpeed = 10;
     public float MoveSpeed { get{ return moveSpeed; } set{ moveSpeed = value; } }
 
+    
+
 
     private void Awake()
     {
