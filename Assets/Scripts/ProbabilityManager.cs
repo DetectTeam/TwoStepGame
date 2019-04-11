@@ -69,13 +69,4 @@ public class ProbabilityManager : MonoBehaviour
         SessionManager.Instance.SetRedProbability( redProb.redProbabilityList[ redListCount ] );
     }
 
-    public float GetGreenDrift()
-    {
-        return greenProb.greenProbabilityList[ greenListCount ];
-    }
-
-    public float GetRedDrift()
-    {
-        return redProb.redProbabilityList[ redListCount ];
-    }
 }
