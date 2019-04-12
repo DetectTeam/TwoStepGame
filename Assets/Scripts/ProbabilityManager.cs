@@ -26,8 +26,8 @@ public class ProbabilityManager : MonoBehaviour
     [SerializeField] private GreenProbability greenProb;
     [SerializeField] private RedProbability redProb;
         
-    [SerializeField] private int greenListCount;
-    [SerializeField] private int redListCount;
+    [SerializeField] private int greenListCount = 0;
+    [SerializeField] private int redListCount = 0;
 
 
 
@@ -50,23 +50,24 @@ public class ProbabilityManager : MonoBehaviour
     } 
 
     public void IncrementGreenDrift()
-    {
+    { 
+        SessionManager.Instance.SetGreenProbability( greenProb.greenProbabilityList[ greenListCount ] );
+        
         greenListCount ++;
         
         if( greenListCount > greenProb.greenProbabilityList.Count )
              greenListCount = 0;
-
-        SessionManager.Instance.SetGreenProbability( greenProb.greenProbabilityList[ greenListCount ] );
+ 
     } 
 
     public void IncrementRedDrift()
     {
+        SessionManager.Instance.SetRedProbability( redProb.redProbabilityList[ redListCount ] );
+        
         redListCount ++;
         
         if( redListCount > redProb.redProbabilityList.Count )
                 redListCount = 0;
-
-        SessionManager.Instance.SetRedProbability( redProb.redProbabilityList[ redListCount ] );
     }
 
 }

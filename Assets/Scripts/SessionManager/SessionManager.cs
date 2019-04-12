@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json; //Json Library
 
 public class SessionManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class SessionManager : MonoBehaviour
     private Session session;
     private ButtonPress buttonPress;
     //Session lasts for duration of a Level.
-    private int trialNumber;
+    private int trialNumber = 0;
 
     [SerializeField] private float timeBetweenButtonPresses;
 
@@ -40,7 +41,8 @@ public class SessionManager : MonoBehaviour
     public void StartSession()
     {
         session = new Session();
-        
+
+        session.Timestamp = System.DateTime.Now.ToString( "yyyy_MM_dd_hh_mm_ss" );
     }
 
     public void StartButtonPress()
@@ -48,10 +50,28 @@ public class SessionManager : MonoBehaviour
         buttonPress = new ButtonPress();
     }
 
+    public void EndButtonPress()
+    {
+        if( session == null )
+        {
+             StartSession();
+        }
+
+        if( buttonPress != null )
+        {    
+            session.ButtonPress.Add( buttonPress );
+        
+        }
+        
+    }
+
     public void EndSession()
     {
-        
+        Debug.Log( "End Session...." );
         session.ButtonPress.Add( buttonPress );
+
+        string jsonString = JsonConvert.SerializeObject( session );
+        Debug.Log( jsonString );
         
         SaveSession();
     }
@@ -124,8 +144,6 @@ public class SessionManager : MonoBehaviour
         buttonPress.Choice = choice;
         buttonChoice = choice;
     }
-
-   
 
     public void SetBallColour()
     {
