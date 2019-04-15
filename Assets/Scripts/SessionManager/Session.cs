@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class ButtonPress
 {
-    public int Level { get; set; }
     public int TrialNumber{ get; set; }
     public float ProbabilityGreen { get; set; }
     public float ProbabilityRed { get; set; }
@@ -15,14 +14,17 @@ public class ButtonPress
     public string BallColour { get; set; }
     public int Reward { get; set; }
     public int HitTarget { get; set; }
-    public int TimeToHitTaget{ get; set; }
+    public int TimeToHitTarget{ get; set; }
     public int NumTimesBouncedOffWall { get; set; }
     public float DegreeMovementOfCannon { get; set; }
 }
 
 public class Session 
 {
-   public string UserId { get; set; }
-   public string Timestamp { get; set; }
+   public string SessionID { get; set; } 
+   public string UserID { get; set; }
+   public string TimeStamp { get; set; }
+   
+   public int Level { get; set; }
    public List<ButtonPress> ButtonPress = new List<ButtonPress>();
 }

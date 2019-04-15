@@ -42,7 +42,10 @@ public class SessionManager : MonoBehaviour
     {
         session = new Session();
 
-        session.Timestamp = System.DateTime.Now.ToString( "yyyy_MM_dd_hh_mm_ss" );
+        session.TimeStamp = System.DateTime.Now.ToString( "yyyy_MM_dd_hh_mm_ss" );
+        session.Level = 1;
+        session.SessionID = "Test Session ID";
+        session.UserID = SystemInfo.deviceUniqueIdentifier;
     }
 
     public void StartButtonPress()
@@ -72,6 +75,8 @@ public class SessionManager : MonoBehaviour
 
         string jsonString = JsonConvert.SerializeObject( session );
         Debug.Log( jsonString );
+
+        Messenger.Broadcast<string>( "PUT" , jsonString );
         
         SaveSession();
     }
@@ -100,7 +105,7 @@ public class SessionManager : MonoBehaviour
         endTime = Time.time;
      
         Debug.Log( endTime - startTime );
-        buttonPress.TimeToPressFireButton = ( endTime - startTime ) ;
+        buttonPress.TimeToPressFireButton = ( endTime - startTime ) * 1000 ;
         startTime = endTime;
     }
     //Ends
