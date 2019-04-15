@@ -73,11 +73,6 @@ public class SessionManager : MonoBehaviour
         Debug.Log( "End Session...." );
         session.ButtonPress.Add( buttonPress );
 
-        string jsonString = JsonConvert.SerializeObject( session );
-        Debug.Log( jsonString );
-
-        Messenger.Broadcast<string>( "PUT" , jsonString );
-        
         SaveSession();
     }
 
@@ -195,6 +190,12 @@ public class SessionManager : MonoBehaviour
     public void SaveSession()
     {
         //Serialize Session....
+        
+        string jsonString = JsonConvert.SerializeObject( session );
+        
+        Debug.Log( jsonString );
+        
+        Messenger.Broadcast<string>( "PUT" , jsonString );
     }
    
 }
