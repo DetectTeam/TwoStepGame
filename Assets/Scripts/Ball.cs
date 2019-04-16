@@ -48,7 +48,8 @@ public class Ball : MonoBehaviour
                 Debug.Log( "is dud" );
                // Messenger.Broadcast( "EnableReloadButtons" );
                 //gameObject.SetActive( false );
-                Destroy( gameObject );
+               // Destroy( gameObject );
+                gameObject.SetActive( false );
 
             }
         }
@@ -58,7 +59,8 @@ public class Ball : MonoBehaviour
             {
                 //Messenger.Broadcast( "EnableReloadButtons" );
                 //gameObject.SetActive( false );
-                Destroy( gameObject );
+               // Destroy( gameObject );
+                gameObject.SetActive( false );
             }
         } 
     }

@@ -98,6 +98,7 @@ public class FileUploadHandler : MonoBehaviour
 	//Send the session data as a json string.
 	private IEnumerator IEPUT( string jsonStr )
 	{
+		yield return new WaitForSeconds( 1.0f );
 
 		Debug.Log( "Uploading...Data" );
 		Debug.Log( jsonStr);

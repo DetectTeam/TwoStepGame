@@ -71,9 +71,14 @@ public class SessionManager : MonoBehaviour
     public void EndSession()
     {
         Debug.Log( "End Session...." );
-        session.ButtonPress.Add( buttonPress );
+         
+         if( buttonPress != null )
+         { 
+            session.ButtonPress.Add( buttonPress );
+         }
 
-        SaveSession();
+        if( session != null )
+            SaveSession();
     }
 
 
@@ -190,8 +195,10 @@ public class SessionManager : MonoBehaviour
     public void SaveSession()
     {
         //Serialize Session....
-        
-        string jsonString = JsonConvert.SerializeObject( session );
+        string jsonString = JsonUtility.ToJson(session);
+        //string jsonString = JsonConvert.SerializeObject( session );
+
+   
         
         Debug.Log( jsonString );
         
