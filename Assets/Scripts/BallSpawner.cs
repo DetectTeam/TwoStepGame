@@ -6,7 +6,8 @@ public class BallSpawner : MonoBehaviour
 {
     
     [SerializeField] private GameObject ball;
-    [SerializeField] private GameController gameController;
+    //[SerializeField] private GameController gameController;
+    [SerializeField] private BallManager ballManager;
     // Start is called before the first frame update
     private void Start()
     {
@@ -16,7 +17,8 @@ public class BallSpawner : MonoBehaviour
 
     public void CreateDummyBall()
     { 
-        ball = gameController.Ball;
+       // ball = gameController.Ball;
+       ball = ballManager.Ball;
         
         var clone = Instantiate( ball , transform.position, transform.rotation );
         clone.name = "leftBallIcon";

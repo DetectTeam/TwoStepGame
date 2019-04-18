@@ -4,15 +4,13 @@ using UnityEngine.EventSystems;
 using UnityEngine;
 using TMPro;
 
-public class BallInfo
-{
-        public bool IsDud{get; set;}
-        public bool IsWhite{get; set;}
-}
+
 
 public class GameController : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    BallManager ballManager;
     [SerializeField] private Vector3 cursorPoint;
     [SerializeField] private Vector3 initialPosition;
     [SerializeField] private Vector3 cursorPosition;
@@ -75,7 +73,8 @@ public class GameController : MonoBehaviour
      [SerializeField] private BallInfo activeBall;
      public BallInfo ActiveBall { get{ return activeBall; } set{ activeBall = value; } }
 
-    public bool hasAimed = false;
+    [SerializeField] private bool hasAimed = false;
+    public bool HasAimed { get{ return hasAimed; } set{ hasAimed = value; } }
 
     public enum Direction
     {
@@ -94,6 +93,8 @@ public class GameController : MonoBehaviour
         originalBallSpeed = ballSpeed;
 
         speedometerText = speedometer.GetComponent<TextMeshPro>();
+
+        ballManager = GetComponent<BallManager>();
         
     }
 
@@ -286,22 +287,14 @@ public class GameController : MonoBehaviour
 
         mouseDrag = true;
 
-       // compass.transform.eulerAngles = new Vector3(0, 0, z);
-       // compass.transform.rotation = new Quaternion(0, 0, z, 0);
-        //Vector3 rotationVector = new Vector3(0, 0, z);
-       // compass.transform.localRotation = Quaternion.Euler( 0f, 0f, z );
-       // var desiredRotation =  Quaternion.Euler( 0f, 0f, z );
-
-        //  Quaternion targetRotation = Quaternion.identity;
-        //  targetRotation *=  Quaternion.AngleAxis(z, Vector3.forward);
-
-        //  compass.transform.rotation = Quaternion.Lerp ( compass.transform.rotation, targetRotation , ( Time.time * speed ) ); 
     }
 
     public void Fire()
     {
         ballContainer.color = grey;
         currentBallIcon.SetActive( false );
+
+        currentBall = ballManager.GetCurrentBall();
 
         currentBall.transform.position = muzzle.transform.position;
         currentBall.transform.rotation = muzzle.transform.rotation;
@@ -390,89 +383,89 @@ public class GameController : MonoBehaviour
         return b;
     }
 
-    public void BulletColourProbability( float percentage )
-    {  
-        var rand = Random.value;
-        bool b = false;
+    // public void BulletColourProbability( float percentage )
+    // {  
+    //     var rand = Random.value;
+    //     bool b = false;
 
-        //Debug.Log( "Rand: " + rand + " " + percentage / 100 );
+    //     //Debug.Log( "Rand: " + rand + " " + percentage / 100 );
         
-        if ( rand < ( percentage / 100 ) )
-            isWhiteBullet = true;
-        else 
-            isWhiteBullet = false;       
+    //     if ( rand < ( percentage / 100 ) )
+    //         isWhiteBullet = true;
+    //     else 
+    //         isWhiteBullet = false;       
         
-    }
+    // }
 
     
-    public GameObject CreateBall( bool b )
-    {
-        GameObject ball = null;
-        SessionManager.Instance.IsBallDud = b;
+    // public GameObject CreateBall( bool b )
+    // {
+    //     GameObject ball = null;
+    //     SessionManager.Instance.IsBallDud = b;
 
-        if( b )
-        { 
-            ball = Instantiate( dudBallPrefab ) as GameObject;
+    //     if( b )
+    //     { 
+    //         ball = Instantiate( dudBallPrefab ) as GameObject;
           
-        }
-        else
-        {
-            ball = Instantiate( ballPrefab ) as GameObject;
+    //     }
+    //     else
+    //     {
+    //         ball = Instantiate( ballPrefab ) as GameObject;
             
-            if( !isWhiteBullet )
-            {
-                var light = ball.transform.Find( "PlayerLight" );
-                if( light != null )
-                {
-                   light.GetComponent<Light>().color = red;
-                }
-            }
-        }
+    //         if( !isWhiteBullet )
+    //         {
+    //             var light = ball.transform.Find( "PlayerLight" );
+    //             if( light != null )
+    //             {
+    //                light.GetComponent<Light>().color = red;
+    //             }
+    //         }
+    //     }
      
-        return ball;
-    }
+    //     return ball;
+    // }
 
-    [SerializeField] private GameObject ball;
-    public GameObject Ball { get{ return ball; }  }
+    // [SerializeField] private GameObject ball;
+    // public GameObject Ball { get{ return ball; }  }
 
-    public void BuildBullet()
-    {
-        activeBall = new BallInfo();
+    // public void BuildBullet()
+    // {
+    //     activeBall = new BallInfo();
        
-        if ( isWhiteBullet )
-        {
-            activeBall.IsWhite = true;
-            isDud = CheckForDud( percentageWhiteBallIsDud);  
-        }
-        else
-        {
-            activeBall.IsWhite = false;
-            isDud = CheckForDud( percentageRedBallIsDud );
-        }
+    //     if ( isWhiteBullet )
+    //     {
+    //         activeBall.IsWhite = true;
+    //         isDud = CheckForDud( percentageWhiteBallIsDud);  
+    //     }
+    //     else
+    //     {
+    //         activeBall.IsWhite = false;
+    //         isDud = CheckForDud( percentageRedBallIsDud );
+    //     }
 
-        activeBall.IsDud = isDud;
+    //     activeBall.IsDud = isDud;
 
-        ball = CreateBall( isDud  );
+    //     ball = CreateBall( isDud  );
 
-        // if( isDud )
-        //     currentBallIcon.SetActive( true );
-        // else
-        //     currentBallIcon.SetActive( false );   
+    //     // if( isDud )
+    //     //     currentBallIcon.SetActive( true );
+    //     // else
+    //     //     currentBallIcon.SetActive( false );   
 
-        if( isWhiteBullet )
-        {
-            ball.GetComponent<SpriteRenderer>().color = white;
-            //ballContainer.color = white;
-            SessionManager.Instance.BallColour = "Green";
-        }
-        else
-        {
-            ball.GetComponent<SpriteRenderer>().color = red;
-           // ballContainer.color = red;
-            SessionManager.Instance.BallColour = "Red";
-        }
+    //     if( isWhiteBullet )
+    //     {
+    //         ball.GetComponent<SpriteRenderer>().color = white;
+    //         //ballContainer.color = white;
+    //         SessionManager.Instance.BallColour = "Green";
+    //     }
+    //     else
+    //     {
+    //         ball.GetComponent<SpriteRenderer>().color = red;
+    //        // ballContainer.color = red;
+    //         SessionManager.Instance.BallColour = "Red";
+    //     }
 
-        currentBall = ball;
-        currentBall.SetActive( false );
-    }
+    //     currentBall = ball;
+    //     currentBall.SetActive( false );
+    // }
 }
