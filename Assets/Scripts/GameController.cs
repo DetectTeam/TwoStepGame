@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
 
     BallManager ballManager;
+
+    [SerializeField] private bool isTutorial;
     [SerializeField] private Vector3 cursorPoint;
     [SerializeField] private Vector3 initialPosition;
     [SerializeField] private Vector3 cursorPosition;
@@ -149,7 +151,7 @@ public class GameController : MonoBehaviour
             }
        }
 
-        if (Input.GetMouseButtonUp(0) && !IsOverUI() && isReloaded)
+        if ( Input.GetMouseButtonUp(0) && !IsOverUI() && isReloaded && !isTutorial )
         {
             hasAimed = true;
             //Fire();

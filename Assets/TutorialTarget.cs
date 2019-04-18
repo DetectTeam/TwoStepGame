@@ -6,7 +6,6 @@ public class TutorialTarget : MonoBehaviour
 {
     private void OnMouseDown()
     {
-        Debug.Log( "CLICK>>>>" );
         TutorialManager.Instance.MoveNext();
     }
 }

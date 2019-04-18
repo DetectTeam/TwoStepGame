@@ -22,6 +22,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameController gameController;
 
     [SerializeField] private bool isNext;
+    [SerializeField] private bool isNextTutorial = false;
 
     private void Awake()
     {
@@ -35,13 +36,19 @@ public class TutorialManager : MonoBehaviour
             Destroy(gameObject); 
     }
 
-    public void Start()
-    {
-        StartCoroutine( TutorialOne() );
+    public IEnumerator Start()
+    {  
         targetCircle.SetActive( false );
 
         leftButton.interactable = false;
         rightButton.interactable = false;
+        
+        StartCoroutine( TutorialOne() );
+
+        yield return new WaitUntil( () => isNextTutorial == true );
+
+        Debug.Log( "Starting Tutorial Two" );
+ 
     }
 
     public void Fire()
@@ -103,7 +110,7 @@ public class TutorialManager : MonoBehaviour
 
         isNext = false;
 
-         yield return new WaitUntil( () => isNext == true );
+        yield return new WaitUntil( () => isNext == true );
 
         Debug.Log( "Got this far...." );
         targetCircle.SetActive( false );
@@ -134,7 +141,15 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds( 0.5f );
          
         TogglePopUp();
-        SetPopUpText( "Well done!. You have collected your first diamond and you have completed the first tutorial." ); 
+        SetPopUpText( "Well done!. You have collected your first diamond and completed this tutorial." ); 
+
+        isNext = false;
+
+        yield return new WaitUntil( () => isNext == true );
+
+         TogglePopUp();
+         gameController.HasAimed = false;
+         isNextTutorial = true;
    
     }
 
