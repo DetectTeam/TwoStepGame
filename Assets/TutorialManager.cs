@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 public class TutorialManager : MonoBehaviour
 {
     
     public static TutorialManager Instance;
+
+    [SerializeField] Button leftButton;
+    [SerializeField] Button rightButton;
 
     [SerializeField] private GameObject ball;
     [SerializeField] private GameObject muzzle;
@@ -35,6 +39,9 @@ public class TutorialManager : MonoBehaviour
     {
         StartCoroutine( TutorialOne() );
         targetCircle.SetActive( false );
+
+        leftButton.interactable = false;
+        rightButton.interactable = false;
     }
 
     public void Fire()
@@ -103,6 +110,8 @@ public class TutorialManager : MonoBehaviour
         gameController.HasAimed = true;
         Debug.Log( "Good job! . Now Press the fire button to launch a ball" );
         SetPopUpText( "Good job! . Now Press the fire button to launch a ball" ); 
+
+        leftButton.interactable = true;
         
         TogglePopUp();
 
@@ -125,7 +134,7 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds( 0.5f );
          
         TogglePopUp();
-        SetPopUpText( "Good job! . You have collected your first diamond" ); 
+        SetPopUpText( "Well done!. You have collected your first diamond and you have completed the first tutorial." ); 
    
     }
 
