@@ -5,17 +5,17 @@ using UnityEngine;
 public class TutorialDiamond : MonoBehaviour
 {
     
-    
-    
+    public delegate void OnDestroyDelegate();
+
     private void OnTriggerEnter2D( Collider2D col )
     {
         if( col.tag == "Ball" || col.tag == "Dud" )
         {
-            
             Debug.Log( "Im Hit." );
             TutorialManager.Instance.MoveNext();
-           gameObject.SetActive( false );
-          
+            Messenger.Broadcast( "Continue" );
+            gameObject.SetActive( false );
+ 
         }
     }
 }

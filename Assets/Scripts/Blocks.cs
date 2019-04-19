@@ -10,6 +10,17 @@ public class Blocks : MonoBehaviour
     [SerializeField] private bool isBreakable;
     [SerializeField] private float hitTotal;
 
+    private void OnEnable()
+    {
+        Messenger.AddListener( "Reset", ResetBlock );
+    }
+
+    private void OnDisable()
+    {
+        Messenger.RemoveListener( "Reset", ResetBlock );
+    }
+
+
     private void Start()
     {
         blockSprite = GetComponent<SpriteRenderer>();
@@ -41,5 +52,10 @@ public class Blocks : MonoBehaviour
             Destroy( gameObject );
         }
 
+    }
+
+    public void ResetBlock()
+    {
+        blockSprite.sprite = normalBlock;
     }
 }

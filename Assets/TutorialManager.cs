@@ -24,6 +24,22 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private bool isNext;
     [SerializeField] private bool isNextTutorial = false;
 
+    //Tutorial 2
+    [SerializeField] private GameObject block;
+    [SerializeField] private GameObject tutDiamond;
+    [SerializeField] private GameObject diamond;
+    [SerializeField] private GameObject gate;
+
+    private void OnEnable()
+    {
+        Messenger.AddListener( "Continue" , ContinueTutorial );
+    }
+
+    private void OnDisable()
+    {
+        Messenger.RemoveListener( "Continue" , ContinueTutorial );
+    }
+
     private void Awake()
     {
         //Check if instance already exists
@@ -43,11 +59,15 @@ public class TutorialManager : MonoBehaviour
         leftButton.interactable = false;
         rightButton.interactable = false;
         
-        StartCoroutine( TutorialOne() );
+        gate.SetActive( false );
+        
+        StartCoroutine( TutorialTwo() );
 
         yield return new WaitUntil( () => isNextTutorial == true );
 
         Debug.Log( "Starting Tutorial Two" );
+
+        //StartCoroutine( TutorialTwo() );
  
     }
 
@@ -73,6 +93,13 @@ public class TutorialManager : MonoBehaviour
     public void MoveNext()
     {
         isNext = true;
+    }
+
+
+    private bool continueTutorial;
+    private void ContinueTutorial()
+    {
+        continueTutorial = true;
     }
 
     private IEnumerator TutorialOne()
@@ -152,6 +179,63 @@ public class TutorialManager : MonoBehaviour
          isNextTutorial = true;
    
     }
+
+    private IEnumerator TutorialTwo()
+    {
+        yield return null;
+
+        isNext = false;
+
+        leftButton.interactable = true;
+
+        Debug.Log("Starting Tutorial 2");
+
+        yield return new WaitUntil(() => continueTutorial == true);
+
+        PositionObj( new Vector2( 2.0f, 3.0f ) , -45.0f );
+
+        yield return new WaitUntil(() => continueTutorial == true);
+
+        PositionObj( new Vector2( -3.0f, 3.0f ) , 90.0f );
+
+        yield return new WaitUntil(() => continueTutorial == true);
+
+        PositionObj( new Vector2( 3.0f, 6.0f ) , -45.0f );
+
+        yield return new WaitUntil(() => continueTutorial == true);
+
+        PositionObj( new Vector2( -3.0f, 4.0f ) , 90.0f );
+
+    }
+
+    private void PositionObj( Vector2 position, float rotation )
+    {
+        continueTutorial = false;
+        Debug.Log("Repositioning Block");
+
+        diamond.SetActive(true);
+        SetPosition(tutDiamond.transform, position );
+        block.SetActive(false);
+
+        block.SetActive(true);
+        SetRotation(block.transform,  rotation );
+        Messenger.Broadcast("Reset");
+    }
+
+    //Tutorial 2
+
+    private void SetPosition( Transform obj, Vector2 position )
+    {
+        obj.localPosition = position;
+    }
+
+    private void SetRotation( Transform obj, float rotationAmt )
+    {
+        //obj.eulerAngles = new Vector3( 0, 0, rotationAmt );
+        obj.Rotate(0, 0, rotationAmt, Space.Self);
+    }
+
+    //Ends
 
     public void TogglePopUp( )
     {
