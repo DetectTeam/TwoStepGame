@@ -92,7 +92,8 @@ public class Player : MonoBehaviour
             //SetBackgroundColor();
         }
 
-        if (other.gameObject.tag == "Triangle" && isDead == false)
+
+        if (other.gameObject.tag == "BreakableWall")
         {
             source.PlayOneShot(deadClip, 1);
             isDead = true;

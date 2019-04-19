@@ -61,7 +61,7 @@ public class TutorialManager : MonoBehaviour
         
         gate.SetActive( false );
         
-        StartCoroutine( TutorialTwo() );
+        StartCoroutine( TutorialThree() );
 
         yield return new WaitUntil( () => isNextTutorial == true );
 
@@ -191,22 +191,27 @@ public class TutorialManager : MonoBehaviour
         Debug.Log("Starting Tutorial 2");
 
         yield return new WaitUntil(() => continueTutorial == true);
+        yield return new WaitForSeconds( 0.5f );
 
         PositionObj( new Vector2( 2.0f, 3.0f ) , -45.0f );
 
         yield return new WaitUntil(() => continueTutorial == true);
+        yield return new WaitForSeconds( 0.5f );
 
         PositionObj( new Vector2( -3.0f, 3.0f ) , 90.0f );
 
         yield return new WaitUntil(() => continueTutorial == true);
+        yield return new WaitForSeconds( 0.5f );
 
         PositionObj( new Vector2( 3.0f, 6.0f ) , -45.0f );
 
         yield return new WaitUntil(() => continueTutorial == true);
+        yield return new WaitForSeconds( 0.5f );
 
         PositionObj( new Vector2( -3.0f, 4.0f ) , 90.0f );
 
         yield return new WaitUntil(() => continueTutorial == true);
+        yield return new WaitForSeconds( 0.5f );
 
         tutDiamond.SetActive( false );
         TogglePopUp();
@@ -214,10 +219,8 @@ public class TutorialManager : MonoBehaviour
 
         isNext = false;
 
-
         yield return new WaitUntil( () => isNext == true );
         TogglePopUp();
-
 
     }
 
@@ -247,6 +250,24 @@ public class TutorialManager : MonoBehaviour
         //obj.eulerAngles = new Vector3( 0, 0, rotationAmt );
         obj.Rotate(0, 0, rotationAmt, Space.Self);
     }
+
+    //Ends
+
+
+    //Tutorial 3 breaking blocks
+
+    private IEnumerator TutorialThree()
+    {
+        yield return null;
+
+        leftButton.interactable = true;
+
+        tutDiamond.SetActive( true );
+        gate.SetActive( true );
+        PositionObj( new Vector2( 0.0f, 3.0f ) , 0.0f );
+    }
+
+
 
     //Ends
 

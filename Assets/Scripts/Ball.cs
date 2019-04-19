@@ -10,6 +10,7 @@ public class Ball : MonoBehaviour
     [SerializeField] private float lifeSpan;
     [SerializeField] private Button leftButton;
     [SerializeField] private Button rightButton;
+    [SerializeField] private GameObject deadEffect;
     
    
     [SerializeField] private float moveSpeed = 10;
@@ -49,8 +50,6 @@ public class Ball : MonoBehaviour
                // Messenger.Broadcast( "EnableReloadButtons" );
                 //gameObject.SetActive( false );
                 Destroy( gameObject );
-               
-
             }
         }
         else
@@ -59,9 +58,14 @@ public class Ball : MonoBehaviour
             {
                 //Messenger.Broadcast( "EnableReloadButtons" );
                 //gameObject.SetActive( false );
-                Destroy( gameObject );
-                
+                Destroy( gameObject );   
             }
+        }
+
+        if( col.CompareTag( "BreakableWall" ) )
+        {
+            GameObject effectObj = Instantiate( deadEffect, col.transform.position, Quaternion.identity );
+            Destroy( effectObj, 0.5f );
         } 
     }
 

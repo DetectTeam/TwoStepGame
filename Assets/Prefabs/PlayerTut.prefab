@@ -234,6 +234,7 @@ MonoBehaviour:
   lifeSpan: 20
   leftButton: {fileID: 0}
   rightButton: {fileID: 0}
+  deadEffect: {fileID: 1204438978744632, guid: 65a5451625ed1496c8722e9a83ed5dc3, type: 3}
   moveSpeed: 25
 --- !u!114 &3433528957273206224
 MonoBehaviour:
