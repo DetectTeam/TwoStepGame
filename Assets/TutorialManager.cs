@@ -206,6 +206,19 @@ public class TutorialManager : MonoBehaviour
 
         PositionObj( new Vector2( -3.0f, 4.0f ) , 90.0f );
 
+        yield return new WaitUntil(() => continueTutorial == true);
+
+        tutDiamond.SetActive( false );
+        TogglePopUp();
+        SetPopUpText( "Well done!. You have mastered aiming" ); 
+
+        isNext = false;
+
+
+        yield return new WaitUntil( () => isNext == true );
+        TogglePopUp();
+
+
     }
 
     private void PositionObj( Vector2 position, float rotation )
