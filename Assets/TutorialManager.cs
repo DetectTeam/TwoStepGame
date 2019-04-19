@@ -22,6 +22,8 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameController gameController;
 
     [SerializeField] private bool isNext;
+
+    [SerializeField] private bool isLeft;
     [SerializeField] private bool isNextTutorial = false;
 
     //Tutorial 2
@@ -29,6 +31,9 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject tutDiamond;
     [SerializeField] private GameObject diamond;
     [SerializeField] private GameObject gate;
+
+    [SerializeField] private Color red;
+    [SerializeField] private Color green;
 
     private void OnEnable()
     {
@@ -80,11 +85,42 @@ public class TutorialManager : MonoBehaviour
        StartCoroutine( "IEFire" );
     }
 
+
+    private int count = 0;
+
     private IEnumerator IEFire()
     {
+
         yield return new WaitForSeconds( 0.5f );
         
         var b = Instantiate( ball, muzzle.transform.position, muzzle.transform.rotation ) as GameObject;
+
+        if( isLeft )
+        {
+            count ++;
+            if( count <= 3  )
+            {
+                b.GetComponent<SpriteRenderer>().color = green;
+            }
+            else
+            {
+                 b.GetComponent<SpriteRenderer>().color = red;
+                 count = 0;
+            }
+        }
+        else
+        {
+            count ++;
+            if( count <= 3  )
+            {
+                b.GetComponent<SpriteRenderer>().color = red;
+            }
+            else
+            {
+                 b.GetComponent<SpriteRenderer>().color = green;
+                 count = 0;
+            }
+        }
 
         b.GetComponent<Rigidbody2D>().AddForce( muzzle.transform.up * 100 );
 
@@ -187,6 +223,9 @@ public class TutorialManager : MonoBehaviour
         isNext = false;
 
         leftButton.interactable = true;
+        rightButton.interactable = false;
+
+        isLeft = true;
 
         Debug.Log("Starting Tutorial 2");
 
@@ -215,27 +254,51 @@ public class TutorialManager : MonoBehaviour
 
         tutDiamond.SetActive( false );
         TogglePopUp();
-        SetPopUpText( "Well done!. You have mastered aiming" ); 
+        SetPopUpText( "Well done!. Now try with the right fire button " ); 
 
         isNext = false;
 
         yield return new WaitUntil( () => isNext == true );
         TogglePopUp();
 
+        //Right Trigger
+         isLeft = false;
+
+        leftButton.interactable = false;
+        rightButton.interactable = true;
+
+        tutDiamond.SetActive( true );
+        
+        PositionObj( new Vector2( 2.0f, 3.0f ) , -45.0f );
+
+        yield return new WaitUntil(() => continueTutorial == true);
+        yield return new WaitForSeconds( 0.5f );
+
+        PositionObj( new Vector2( -2.0f, 2.0f ) , 0.0f );
+
+        yield return new WaitUntil(() => continueTutorial == true);
+        yield return new WaitForSeconds( 0.5f );
+
+        PositionObj( new Vector2( 0.0f, 4.0f ) , -180.0f );
+
+        yield return new WaitUntil(() => continueTutorial == true);
+        yield return new WaitForSeconds( 0.5f );
+
     }
 
     private void PositionObj( Vector2 position, float rotation )
     {
         continueTutorial = false;
-        Debug.Log("Repositioning Block");
+        Debug.Log( "Repositioning Block" );
 
         diamond.SetActive(true);
         SetPosition(tutDiamond.transform, position );
         block.SetActive(false);
 
         block.SetActive(true);
-        SetRotation(block.transform,  rotation );
-        Messenger.Broadcast("Reset");
+        SetRotation( block.transform,  rotation );
+        
+        Messenger.Broadcast( "Reset" );
     }
 
     //Tutorial 2
