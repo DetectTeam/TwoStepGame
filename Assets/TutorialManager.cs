@@ -74,19 +74,19 @@ public class TutorialManager : MonoBehaviour
         
         gate.SetActive( false );
         
-        // StartCoroutine( TutorialOne() );
+        StartCoroutine( TutorialOne() );
 
-        // yield return new WaitUntil( () => isNextTutorial == true );
+        yield return new WaitUntil( () => isNextTutorial == true );
 
-        // Debug.Log( "Starting Tutorial Two" );
-        // isNextTutorial = false;
+        Debug.Log( "Starting Tutorial Two" );
+        isNextTutorial = false;
 
-        // StartCoroutine( TutorialTwo() );
+        StartCoroutine( TutorialTwo() );
 
-        // yield return new WaitUntil( () => isNextTutorial == true );
+        yield return new WaitUntil( () => isNextTutorial == true );
 
-        // Debug.Log( "Starting Tutorial Three" );
-        // isNextTutorial = false;
+        Debug.Log( "Starting Tutorial Three" );
+        isNextTutorial = false;
 
         yield return null;
 
@@ -555,7 +555,7 @@ public class TutorialManager : MonoBehaviour
 
         //This changes over time so you need to pay attention!
 
-        SetPopUpText( "The number of charged balls and duds chnages over time so you need to pay attention!" ); 
+        SetPopUpText( "The number of charged balls and duds changes over time so you need to pay attention!" ); 
 
         TogglePopUp();
        
