@@ -12,6 +12,8 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] Button rightButton;
 
     [SerializeField] private GameObject ball;
+    [SerializeField] private GameObject superBall;
+    
     [SerializeField] private GameObject muzzle;
 
     [SerializeField] private GameObject popUp;
@@ -25,6 +27,7 @@ public class TutorialManager : MonoBehaviour
 
     [SerializeField] private bool isLeft;
     [SerializeField] private bool isNextTutorial = false;
+    [SerializeField] private bool isSuperBall = false;
 
     //Tutorial 2
     [SerializeField] private GameObject block;
@@ -59,6 +62,8 @@ public class TutorialManager : MonoBehaviour
 
     public IEnumerator Start()
     {  
+        tutDiamond.SetActive( false );
+        
         targetCircle.SetActive( false );
 
         leftButton.interactable = false;
@@ -66,14 +71,23 @@ public class TutorialManager : MonoBehaviour
         
         gate.SetActive( false );
         
-        StartCoroutine( TutorialThree() );
+        StartCoroutine( TutorialOne() );
 
         yield return new WaitUntil( () => isNextTutorial == true );
 
         Debug.Log( "Starting Tutorial Two" );
+        isNextTutorial = false;
 
-        //StartCoroutine( TutorialTwo() );
- 
+        StartCoroutine( TutorialTwo() );
+
+        yield return new WaitUntil( () => isNextTutorial == true );
+
+        Debug.Log( "Starting Tutorial Three" );
+        isNextTutorial = false;
+
+        StartCoroutine( TutorialThree() );
+
+
     }
 
     public void Fire()
@@ -86,44 +100,71 @@ public class TutorialManager : MonoBehaviour
     }
 
 
-    private int count = 0;
+    private int lCount = 0;
+    private int rCount = 0;
 
     private IEnumerator IEFire()
     {
 
         yield return new WaitForSeconds( 0.5f );
         
-        var b = Instantiate( ball, muzzle.transform.position, muzzle.transform.rotation ) as GameObject;
+        GameObject b = null;
+
+        Color currentColor = green;
+        
+        if( !isSuperBall )
+        {
+            b = Instantiate( ball, muzzle.transform.position, muzzle.transform.rotation ) as GameObject;
+        }
+        else
+        {
+             b = Instantiate( superBall, muzzle.transform.position, muzzle.transform.rotation ) as GameObject;
+        }
+             
+
+        //yield return new WaitUntil( () => isNext == true );
+        //TogglePopUp();
 
         if( isLeft )
         {
-            count ++;
-            if( count <= 3  )
+            lCount ++;
+            if( lCount <= 3  )
             {
                 b.GetComponent<SpriteRenderer>().color = green;
+                currentColor = green;
+               
             }
             else
             {
                  b.GetComponent<SpriteRenderer>().color = red;
-                 count = 0;
+                 currentColor = red;
+                 lCount = 0;
             }
         }
         else
         {
-            count ++;
-            if( count <= 3  )
+            rCount ++;
+            if( rCount <= 3  )
             {
                 b.GetComponent<SpriteRenderer>().color = red;
+                currentColor = red;
             }
             else
             {
                  b.GetComponent<SpriteRenderer>().color = green;
-                 count = 0;
+                 currentColor = green;
+                 rCount = 0;
             }
         }
 
-        b.GetComponent<Rigidbody2D>().AddForce( muzzle.transform.up * 100 );
+         if( isSuperBall )
+         {  
+            
+            b.GetComponent<TrailRenderer>().startColor = currentColor;
+            b.transform.Find( "PlayerLight" ).GetComponent<Light>().color = currentColor;      
+         }
 
+        b.GetComponent<Rigidbody2D>().AddForce( muzzle.transform.up * 100 );
     }
 
     public void MoveNext()
@@ -142,6 +183,10 @@ public class TutorialManager : MonoBehaviour
     {
         isNext = false;
         Debug.Log( "Starting Tutrial...." );
+
+        
+        PositionObj( new Vector2( 3f, 6f ) , -45.0f );
+        tutDiamond.SetActive( true );
 
         //Display Dialog
         Debug.Log( "Welcome to this tutorial..." );
@@ -225,29 +270,45 @@ public class TutorialManager : MonoBehaviour
         leftButton.interactable = true;
         rightButton.interactable = false;
 
-        isLeft = true;
+        //isLeft = true;
 
-        Debug.Log("Starting Tutorial 2");
+        Debug.Log( "Starting Tutorial 2" );
 
+        tutDiamond.SetActive( true );
+
+        TogglePopUp();
+        SetPopUpText( "Now using the left button aim and hit all the diamonds..." ); 
+
+        isNext = false;
+
+        yield return new WaitUntil( () => isNext == true );
+
+        TogglePopUp();
+
+        //Tutorial 2 left Button test
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
 
         PositionObj( new Vector2( 2.0f, 3.0f ) , -45.0f );
+        rightButton.interactable = false;
 
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
 
         PositionObj( new Vector2( -3.0f, 3.0f ) , 90.0f );
+        rightButton.interactable = false;
 
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
 
-        PositionObj( new Vector2( 3.0f, 6.0f ) , -45.0f );
+        PositionObj( new Vector2( 3.0f, 6.0f ) , 45.0f );
+        rightButton.interactable = false;
 
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
 
-        PositionObj( new Vector2( -3.0f, 4.0f ) , 90.0f );
+        PositionObj( new Vector2( -2.0f, 3.0f ) , 90.0f );
+        rightButton.interactable = false;
 
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
@@ -268,21 +329,47 @@ public class TutorialManager : MonoBehaviour
         rightButton.interactable = true;
 
         tutDiamond.SetActive( true );
+
+        //Tutorial 2 right button test
         
-        PositionObj( new Vector2( 2.0f, 3.0f ) , -45.0f );
+        PositionObj( new Vector2( -3.0f, 5.0f ) , -45.0f );
 
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
 
-        PositionObj( new Vector2( -2.0f, 2.0f ) , 0.0f );
+        PositionObj( new Vector2( -2.0f, 2.0f ) , 90.0f );
+        leftButton.interactable = false;
 
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
 
-        PositionObj( new Vector2( 0.0f, 4.0f ) , -180.0f );
+        PositionObj( new Vector2( 0.0f, 2.0f ) , 45.0f );
+        leftButton.interactable = false;
 
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
+
+        TogglePopUp();
+        SetPopUpText( "Well done!. You have completed the second tutorial. " ); 
+
+        isNext = false;
+
+        yield return new WaitUntil( () => isNext == true );
+
+        SetPopUpText( "As you’ll have noticed, there are two types of bullet; red and green." ); 
+        isNext = false;
+
+        yield return new WaitUntil( () => isNext == true );
+
+        SetPopUpText( "The left container has more greens than red and the right container has more reds than greens." ); 
+        isNext = false;
+
+        yield return new WaitUntil( () => isNext == true );
+
+        TogglePopUp();
+
+        isNextTutorial = true;
+        
 
     }
 
@@ -297,8 +384,6 @@ public class TutorialManager : MonoBehaviour
 
         block.SetActive(true);
         SetRotation( block.transform,  rotation );
-        
-        Messenger.Broadcast( "Reset" );
     }
 
     //Tutorial 2
@@ -323,11 +408,69 @@ public class TutorialManager : MonoBehaviour
     {
         yield return null;
 
+        //isLeft = true;
+
+        SetPopUpText( "In this tutorial we introduce breakable blocks and hyper charged balls. Aim and fire balls at the blue wall." ); 
+
+        TogglePopUp();
+       
+        isNext = false;
+        yield return new WaitUntil( () => isNext == true );
+        TogglePopUp();
+
         leftButton.interactable = true;
+        rightButton.interactable = true;
 
         tutDiamond.SetActive( true );
         gate.SetActive( true );
-        PositionObj( new Vector2( 0.0f, 3.0f ) , 0.0f );
+        PositionObj( new Vector2( 0.0f, 3.0f ) , 135f );
+
+        continueTutorial = false;
+        yield return new WaitUntil(() => continueTutorial == true);
+        
+
+        //Sometimes the red and green bullets will be hyper-charged.
+     
+        SetPopUpText( "Good Job! You will notice that two regular balls are required to break the wall." ); 
+        TogglePopUp();
+
+        isNext = false;
+
+        yield return new WaitUntil( () => isNext == true );
+        TogglePopUp();
+
+
+        SetPopUpText( "However sometimes the red and green balls will be hyper-charged. Hyper-charged balls do double damage." ); 
+        TogglePopUp();
+
+        isNext = false;
+
+        yield return new WaitUntil( () => isNext == true );
+        TogglePopUp();
+
+
+        SetPopUpText( "Destroy the blue wall using Hyper-charged balls." ); 
+        TogglePopUp();
+
+        isNext = false;
+
+        yield return new WaitUntil( () => isNext == true );
+        TogglePopUp();
+
+        isSuperBall = true; 
+
+        Messenger.Broadcast( "Reset" );
+
+        continueTutorial = false;
+        yield return new WaitUntil(() => continueTutorial == true);
+
+        SetPopUpText( "A Hyper-charged ball will always be twice as powerful as a normal ball." ); 
+        TogglePopUp();
+
+        isNext = false;
+
+        isNextTutorial = true;
+
     }
 
 
@@ -345,6 +488,11 @@ public class TutorialManager : MonoBehaviour
     private void SetPopUpText( string message )
     {
         popUpMessage.text = message;
+    }
+
+    public void IsLeft( bool b )
+    {
+        isLeft = b;
     }
 
 }

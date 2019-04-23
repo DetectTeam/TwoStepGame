@@ -13,6 +13,7 @@ public class Blocks : MonoBehaviour
     private void OnEnable()
     {
         Messenger.AddListener( "Reset", ResetBlock );
+        blockSprite = GetComponent<SpriteRenderer>();
     }
 
     private void OnDisable()
@@ -49,7 +50,8 @@ public class Blocks : MonoBehaviour
 
         if( hitTotal <= 0  )
         {
-            Destroy( gameObject );
+            //Destroy( gameObject );
+            gameObject.SetActive( false );
         }
 
     }

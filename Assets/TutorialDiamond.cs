@@ -11,11 +11,11 @@ public class TutorialDiamond : MonoBehaviour
     {
         if( col.tag == "Ball" || col.tag == "Dud" )
         {
-            Debug.Log( "Im Hit." );
             TutorialManager.Instance.MoveNext();
             Messenger.Broadcast( "Continue" );
             gameObject.SetActive( false );
- 
         }
     }
+
+   
 }
