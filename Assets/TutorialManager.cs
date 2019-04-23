@@ -38,6 +38,9 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private Color red;
     [SerializeField] private Color green;
 
+    [SerializeField] private GameObject greenBallContainer;
+    [SerializeField] private GameObject redBallContainer;
+
     private void OnEnable()
     {
         Messenger.AddListener( "Continue" , ContinueTutorial );
@@ -71,28 +74,35 @@ public class TutorialManager : MonoBehaviour
         
         gate.SetActive( false );
         
-        StartCoroutine( TutorialOne() );
+        // StartCoroutine( TutorialOne() );
 
-        yield return new WaitUntil( () => isNextTutorial == true );
+        // yield return new WaitUntil( () => isNextTutorial == true );
 
-        Debug.Log( "Starting Tutorial Two" );
+        // Debug.Log( "Starting Tutorial Two" );
+        // isNextTutorial = false;
+
+        // StartCoroutine( TutorialTwo() );
+
+        // yield return new WaitUntil( () => isNextTutorial == true );
+
+        // Debug.Log( "Starting Tutorial Three" );
+        // isNextTutorial = false;
+
+        yield return null;
+
         isNextTutorial = false;
-
-        StartCoroutine( TutorialTwo() );
-
-        yield return new WaitUntil( () => isNextTutorial == true );
-
-        Debug.Log( "Starting Tutorial Three" );
-        isNextTutorial = false;
-
         StartCoroutine( TutorialThree() );
+
+        yield return new WaitUntil( () => isNextTutorial == true );
+
+        StartCoroutine( TutorialFour() );
 
 
     }
 
     public void Fire()
     {
-        Debug.Log( "Firing....." );
+        //Debug.Log( "Firing....." );
         Messenger.Broadcast( "DisableReloadButtons" );
         MoveNext();
 
@@ -182,7 +192,7 @@ public class TutorialManager : MonoBehaviour
     private IEnumerator TutorialOne()
     {
         isNext = false;
-        Debug.Log( "Starting Tutrial...." );
+        Debug.Log( "Starting Tutorial 1...." );
 
         
         PositionObj( new Vector2( 3f, 6f ) , -45.0f );
@@ -369,8 +379,9 @@ public class TutorialManager : MonoBehaviour
         TogglePopUp();
 
         isNextTutorial = true;
-        
 
+        Debug.Log( "End Tutorial 3" );
+        
     }
 
     private void PositionObj( Vector2 position, float rotation )
@@ -468,8 +479,89 @@ public class TutorialManager : MonoBehaviour
         TogglePopUp();
 
         isNext = false;
+        yield return new WaitUntil( () => isNext == true );
+        TogglePopUp();
 
         isNextTutorial = true;
+
+        Debug.Log( "End Tutorial 3" );
+
+    }
+
+    private IEnumerator TutorialFour()
+    {
+        Debug.Log( "Starting Tutorial 4" );
+
+        tutDiamond.SetActive( false );
+        
+        SetPopUpText( "There is one more detail to the game. Sometimes the red and green bullets will be a dud ball." ); 
+
+        TogglePopUp();
+       
+        isNext = false;
+        yield return new WaitUntil( () => isNext == true );
+        TogglePopUp();
+
+
+           
+        SetPopUpText( "A dud ball does not glow and does not have a trail. Dud balls can not damage walls" ); 
+
+        TogglePopUp();
+       
+        isNext = false;
+        yield return new WaitUntil( () => isNext == true );
+        TogglePopUp();
+
+
+        //Red and Green balls can both be normal
+
+        SetPopUpText( "Red and Green balls can both be duds" ); 
+
+        TogglePopUp();
+       
+        isNext = false;
+        yield return new WaitUntil( () => isNext == true );
+        TogglePopUp();
+
+
+        //Sometimes, most green balls will be duds...
+
+        SetPopUpText( "Sometimes, most red balls will be duds " ); 
+
+        TogglePopUp();
+        redBallContainer.SetActive( true );
+
+
+       
+        isNext = false;
+        yield return new WaitUntil( () => isNext == true );
+        TogglePopUp();
+
+        redBallContainer.SetActive( false );
+
+
+         //...and sometimes, most red balls will be normal
+
+        SetPopUpText( "...sometimes, most green balls will be duds " ); 
+        redBallContainer.SetActive( false );
+        greenBallContainer.SetActive( true );
+
+        TogglePopUp();
+       
+        isNext = false;
+        yield return new WaitUntil( () => isNext == true );
+        TogglePopUp();
+
+
+        //This changes over time so you need to pay attention!
+
+        SetPopUpText( "The number of charged balls and duds chnages over time so you need to pay attention!" ); 
+
+        TogglePopUp();
+       
+        isNext = false;
+        yield return new WaitUntil( () => isNext == true );
+        TogglePopUp();
 
     }
 
