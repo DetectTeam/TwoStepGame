@@ -11,6 +11,7 @@ public class DiamondHandler : MonoBehaviour
     private void OnEnable()
     {
         Messenger.AddListener( "Reset" , Reset );
+        Messenger.MarkAsPermanent( "Reset" );
     }
 
     private void OnDisable()

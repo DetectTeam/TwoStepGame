@@ -94,7 +94,7 @@ public class GameController : MonoBehaviour
 
         originalBallSpeed = ballSpeed;
 
-        speedometerText = speedometer.GetComponent<TextMeshPro>();
+        //speedometerText = speedometer.GetComponent<TextMeshPro>();
 
         ballManager = GetComponent<BallManager>();
         
@@ -144,7 +144,7 @@ public class GameController : MonoBehaviour
             }
             else
             {     
-                speedometer.SetActive( false );
+                //speedometer.SetActive( false );
                 isMoving = true;
                 ballSpeed = 20;
                 s = 20;
@@ -172,7 +172,7 @@ public class GameController : MonoBehaviour
             if( timeCount < speedDelay )
                 return;
 
-            speedometer.SetActive( true );
+            //speedometer.SetActive( true );
 
             ballSpeed += 0.1f;
             count ++;
@@ -186,8 +186,8 @@ public class GameController : MonoBehaviour
             {
                   s = s + 1;
                 if( s > 55 )
-                        s = 55;
-                    speedometerText.SetText( s.ToString() );
+                    s = 55;
+                    //speedometerText.SetText( s.ToString() );
                     count = 0;
             }
 

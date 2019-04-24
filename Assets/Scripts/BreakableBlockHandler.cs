@@ -10,6 +10,7 @@ public class BreakableBlockHandler : MonoBehaviour
     private void OnEnable()
     {
         Messenger.AddListener( "Reset" , ResetBlocks );
+        Messenger.MarkAsPermanent( "Reset" );
         
     }
 

@@ -9,6 +9,7 @@ public class CameraShake : MonoBehaviour
     private void OnEnable()
     {
         Messenger.AddListener( "ShakeCamera", ShakeCamera );
+        Messenger.MarkAsPermanent( "ShakeCamera" );
     }
 
     private void OnDisable()

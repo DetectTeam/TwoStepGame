@@ -13,6 +13,7 @@ public class Blocks : MonoBehaviour
     private void OnEnable()
     {
         Messenger.AddListener( "Reset", ResetBlock );
+        Messenger.MarkAsPermanent( "Reset" );
         blockSprite = GetComponent<SpriteRenderer>();
     }
 

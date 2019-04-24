@@ -45,6 +45,7 @@ public class TutorialManager : MonoBehaviour
     private void OnEnable()
     {
         Messenger.AddListener( "Continue" , ContinueTutorial );
+        Messenger.MarkAsPermanent( "Continue" );
     }
 
     private void OnDisable()
@@ -201,6 +202,8 @@ public class TutorialManager : MonoBehaviour
         isNext = false;
         Debug.Log( "Starting Tutorial 1...." );
 
+        rightButton.interactable = false;
+
         
         PositionObj( new Vector2( 3f, 6f ) , -45.0f );
         tutDiamond.SetActive( true );
@@ -334,6 +337,7 @@ public class TutorialManager : MonoBehaviour
         tutDiamond.SetActive( false );
         TogglePopUp();
         SetPopUpText( "Well done!. Now try with the right fire button " ); 
+        leftButton.interactable = false;
 
         isNext = false;
 
@@ -354,6 +358,7 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
+        leftButton.interactable = false;
 
         PositionObj( new Vector2( -2.0f, 1.0f ) , 90.0f );
         leftButton.interactable = false;
