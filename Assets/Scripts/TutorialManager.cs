@@ -17,6 +17,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject muzzle;
 
     [SerializeField] private GameObject popUp;
+    [SerializeField] private GameObject gamePopUp;
 
     [SerializeField] private GameObject targetCircle;
     [SerializeField] private TextMeshProUGUI popUpMessage;
@@ -27,7 +28,7 @@ public class TutorialManager : MonoBehaviour
 
     [SerializeField] private bool isLeft;
     [SerializeField] private bool isNextTutorial = false;
-    [SerializeField] private bool isSuperBall = false;
+    [SerializeField] private bool isSuperBall = true;
 
     //Tutorial 2
     [SerializeField] private GameObject block;
@@ -95,7 +96,13 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitUntil( () => isNextTutorial == true );
 
+        isNextTutorial = false;
         StartCoroutine( TutorialFour() );
+
+        yield return new WaitUntil( () => isNextTutorial == true );
+
+        //Display Play Game Menu
+        gamePopUp.SetActive( true );
 
 
     }
@@ -199,10 +206,10 @@ public class TutorialManager : MonoBehaviour
         tutDiamond.SetActive( true );
 
         //Display Dialog
-        Debug.Log( "Welcome to this tutorial..." );
+        Debug.Log( "Welcome to this tutorial...(Insert nice intro here...)" );
         //popUpMessage.text = "Welcome to this tutorial";
         TogglePopUp( );
-        SetPopUpText( "Welcome to this tutorial"  );
+        SetPopUpText( "Welcome to this tutorial (Insert nice intro here)"  );
 
         yield return new WaitUntil( () => isNext == true );
         
@@ -259,7 +266,7 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds( 0.5f );
          
         TogglePopUp();
-        SetPopUpText( "Well done!. You have collected your first diamond and completed this tutorial." ); 
+        SetPopUpText( "Well done!. You have collected your first diamond." ); 
 
         isNext = false;
 
@@ -299,7 +306,7 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
 
-        PositionObj( new Vector2( 2.0f, 3.0f ) , -45.0f );
+        PositionObj( new Vector2( 2.0f, 1.0f ) , -45.0f );
         rightButton.interactable = false;
 
         yield return new WaitUntil(() => continueTutorial == true);
@@ -311,7 +318,7 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
 
-        PositionObj( new Vector2( 3.0f, 6.0f ) , 45.0f );
+        PositionObj( new Vector2( -3.0f, 6.0f ) , 45.0f );
         rightButton.interactable = false;
 
         yield return new WaitUntil(() => continueTutorial == true);
@@ -322,6 +329,7 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
+        rightButton.interactable = false;
 
         tutDiamond.SetActive( false );
         TogglePopUp();
@@ -342,12 +350,12 @@ public class TutorialManager : MonoBehaviour
 
         //Tutorial 2 right button test
         
-        PositionObj( new Vector2( -3.0f, 5.0f ) , -45.0f );
+        PositionObj( new Vector2( -3.0f, 4.0f ) , -45.0f );
 
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
 
-        PositionObj( new Vector2( -2.0f, 2.0f ) , 90.0f );
+        PositionObj( new Vector2( -2.0f, 1.0f ) , 90.0f );
         leftButton.interactable = false;
 
         yield return new WaitUntil(() => continueTutorial == true);
@@ -360,7 +368,7 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds( 0.5f );
 
         TogglePopUp();
-        SetPopUpText( "Well done!. You have completed the second tutorial. " ); 
+        SetPopUpText( "Well done!. " ); 
 
         isNext = false;
 
@@ -415,13 +423,15 @@ public class TutorialManager : MonoBehaviour
 
     //Tutorial 3 breaking blocks
 
+    private int dudCount = 0;
+
     private IEnumerator TutorialThree()
     {
         yield return null;
 
         //isLeft = true;
 
-        SetPopUpText( "In this tutorial we introduce breakable blocks and hyper charged balls. Aim and fire balls at the blue wall." ); 
+        SetPopUpText( "Next we introduce breakable blocks. Aim and fire balls at the blue wall." ); 
 
         TogglePopUp();
        
@@ -442,43 +452,11 @@ public class TutorialManager : MonoBehaviour
 
         //Sometimes the red and green bullets will be hyper-charged.
      
-        SetPopUpText( "Good Job! You will notice that two regular balls are required to break the wall." ); 
+        SetPopUpText( "Good Job! It takes one ball to destroy a wall." ); 
         TogglePopUp();
 
         isNext = false;
 
-        yield return new WaitUntil( () => isNext == true );
-        TogglePopUp();
-
-
-        SetPopUpText( "However sometimes the red and green balls will be hyper-charged. Hyper-charged balls do double damage." ); 
-        TogglePopUp();
-
-        isNext = false;
-
-        yield return new WaitUntil( () => isNext == true );
-        TogglePopUp();
-
-
-        SetPopUpText( "Destroy the blue wall using Hyper-charged balls." ); 
-        TogglePopUp();
-
-        isNext = false;
-
-        yield return new WaitUntil( () => isNext == true );
-        TogglePopUp();
-
-        isSuperBall = true; 
-
-        Messenger.Broadcast( "Reset" );
-
-        continueTutorial = false;
-        yield return new WaitUntil(() => continueTutorial == true);
-
-        SetPopUpText( "A Hyper-charged ball will always be twice as powerful as a normal ball." ); 
-        TogglePopUp();
-
-        isNext = false;
         yield return new WaitUntil( () => isNext == true );
         TogglePopUp();
 
@@ -494,7 +472,7 @@ public class TutorialManager : MonoBehaviour
 
         tutDiamond.SetActive( false );
         
-        SetPopUpText( "There is one more detail to the game. Sometimes the red and green bullets will be a dud ball." ); 
+        SetPopUpText( "There is one more detail to the game. Sometimes the red and green balls will be dud balls." ); 
 
         TogglePopUp();
        
@@ -563,11 +541,21 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitUntil( () => isNext == true );
         TogglePopUp();
 
+        isNextTutorial = true;
+
     }
 
 
 
     //Ends
+
+    public void ToggleGamePopUp()
+    {
+        if( gamePopUp.activeSelf )
+            gamePopUp.SetActive( false );
+        else
+            gamePopUp.SetActive( true );
+    }
 
     public void TogglePopUp( )
     {
