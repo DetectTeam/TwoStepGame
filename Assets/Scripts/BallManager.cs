@@ -148,6 +148,11 @@ public class BallManager : MonoBehaviour
         return currentBall;
     }
 
+    public void DisableFireButtons()
+    {
+        Messenger.Broadcast( "DisableReloadButtons" );
+    }
+
     private void Fire()
     {
 

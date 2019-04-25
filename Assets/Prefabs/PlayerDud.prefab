@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3158223198197706356
 Transform:
   m_ObjectHideFlags: 0
@@ -213,9 +213,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDud: 1
-  lifeSpan: 20
+  lifeSpan: 8
   leftButton: {fileID: 0}
   rightButton: {fileID: 0}
+  deadEffect: {fileID: 1204438978744632, guid: 65a5451625ed1496c8722e9a83ed5dc3, type: 3}
   moveSpeed: 25
 --- !u!114 &6382015105480380548
 MonoBehaviour:
