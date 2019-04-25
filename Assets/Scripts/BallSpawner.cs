@@ -18,7 +18,7 @@ public class BallSpawner : MonoBehaviour
     public void CreateDummyBall()
     { 
        // ball = gameController.Ball;
-       ball = ballManager.Ball;
+        ball = ballManager.Ball;
         
         var clone = Instantiate( ball , transform.position, transform.rotation );
         clone.name = "leftBallIcon";

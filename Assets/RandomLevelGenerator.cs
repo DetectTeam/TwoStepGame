@@ -6,24 +6,22 @@ namespace twostep
 {
     public class RandomLevelGenerator : MonoBehaviour
     {
-         [SerializeField] private List<GameObject> spawners = new List<GameObject>();
-        // Start is called before the first frame update
-        private IEnumerator Start()
+        [SerializeField] private List<GameObject> spawners = new List<GameObject>();
+
+        private void OnEnable()
         {
-           while( true )
-           {
-               
-               DisableSpawners();
-               PickRandomSpawner();
+            Messenger.AddListener( "Continue" , SpawnBlock );
+            Messenger.MarkAsPermanent( "Continue" );
+        }
 
-
-               yield return new WaitForSeconds( 3.0f );
-               
-
-                //Disable all spawners
-
-               //Pick a random spawner and activate it.
-           }
+        private void OnDisable()
+        {
+            Messenger.RemoveListener( "Continue" , SpawnBlock );
+        }
+        // Start is called before the first frame update
+        private void Start()
+        {
+           SpawnBlock(); 
         }
 
         private void DisableSpawners()
@@ -49,6 +47,14 @@ namespace twostep
             lastRand = rand;
         }
 
-       
+        private void SpawnBlock()
+        {
+
+            //Disable all spawners 
+            DisableSpawners();
+            
+            //Pick a random spawner and activate it.
+            PickRandomSpawner();
+        }  
     }
 }

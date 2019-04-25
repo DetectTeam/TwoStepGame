@@ -12,11 +12,13 @@ public class DiamondHandler : MonoBehaviour
     {
         Messenger.AddListener( "Reset" , Reset );
         Messenger.MarkAsPermanent( "Reset" );
+      
     }
 
     private void OnDisable()
     {
          Messenger.RemoveListener( "Reset" , Reset );
+         Reset();
     }
 
     private void Awake()

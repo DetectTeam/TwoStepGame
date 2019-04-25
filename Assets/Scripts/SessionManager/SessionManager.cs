@@ -22,6 +22,8 @@ public class SessionManager : MonoBehaviour
 
     private string buttonChoice;
 
+    private int levelCount = 0;
+
     private Coroutine timer;
 
     private void Awake()
@@ -41,9 +43,10 @@ public class SessionManager : MonoBehaviour
     public void StartSession()
     {
         session = new Session();
+        levelCount ++;
 
         session.TimeStamp = System.DateTime.Now.ToString( "yyyy_MM_dd_hh_mm_ss" );
-        session.Level = 1;
+        session.Level = levelCount;
         session.SessionID = "Test Session ID";
         session.UserID = SystemInfo.deviceUniqueIdentifier;
     }
@@ -203,6 +206,8 @@ public class SessionManager : MonoBehaviour
         Debug.Log( jsonString );
         
         Messenger.Broadcast<string>( "PUT" , jsonString );
+
+        StartSession();
     }
    
 }

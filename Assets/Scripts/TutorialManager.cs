@@ -17,6 +17,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject muzzle;
 
     [SerializeField] private GameObject popUp;
+    [SerializeField] private GameObject dialog;
     [SerializeField] private GameObject gamePopUp;
 
     [SerializeField] private GameObject targetCircle;
@@ -216,7 +217,6 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitUntil( () => isNext == true );
         
-
         isNext = false;
 
         Debug.Log( "The objective of this game is to get the diamond by shooting it" );
@@ -244,7 +244,7 @@ public class TutorialManager : MonoBehaviour
         targetCircle.SetActive( false );
         gameController.HasAimed = true;
         Debug.Log( "Good job! . Now Press the fire button to launch a ball" );
-        SetPopUpText( "Good job! . Now Press the fire button to launch a ball" ); 
+        SetPopUpText( "Good job! . Now press the left fire button to launch a bal" ); 
 
         leftButton.interactable = true;
         
@@ -288,7 +288,7 @@ public class TutorialManager : MonoBehaviour
         isNext = false;
 
         leftButton.interactable = true;
-        rightButton.interactable = false;
+        rightButton.enabled = false;
 
         //isLeft = true;
 
@@ -310,34 +310,33 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds( 0.5f );
 
         PositionObj( new Vector2( 2.0f, 1.0f ) , -45.0f );
-        rightButton.interactable = false;
-
+        
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
 
         PositionObj( new Vector2( -3.0f, 3.0f ) , 90.0f );
-        rightButton.interactable = false;
-
+       
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
 
         PositionObj( new Vector2( -3.0f, 6.0f ) , 45.0f );
-        rightButton.interactable = false;
+     
 
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
 
         PositionObj( new Vector2( -2.0f, 3.0f ) , 90.0f );
-        rightButton.interactable = false;
+       
 
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
-        rightButton.interactable = false;
+       
 
         tutDiamond.SetActive( false );
         TogglePopUp();
         SetPopUpText( "Well done!. Now try with the right fire button " ); 
-        leftButton.interactable = false;
+        leftButton.enabled = false;
+        rightButton.enabled = true;
 
         isNext = false;
 
@@ -347,8 +346,8 @@ public class TutorialManager : MonoBehaviour
         //Right Trigger
          isLeft = false;
 
-        leftButton.interactable = false;
-        rightButton.interactable = true;
+      
+        
 
         tutDiamond.SetActive( true );
 
@@ -358,16 +357,16 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
-        leftButton.interactable = false;
+       
 
         PositionObj( new Vector2( -2.0f, 1.0f ) , 90.0f );
-        leftButton.interactable = false;
+        
 
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
 
         PositionObj( new Vector2( 0.0f, 2.0f ) , 45.0f );
-        leftButton.interactable = false;
+        
 
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
@@ -379,7 +378,7 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitUntil( () => isNext == true );
 
-        SetPopUpText( "As you’ll have noticed, there are two types of bullet; red and green." ); 
+        SetPopUpText( "As you'll have noticed there are two colours of ball; red and green." ); 
         isNext = false;
 
         yield return new WaitUntil( () => isNext == true );
@@ -394,6 +393,8 @@ public class TutorialManager : MonoBehaviour
         isNextTutorial = true;
 
         Debug.Log( "End Tutorial 3" );
+
+        leftButton.enabled = true;
         
     }
 
@@ -436,7 +437,7 @@ public class TutorialManager : MonoBehaviour
 
         //isLeft = true;
 
-        SetPopUpText( "Next we introduce breakable blocks. Aim and fire balls at the blue wall." ); 
+        SetPopUpText( "Now you will practice aiming and firing balls at a blue wall to break it. You need to break this wall before you can shoot the diamond" ); 
 
         TogglePopUp();
        
@@ -498,7 +499,7 @@ public class TutorialManager : MonoBehaviour
 
         //Red and Green balls can both be normal
 
-        SetPopUpText( "Red and Green balls can both be duds" ); 
+        SetPopUpText( "Both Red and Green balls can be Duds" ); 
 
         TogglePopUp();
        
@@ -511,6 +512,7 @@ public class TutorialManager : MonoBehaviour
 
         SetPopUpText( "Sometimes, most red balls will be duds " ); 
 
+        dialog.transform.position =  new Vector3( dialog.transform.position.x, dialog.transform.position.y + 200f, dialog.transform.position.z );
         TogglePopUp();
         redBallContainer.SetActive( true );
 
@@ -535,10 +537,13 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitUntil( () => isNext == true );
         TogglePopUp();
 
+         dialog.transform.position =  new Vector3( dialog.transform.position.x, dialog.transform.position.y, dialog.transform.position.z );
+      
 
+        greenBallContainer.SetActive( false );
         //This changes over time so you need to pay attention!
 
-        SetPopUpText( "The number of charged balls and duds changes over time so you need to pay attention!" ); 
+        SetPopUpText( "The proportion of Duds that are green and the proportion of Duds that are red changes over time so you need to pay attention!" ); 
 
         TogglePopUp();
        
@@ -569,6 +574,8 @@ public class TutorialManager : MonoBehaviour
         else
             popUp.SetActive( true );
     }
+
+    
 
     private void SetPopUpText( string message )
     {

@@ -312,10 +312,10 @@ public class GameController : MonoBehaviour
         ballSpeed = originalBallSpeed;
 
         isReloaded = false;
-        speedometer.SetActive( false );
+       // speedometer.SetActive( false );
         timeCount = 0;
         s = 20;
-        speedometerText.SetText("");
+       // speedometerText.SetText("");
         hasAimed = false;
 
         compass.transform.up = Vector3.up;

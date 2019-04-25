@@ -32,7 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TwoStepTutorial.unity
     guid: 1a0c9e22a18c94a12ba84bc24bb5c4d1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Puzzles.unity
     guid: fa5ac0a5a12b94931a48aab76be937c6
+  - enabled: 1
+    path: Assets/Scenes/TwoStepRandomLevel.unity
+    guid: d637616655b614b47834c5a3d5e64ee6
   m_configObjects: {}

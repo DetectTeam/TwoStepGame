@@ -11,7 +11,10 @@ public class TutorialDiamond : MonoBehaviour
     {
         if( col.tag == "Ball" || col.tag == "Dud" )
         {
-            TutorialManager.Instance.MoveNext();
+            if( TutorialManager.Instance != null )
+                TutorialManager.Instance.MoveNext();
+            
+            Messenger.Broadcast( "Reset" );
             Messenger.Broadcast( "Continue" );
             gameObject.SetActive( false );
         }

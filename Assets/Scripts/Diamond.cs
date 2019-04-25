@@ -9,6 +9,7 @@ public class Diamond : MonoBehaviour
         if( col.tag == "Ball" || col.tag == "Dud" )
         {
            gameObject.SetActive( false );
+           
            SessionManager.Instance.EndSession();
           
         }

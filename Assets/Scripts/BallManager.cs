@@ -12,7 +12,7 @@ public class BallInfo
 public class BallManager : MonoBehaviour
 {
     [SerializeField] private GameObject ball;
-     public GameObject Ball { get{ return ball; } }
+     public GameObject Ball { get{ return ball; } set{ ball = value; } }
     [SerializeField] private GameObject muzzle;
 
     [SerializeField] private bool isWhiteBullet = true;
@@ -132,10 +132,15 @@ public class BallManager : MonoBehaviour
         SetCurrentBall( ball );
     }
 
-    private void SetCurrentBall( GameObject ball )
+    public void SetCurrentBall( GameObject ball )
     {
         currentBall = ball;
         currentBall.SetActive( false );
+    }
+
+    public void SetCurrentBallTutorial( GameObject b )
+    {
+        ball = b;
     }
 
     public GameObject GetCurrentBall()
