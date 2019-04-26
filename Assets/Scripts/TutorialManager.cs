@@ -210,24 +210,24 @@ public class TutorialManager : MonoBehaviour
         tutDiamond.SetActive( true );
 
         //Display Dialog
-        Debug.Log( "Welcome to this tutorial...(Insert nice intro here...)" );
+        Debug.Log( "Welcome! In this game, we want to study how you make a choice betweentwo options. To get the science right, some parts of the game might annoyyou (sorry!), but to make up for that, we are letting you fire balls at stuff!" );
         //popUpMessage.text = "Welcome to this tutorial";
         TogglePopUp( );
-        SetPopUpText( "Welcome to this tutorial (Insert nice intro here)"  );
+        SetPopUpText( "Welcome! In this game, we want to study how you make a choice between two options. To get the science right, some parts of the game might annoy you (sorry!), but to make up for that, we are letting you fire balls at stuff!"  );
 
         yield return new WaitUntil( () => isNext == true );
         
         isNext = false;
 
         Debug.Log( "The objective of this game is to get the diamond by shooting it" );
-        SetPopUpText( "The objective of this game is to get the diamond"   );
+        SetPopUpText( "Let’s get started. The objective of the game is to get the diamond."   );
 
         yield return new WaitUntil( () => isNext == true );
 
         isNext = false;
        
         Debug.Log( "Tap the screen in the direction you want to aim" );
-        SetPopUpText( "Tap the screen in the direction you want to aim. In this case tap the golden circle."  );
+        SetPopUpText( "Tap the screen in the direction you want to aim"  );
         targetCircle.SetActive( true );
 
          yield return new WaitUntil( () => isNext == true );
@@ -243,8 +243,8 @@ public class TutorialManager : MonoBehaviour
         Debug.Log( "Got this far...." );
         targetCircle.SetActive( false );
         gameController.HasAimed = true;
-        Debug.Log( "Good job! . Now Press the fire button to launch a ball" );
-        SetPopUpText( "Good job! . Now press the left fire button to launch a bal" ); 
+        Debug.Log( "See how the cannon moved? . Now Press the fire button to launch a ball" );
+        SetPopUpText( "See how the cannon moved? . Now press the left fire button to launch a ball" ); 
 
         leftButton.interactable = true;
         
@@ -297,7 +297,7 @@ public class TutorialManager : MonoBehaviour
         tutDiamond.SetActive( true );
 
         TogglePopUp();
-        SetPopUpText( "Now using the left button aim and hit all the diamonds..." ); 
+        SetPopUpText( "Now using the left button to collect all the diamonds..." ); 
 
         isNext = false;
 
