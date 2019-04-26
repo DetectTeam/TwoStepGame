@@ -48,6 +48,8 @@ public class Ball : MonoBehaviour
                // Messenger.Broadcast( "EnableReloadButtons" );
                 //gameObject.SetActive( false );
                 Destroy( gameObject );
+              
+                StartCoroutine( BallLifeSpan() );
             }
         }
         else
@@ -67,29 +69,32 @@ public class Ball : MonoBehaviour
             main.startColor = gameObject.GetComponent<SpriteRenderer>().color;
             Destroy( effectObj, 0.25f );
         } 
+
+       
     }
 
-    // private void OnCollisionEnter2D( Collision2D col )
-    // {
-    //     lifeSpan --;
+    private void OnCollisionEnter2D( Collision2D col )
+    {
+        lifeSpan --;
 
-    //     if( lifeSpan == 0 )
-    //         gameObject.SetActive( false );
+        if( lifeSpan == 0 )
+            gameObject.SetActive( false );
 
-    //     if( col.gameObject.CompareTag( "Slot" ) || col.gameObject.CompareTag( "Crusher" )  )
-    //     {
-    //         Messenger.Broadcast( "EnableReloadButtons" );
-    //         //gameObject.SetActive( false );
-    //         Destroy( gameObject );
-    //     }
-    // }
+        if( col.gameObject.CompareTag( "Slot" ) || col.gameObject.CompareTag( "Crusher" )  )
+        {
+            Messenger.Broadcast( "EnableReloadButtons" );
+            //gameObject.SetActive( false );
+            Destroy( gameObject );
+        }
+    }
 
 
     private IEnumerator BallLifeSpan()
     {
         Debug.Log( "Ball Life Span..." );
         yield return new WaitForSeconds( lifeSpan );
-        
+
+        DeathEffect();
         //Messenger.Broadcast( "EnableReloadButtons" );
         gameObject.SetActive( false );
    
@@ -100,5 +105,13 @@ public class Ball : MonoBehaviour
          Messenger.Broadcast( "EnableReloadButtons" );
          //gameObject.SetActive( false );
          Destroy( gameObject );
+     }
+
+     private void DeathEffect()
+     {
+        GameObject effectObj = Instantiate( deadEffect, gameObject.transform.position, Quaternion.identity );
+        var main = effectObj.transform.Find( "Red" ).GetComponent<ParticleSystem>().main;
+        main.startColor = gameObject.GetComponent<SpriteRenderer>().color;
+        Destroy( effectObj, 0.25f );
      }
 }

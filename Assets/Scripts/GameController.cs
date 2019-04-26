@@ -301,9 +301,9 @@ public class GameController : MonoBehaviour
         currentBall.transform.position = muzzle.transform.position;
         currentBall.transform.rotation = muzzle.transform.rotation;
 
-        currentBall.GetComponent<Ball>().MoveSpeed = ballSpeed;
+       // currentBall.GetComponent<Ball>().MoveSpeed = ballSpeed;
 
-        currentBall.SetActive(true);
+        currentBall.SetActive( true );
 
         // ball.GetComponent<Rigidbody2D>().AddForce(-direction);
         currentBall.GetComponent<Rigidbody2D>().AddForce( muzzle.transform.up * 100 );

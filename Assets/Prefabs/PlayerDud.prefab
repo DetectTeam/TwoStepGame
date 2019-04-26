@@ -213,11 +213,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDud: 1
-  lifeSpan: 8
+  lifeSpan: 1.25
   leftButton: {fileID: 0}
   rightButton: {fileID: 0}
   deadEffect: {fileID: 1204438978744632, guid: 65a5451625ed1496c8722e9a83ed5dc3, type: 3}
-  moveSpeed: 25
+  moveSpeed: 3
 --- !u!114 &6382015105480380548
 MonoBehaviour:
   m_ObjectHideFlags: 0

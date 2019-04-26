@@ -14,7 +14,7 @@ public class Diamond : MonoBehaviour
 
     private IEnumerator Death()
     {
-        yield return new WaitForSeconds( 0.3f );
+        yield return new WaitForSeconds( 0.35f );
     
         Messenger.Broadcast( "Continue" );
         Messenger.Broadcast( "Reset" );
