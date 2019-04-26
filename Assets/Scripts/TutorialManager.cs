@@ -222,7 +222,7 @@ public class TutorialManager : MonoBehaviour
         Debug.Log( "The objective of this game is to get the diamond by shooting it" );
         SetPopUpText( "The objective of this game is to get the diamond"   );
 
-         yield return new WaitUntil( () => isNext == true );
+        yield return new WaitUntil( () => isNext == true );
 
         isNext = false;
        
@@ -353,7 +353,7 @@ public class TutorialManager : MonoBehaviour
 
         //Tutorial 2 right button test
         
-        PositionObj( new Vector2( -3.0f, 4.0f ) , -45.0f );
+        PositionObj( new Vector2( -3.0f, 4.0f ) , -90.0f );
 
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
@@ -450,14 +450,14 @@ public class TutorialManager : MonoBehaviour
 
         tutDiamond.SetActive( true );
         gate.SetActive( true );
-        PositionObj( new Vector2( 0.0f, 3.0f ) , 135f );
+        PositionObj( new Vector2( 0.0f, 3.0f ) , 180f );
 
         continueTutorial = false;
         yield return new WaitUntil(() => continueTutorial == true);
         
 
         //Sometimes the red and green bullets will be hyper-charged.
-     
+        tutDiamond.SetActive( true );
         SetPopUpText( "Good Job! It takes one ball to destroy a wall." ); 
         TogglePopUp();
 
@@ -512,7 +512,7 @@ public class TutorialManager : MonoBehaviour
 
         SetPopUpText( "Sometimes, most red balls will be duds " ); 
 
-        dialog.transform.position =  new Vector3( dialog.transform.position.x, dialog.transform.position.y + 200f, dialog.transform.position.z );
+        dialog.transform.position =  new Vector3( dialog.transform.position.x, dialog.transform.position.y + 400f, dialog.transform.position.z );
         TogglePopUp();
         redBallContainer.SetActive( true );
 
@@ -537,7 +537,7 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitUntil( () => isNext == true );
         TogglePopUp();
 
-         dialog.transform.position =  new Vector3( dialog.transform.position.x, dialog.transform.position.y, dialog.transform.position.z );
+         dialog.transform.position =  new Vector3( dialog.transform.position.x, dialog.transform.position.y - 400f, dialog.transform.position.z );
       
 
         greenBallContainer.SetActive( false );

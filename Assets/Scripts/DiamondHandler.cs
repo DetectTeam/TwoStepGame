@@ -6,6 +6,7 @@ public class DiamondHandler : MonoBehaviour
 {
 
     [SerializeField] private GameObject diamond;
+    [SerializeField] private bool isTutorial = false;
     // Start is called before the first frame update
 
     private void OnEnable()
@@ -28,6 +29,11 @@ public class DiamondHandler : MonoBehaviour
             Debug.LogError( "Diamond not assigned..." );
             return;
         } 
+
+        // if( !isTutorial )
+        // {
+        //     diamond.GetComponent<TutorialDiamond>().enabled = false;
+        // }
     }
 
     private void Reset()

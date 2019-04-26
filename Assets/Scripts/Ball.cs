@@ -11,13 +11,9 @@ public class Ball : MonoBehaviour
     [SerializeField] private Button leftButton;
     [SerializeField] private Button rightButton;
     [SerializeField] private GameObject deadEffect;
-    
-   
     [SerializeField] private float moveSpeed = 10;
+
     public float MoveSpeed { get{ return moveSpeed; } set{ moveSpeed = value; } }
-
-    
-
 
     private void Awake()
     {
@@ -62,27 +58,27 @@ public class Ball : MonoBehaviour
             }
         }
 
-        if( col.CompareTag( "BreakableWall" ) )
+        if( col.CompareTag( "BreakableWall" ) || col.CompareTag( "Enemy" ) )
         {
             GameObject effectObj = Instantiate( deadEffect, col.transform.position, Quaternion.identity );
-            Destroy( effectObj, 0.5f );
+            Destroy( effectObj, 0.25f );
         } 
     }
 
-    private void OnCollisionEnter2D( Collision2D col )
-    {
-        lifeSpan --;
+    // private void OnCollisionEnter2D( Collision2D col )
+    // {
+    //     lifeSpan --;
 
-        if( lifeSpan == 0 )
-            gameObject.SetActive( false );
+    //     if( lifeSpan == 0 )
+    //         gameObject.SetActive( false );
 
-        if( col.gameObject.CompareTag( "Slot" ) || col.gameObject.CompareTag( "Crusher" )  )
-        {
-            Messenger.Broadcast( "EnableReloadButtons" );
-            //gameObject.SetActive( false );
-            Destroy( gameObject );
-        }
-    }
+    //     if( col.gameObject.CompareTag( "Slot" ) || col.gameObject.CompareTag( "Crusher" )  )
+    //     {
+    //         Messenger.Broadcast( "EnableReloadButtons" );
+    //         //gameObject.SetActive( false );
+    //         Destroy( gameObject );
+    //     }
+    // }
 
 
     private IEnumerator BallLifeSpan()

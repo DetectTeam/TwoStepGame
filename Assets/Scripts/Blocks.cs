@@ -15,6 +15,7 @@ public class Blocks : MonoBehaviour
         Messenger.AddListener( "Reset", ResetBlock );
         Messenger.MarkAsPermanent( "Reset" );
         blockSprite = GetComponent<SpriteRenderer>();
+        
     }
 
     private void OnDisable()
@@ -57,5 +58,6 @@ public class Blocks : MonoBehaviour
     public void ResetBlock()
     {
         blockSprite.sprite = normalBlock;
+        hitTotal = 3.0f;
     }
 }
