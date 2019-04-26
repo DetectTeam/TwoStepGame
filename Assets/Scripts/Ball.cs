@@ -13,6 +13,8 @@ public class Ball : MonoBehaviour
     [SerializeField] private GameObject deadEffect;
     [SerializeField] private float moveSpeed = 10;
 
+    
+
     public float MoveSpeed { get{ return moveSpeed; } set{ moveSpeed = value; } }
 
     private void Awake()
@@ -61,6 +63,8 @@ public class Ball : MonoBehaviour
         if( col.CompareTag( "BreakableWall" ) || col.CompareTag( "Enemy" ) )
         {
             GameObject effectObj = Instantiate( deadEffect, col.transform.position, Quaternion.identity );
+            var main = effectObj.transform.Find( "Red" ).GetComponent<ParticleSystem>().main;
+            main.startColor = gameObject.GetComponent<SpriteRenderer>().color;
             Destroy( effectObj, 0.25f );
         } 
     }
