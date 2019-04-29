@@ -107,7 +107,7 @@ public class SessionManager : MonoBehaviour
     {
         endTime = Time.time;
      
-        Debug.Log( endTime - startTime );
+       // Debug.Log( endTime - startTime );
         buttonPress.TimeToPressFireButton = ( endTime - startTime ) * 1000 ;
         startTime = endTime;
     }

@@ -417,14 +417,14 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1518669801}
         m_MethodName: BuildBall
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1039452797}
         m_MethodName: IncrementCount
@@ -2383,7 +2383,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1518669801}
         m_MethodName: BuildBall
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2569,7 +2569,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
 --- !u!222 &566854773
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3745,7 +3745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1039452797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5105,7 +5105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 5902566145435719497, guid: c8ccb7d1af7694fada926c7acb6fd05f, type: 3}
   muzzle: {fileID: 1159768915}
-  isWhiteBullet: 1
+  isGreenBall: 1
   isDud: 1
   ballPrefab: {fileID: 5969082537451822569, guid: 1ab916b071c2341208b82297890a1918,
     type: 3}
@@ -6859,6 +6859,10 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 1610454160, guid: 4c24912d8eae04f3f869db8db7e99ce2, type: 3}
       propertyPath: isTutorial
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610454160, guid: 4c24912d8eae04f3f869db8db7e99ce2, type: 3}
+      propertyPath: isWhiteBullet
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8670052526547245115, guid: 4c24912d8eae04f3f869db8db7e99ce2,

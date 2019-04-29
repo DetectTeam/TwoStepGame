@@ -84,36 +84,34 @@ public class TutorialManager : MonoBehaviour
         
         gate.SetActive( false );
         
-        // StartCoroutine( TutorialOne() );
+        StartCoroutine( TutorialOne() );
 
-        // yield return new WaitUntil( () => isNextTutorial == true );
+        yield return new WaitUntil( () => isNextTutorial == true );
 
-        // Debug.Log( "Starting Tutorial Two" );
-        // isNextTutorial = false;
+        Debug.Log( "Starting Tutorial Two" );
+        isNextTutorial = false;
 
-        // StartCoroutine( TutorialTwo() );
+        StartCoroutine( TutorialTwo() );
 
-        // yield return new WaitUntil( () => isNextTutorial == true );
+        yield return new WaitUntil( () => isNextTutorial == true );
 
-        // Debug.Log( "Starting Tutorial Three" );
-        // isNextTutorial = false;
+        Debug.Log( "Starting Tutorial Three" );
+        isNextTutorial = false;
 
-        // yield return null;
+        yield return null;
 
-        // isNextTutorial = false;
-        // StartCoroutine( TutorialThree() );
+        isNextTutorial = false;
+        StartCoroutine( TutorialThree() );
 
-       // yield return new WaitUntil( () => isNextTutorial == true );
+        yield return new WaitUntil( () => isNextTutorial == true );
 
-       // isNextTutorial = false;
+        isNextTutorial = false;
         StartCoroutine( TutorialFour() );
 
         yield return new WaitUntil( () => isNextTutorial == true );
 
         //Display Play Game Menu
         gamePopUp.SetActive( true );
-
-
     }
 
     public void Fire()
@@ -144,7 +142,7 @@ public class TutorialManager : MonoBehaviour
         }
         else
         {
-             b = Instantiate( superBall, muzzle.transform.position, muzzle.transform.rotation ) as GameObject;
+            b = Instantiate( superBall, muzzle.transform.position, muzzle.transform.rotation ) as GameObject;
         }
              
 
@@ -304,7 +302,7 @@ public class TutorialManager : MonoBehaviour
         tutDiamond.SetActive( true );
 
         TogglePopUp();
-        SetPopUpText( "Now using the left button to collect all the diamonds..." ); 
+        SetPopUpText( "Now use the left button to collect all the diamonds..." ); 
 
         isNext = false;
 
@@ -326,7 +324,7 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
 
-        PositionObj( new Vector2( -3.0f, 6.0f ) , 45.0f );
+        PositionObj( new Vector2( -3.0f, 6.0f ) , 0.0f );
      
 
         yield return new WaitUntil(() => continueTutorial == true);
@@ -372,7 +370,7 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds( 0.5f );
 
-        PositionObj( new Vector2( 0.0f, 2.0f ) , 45.0f );
+        PositionObj( new Vector2( 0.0f, 2.0f ) , -45.0f );
         
 
         yield return new WaitUntil(() => continueTutorial == true);
@@ -457,7 +455,7 @@ public class TutorialManager : MonoBehaviour
 
         tutDiamond.SetActive( true );
         gate.SetActive( true );
-        PositionObj( new Vector2( 0.0f, 3.0f ) , 180f );
+        PositionObj( new Vector2( 0.0f, 3.0f ) , -45f );
 
         continueTutorial = false;
         yield return new WaitUntil(() => continueTutorial == true);

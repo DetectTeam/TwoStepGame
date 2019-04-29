@@ -15,7 +15,7 @@ public class BallManager : MonoBehaviour
      public GameObject Ball { get{ return ball; } set{ ball = value; } }
     [SerializeField] private GameObject muzzle;
 
-    [SerializeField] private bool isWhiteBullet = true;
+    [SerializeField] private bool isGreenBall = true;
 
     [SerializeField] private bool isDud;
  
@@ -35,19 +35,35 @@ public class BallManager : MonoBehaviour
      public BallInfo ActiveBall { get{ return activeBall; } set{ activeBall = value; } }
 
 
-    public bool CheckForDud( float percentage )
+    public bool CheckForDud( bool isLeft,  float percentage )
     {
         bool b;
         var rand = Random.value;
 
         //Debug.Log( "Check For Dud: " + rand + " " + ( percentage / 100 ) );
 
-        //Weighted Random goes here
-       if( rand < ( percentage / 100 ) )
-        b = true;
-       else
-        b = false;
+        if( isLeft )
+        {
+              Debug.Log( "Check Dud Left " + rand + " " + percentage );
+              //Weighted Random goes here
+              if( rand > ( percentage  ) )
+                b = true;
+              else
+                b = false;
 
+        }
+        else
+        {
+            Debug.Log( "Check Dud Right " + rand + " " + percentage );
+            //Weighted Random goes here
+            if( rand < ( percentage  ) )
+                b = false;
+            else
+                b = true;
+
+        }
+
+      
         return b;
     }
 
@@ -59,9 +75,9 @@ public class BallManager : MonoBehaviour
         //Debug.Log( "Rand: " + rand + " " + percentage / 100 );
         
         if ( rand < ( percentage / 100 ) )
-            isWhiteBullet = true;
+            isGreenBall = true;
         else 
-            isWhiteBullet = false;       
+            isGreenBall = false;       
         
     }
 
@@ -78,7 +94,7 @@ public class BallManager : MonoBehaviour
         {
             ball = Instantiate( ballPrefab ) as GameObject;
             
-            if( !isWhiteBullet )
+            if( !isGreenBall )
             {
                 var light = ball.transform.Find( "PlayerLight" );
                 if( light != null )
@@ -92,19 +108,21 @@ public class BallManager : MonoBehaviour
     }
 
       //BallHandler
-    public void BuildBall()
+    public void BuildBall( bool b )
     {
         activeBall = new BallInfo();
        
-        if ( isWhiteBullet )
+        if ( isGreenBall )
         {
+            Debug.Log( "IS white ball..." );
             activeBall.IsWhite = true;
-            isDud = CheckForDud( percentageWhiteBallIsDud);  
+            isDud = CheckForDud( b, ProbabilityManager.Instance.GetCurrentGreenDrift() );  
         }
         else
         {
+             Debug.Log( "IS red ball..." );
             activeBall.IsWhite = false;
-            isDud = CheckForDud( percentageRedBallIsDud );
+            isDud = CheckForDud( b, ProbabilityManager.Instance.GetCurrentRedDrift() );
         }
 
         activeBall.IsDud = isDud;
@@ -116,7 +134,7 @@ public class BallManager : MonoBehaviour
         // else
         //     currentBallIcon.SetActive( false );   
 
-        if( isWhiteBullet )
+        if( isGreenBall )
         {
             ball.GetComponent<SpriteRenderer>().color = white;
             //ballContainer.color = white;
