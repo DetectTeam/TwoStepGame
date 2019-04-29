@@ -13,6 +13,8 @@ public class Ball : MonoBehaviour
     [SerializeField] private GameObject deadEffect;
     [SerializeField] private float moveSpeed = 10;
 
+    [SerializeField] private bool isDemo = false;
+
     
 
     public float MoveSpeed { get{ return moveSpeed; } set{ moveSpeed = value; } }
@@ -102,7 +104,8 @@ public class Ball : MonoBehaviour
 
     private void OnBecameInvisible() 
     {
-         Messenger.Broadcast( "EnableReloadButtons" );
+        if( !isDemo ) 
+            Messenger.Broadcast( "EnableReloadButtons" );
          //gameObject.SetActive( false );
          Destroy( gameObject );
      }

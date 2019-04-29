@@ -43,6 +43,13 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject greenBallContainer;
     [SerializeField] private GameObject redBallContainer;
 
+    [SerializeField] private GameObject cannonTurret;
+    [SerializeField] private GameObject demoTurret;
+    
+
+    [SerializeField] private List<GameObject> muzzleLists = new List<GameObject>();
+    
+
     private void OnEnable()
     {
         Messenger.AddListener( "Continue" , ContinueTutorial );
@@ -77,28 +84,28 @@ public class TutorialManager : MonoBehaviour
         
         gate.SetActive( false );
         
-        StartCoroutine( TutorialOne() );
+        // StartCoroutine( TutorialOne() );
 
-        yield return new WaitUntil( () => isNextTutorial == true );
+        // yield return new WaitUntil( () => isNextTutorial == true );
 
-        Debug.Log( "Starting Tutorial Two" );
-        isNextTutorial = false;
+        // Debug.Log( "Starting Tutorial Two" );
+        // isNextTutorial = false;
 
-        StartCoroutine( TutorialTwo() );
+        // StartCoroutine( TutorialTwo() );
 
-        yield return new WaitUntil( () => isNextTutorial == true );
+        // yield return new WaitUntil( () => isNextTutorial == true );
 
-        Debug.Log( "Starting Tutorial Three" );
-        isNextTutorial = false;
+        // Debug.Log( "Starting Tutorial Three" );
+        // isNextTutorial = false;
 
-        yield return null;
+        // yield return null;
 
-        isNextTutorial = false;
-        StartCoroutine( TutorialThree() );
+        // isNextTutorial = false;
+        // StartCoroutine( TutorialThree() );
 
-        yield return new WaitUntil( () => isNextTutorial == true );
+       // yield return new WaitUntil( () => isNextTutorial == true );
 
-        isNextTutorial = false;
+       // isNextTutorial = false;
         StartCoroutine( TutorialFour() );
 
         yield return new WaitUntil( () => isNextTutorial == true );
@@ -477,8 +484,22 @@ public class TutorialManager : MonoBehaviour
         Debug.Log( "Starting Tutorial 4" );
 
         tutDiamond.SetActive( false );
+
+        //cannonButtons.SetActive( false );
+        //cannonControls.SetActive( false );
+        cannonTurret.SetActive( false );
+        demoTurret.SetActive( true );
         
-        SetPopUpText( "There is one more detail to the game. Sometimes the red and green balls will be dud balls." ); 
+        SetPopUpText( "Here comes the annoying part. Sometimes the ball will be a dud!" ); 
+
+        TogglePopUp();
+       
+        isNext = false;
+        yield return new WaitUntil( () => isNext == true );
+        TogglePopUp();
+
+    
+        SetPopUpText( "You’ll know it when you see it - a dud is a ball that just doesn’t work." ); 
 
         TogglePopUp();
        
@@ -487,19 +508,14 @@ public class TutorialManager : MonoBehaviour
         TogglePopUp();
 
 
-           
-        SetPopUpText( "A dud ball does not glow and does not have a trail. Dud balls can not damage walls" ); 
-
-        TogglePopUp();
-       
-        isNext = false;
-        yield return new WaitUntil( () => isNext == true );
-        TogglePopUp();
+        //Trigger Dud ball animation here ......
 
 
         //Red and Green balls can both be normal
 
-        SetPopUpText( "Both Red and Green balls can be Duds" ); 
+        SetPopUpText( "Both greens and reds can be duds and things tend to happen in streaks" ); 
+
+     
 
         TogglePopUp();
        
@@ -510,37 +526,61 @@ public class TutorialManager : MonoBehaviour
 
         //Sometimes, most green balls will be duds...
 
-        SetPopUpText( "Sometimes, most red balls will be duds " ); 
+        SetPopUpText( "For a while, most of the greens could be duds..." ); 
 
         dialog.transform.position =  new Vector3( dialog.transform.position.x, dialog.transform.position.y + 400f, dialog.transform.position.z );
         TogglePopUp();
-        redBallContainer.SetActive( true );
+        
+         muzzleLists[2].SetActive( true );
 
 
+        isNext = false;
+        yield return new WaitUntil( () => isNext == true );
+        TogglePopUp();
+
+        //...and sometimes, most red balls will be normal
+
+        SetPopUpText( "...and then later green balls will become good. " ); 
+        TogglePopUp();
+
+        muzzleLists[2].SetActive( false );
+        muzzleLists[0].SetActive( true );
+        
        
         isNext = false;
         yield return new WaitUntil( () => isNext == true );
         TogglePopUp();
 
-        redBallContainer.SetActive( false );
 
-
-         //...and sometimes, most red balls will be normal
-
-        SetPopUpText( "...sometimes, most green balls will be duds " ); 
-        redBallContainer.SetActive( false );
-        greenBallContainer.SetActive( true );
-
+        SetPopUpText( "Likewise, the reds might start out great... " ); 
         TogglePopUp();
+
+        muzzleLists[0].SetActive( false );
+        muzzleLists[1].SetActive( true );
+        
        
         isNext = false;
         yield return new WaitUntil( () => isNext == true );
         TogglePopUp();
 
-         dialog.transform.position =  new Vector3( dialog.transform.position.x, dialog.transform.position.y - 400f, dialog.transform.position.z );
+
+        SetPopUpText( "...and then go through a stretch of being mostly duds." ); 
+        TogglePopUp();
+
+        muzzleLists[1].SetActive( false );
+        muzzleLists[3].SetActive( true );
+        
+       
+        isNext = false;
+        yield return new WaitUntil( () => isNext == true );
+        TogglePopUp();
+
+        dialog.transform.position =  new Vector3( dialog.transform.position.x, dialog.transform.position.y - 400f, dialog.transform.position.z );
       
 
-        greenBallContainer.SetActive( false );
+        muzzleLists[3].SetActive( false );
+        demoTurret.SetActive( false );
+        cannonTurret.SetActive( true );
         //This changes over time so you need to pay attention!
 
         SetPopUpText( "The proportion of Duds that are green and the proportion of Duds that are red changes over time so you need to pay attention!" ); 
@@ -551,11 +591,11 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitUntil( () => isNext == true );
         TogglePopUp();
 
+        cannonTurret.SetActive( true );
+
         isNextTutorial = true;
 
     }
-
-
 
     //Ends
 
