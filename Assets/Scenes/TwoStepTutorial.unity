@@ -13867,8 +13867,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: If you want to avoid Duds, you need to know if red or green are currently
-    more likely to be charged (i.e. not Duds) and try and release those balls
+  m_text: If you want to do well in the game, you should try to avoid duds! Figure
+    out which colour of ball is working the best and try to fire that colour... until
+    things change.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
