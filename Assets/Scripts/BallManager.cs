@@ -35,35 +35,61 @@ public class BallManager : MonoBehaviour
      public BallInfo ActiveBall { get{ return activeBall; } set{ activeBall = value; } }
 
 
-    public bool CheckForDud( bool isLeft,  float percentage )
+    public bool CheckForDud( bool isLeft, bool isGreen)
     {
-        bool b;
+        bool b = false;
         var rand = Random.value;
 
-        //Debug.Log( "Check For Dud: " + rand + " " + ( percentage / 100 ) );
+        float probability = 0;
 
-        if( isLeft )
-        {
-              Debug.Log( "Check Dud Left " + rand + " " + percentage );
-              //Weighted Random goes here
-              if( rand > ( percentage  ) )
-                b = true;
-              else
-                b = false;
-
-        }
+        if( isGreen )
+            probability = ProbabilityManager.Instance.GetCurrentGreenDrift();
         else
+            probability = ProbabilityManager.Instance.GetCurrentRedDrift();
+
+        Debug.Log( "Check probability: " + rand + " " +  probability  );
+
+        //if left button pressed and ball is green
+
+        if( isLeft && isGreen )
         {
-            Debug.Log( "Check Dud Right " + rand + " " + percentage );
+              Debug.Log( "Check green Dud Left " + rand + " " + probability );
+              //Weighted Random goes here
+              if( rand < probability )
+                b = false;
+              else
+                b = true;
+        }
+        else if( isLeft && !isGreen )
+        {
+            Debug.Log( "Check red Dud Left " + rand + " " + probability );
+            if( rand > probability )
+                b = true;
+            else
+                b = false;
+        }
+        else if( !isLeft && !isGreen )
+        {
+            Debug.Log( "Check red Dud Right " + rand + " " + probability );
             //Weighted Random goes here
-            if( rand < ( percentage  ) )
+            if( rand < probability  )
                 b = false;
             else
                 b = true;
-
+        }
+        else if( !isLeft && isGreen )
+        {
+            Debug.Log( "Check green Dud Right " + rand + " " + probability );
+            if( rand < probability  )
+            {
+                b = false;
+            }
+            else
+            {
+                b = true;
+            }
         }
 
-      
         return b;
     }
 
@@ -116,13 +142,13 @@ public class BallManager : MonoBehaviour
         {
             Debug.Log( "IS white ball..." );
             activeBall.IsWhite = true;
-            isDud = CheckForDud( b, ProbabilityManager.Instance.GetCurrentGreenDrift() );  
+            isDud = CheckForDud( b, isGreenBall );  
         }
         else
         {
              Debug.Log( "IS red ball..." );
             activeBall.IsWhite = false;
-            isDud = CheckForDud( b, ProbabilityManager.Instance.GetCurrentRedDrift() );
+            isDud = CheckForDud( b, isGreenBall );
         }
 
         activeBall.IsDud = isDud;
