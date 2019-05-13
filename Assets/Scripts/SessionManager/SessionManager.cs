@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json; //Json Library
+using UnityEngine.SceneManagement;
 
 public class SessionManager : MonoBehaviour
 {
@@ -48,12 +49,13 @@ public class SessionManager : MonoBehaviour
         session.TimeStamp = System.DateTime.Now.ToString( "yyyy_MM_dd_hh_mm_ss" );
         session.Level = levelCount;
         session.SessionID = "Test Session ID";
-        session.UserID = SystemInfo.deviceUniqueIdentifier;
+        SetUserID();
     }
 
     public void StartButtonPress()
     {
         buttonPress = new ButtonPress();
+        SetTimeOfButtonPress();
     }
 
     public void EndButtonPress()
@@ -195,14 +197,38 @@ public class SessionManager : MonoBehaviour
         Debug.Log( prob );
     }
 
-    public void SaveSession()
+    public void SetTimeOfButtonPress(  )
+    {
+        buttonPress.StartTimeOfButtonPress = System.DateTime.Now.ToString( "yyyy_MM_dd_hh_mm_ss" );
+    }
+
+    public void SetUserID()
+    {
+        session.UserID = IDGenerator.Instance.UserID;
+    }
+
+    public void SaveSessionV2()
     {
         //Serialize Session....
         string jsonString = JsonUtility.ToJson(session);
         //string jsonString = JsonConvert.SerializeObject( session );
 
-   
+        Debug.Log( jsonString );
         
+        Messenger.Broadcast<string>( "PUT" , jsonString );
+
+
+    }
+
+    public void SaveSession()
+    {
+        
+        
+        //Serialize Session....
+        string jsonString = JsonUtility.ToJson(session);
+        //string jsonString = JsonConvert.SerializeObject( session );
+
+
         Debug.Log( jsonString );
         
         Messenger.Broadcast<string>( "PUT" , jsonString );

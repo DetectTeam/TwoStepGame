@@ -17,6 +17,7 @@ public class ButtonPress
     public int TimeToHitTarget;
     public int NumTimesBouncedOffWall;
     public float DegreeMovementOfCannon;
+    public string StartTimeOfButtonPress;
 }
 
 [System.Serializable]
@@ -25,6 +26,7 @@ public class Session
    public string SessionID;
    public string UserID;
    public string TimeStamp;
+   
    
    public int Level;
    public List<ButtonPress> ButtonPress = new List<ButtonPress>();
