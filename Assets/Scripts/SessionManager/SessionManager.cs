@@ -223,7 +223,6 @@ public class SessionManager : MonoBehaviour
     public void SaveSession()
     {
         
-        
         //Serialize Session....
         string jsonString = JsonUtility.ToJson(session);
         //string jsonString = JsonConvert.SerializeObject( session );

@@ -318,7 +318,7 @@ public class GameController : MonoBehaviour
        // speedometerText.SetText("");
         hasAimed = false;
 
-        compass.transform.up = Vector3.up;
+        //compass.transform.up = Vector3.up;
     }
 
     public void Reload()

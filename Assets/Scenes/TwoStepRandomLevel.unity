@@ -558,6 +558,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 0
+      - m_Target: {fileID: 936097335}
+        m_MethodName: SetBallType
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &25352096
@@ -2524,6 +2535,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 0
+      - m_Target: {fileID: 936097335}
+        m_MethodName: SetBallType
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &566854771
@@ -4144,6 +4166,11 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 640830164}
+    - target: {fileID: 809531601033580856, guid: 269ee206eb5da49318b04e1063be28de,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 269ee206eb5da49318b04e1063be28de, type: 3}
 --- !u!1001 &1304526318
@@ -6846,38 +6873,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canon Controls
       objectReference: {fileID: 0}
-    - target: {fileID: 2032262824738760878, guid: 4c24912d8eae04f3f869db8db7e99ce2,
-        type: 3}
-      propertyPath: ballManager
-      value: 
-      objectReference: {fileID: 1518669801}
     - target: {fileID: 2032262825132920317, guid: 4c24912d8eae04f3f869db8db7e99ce2,
         type: 3}
       propertyPath: ballManager
       value: 
       objectReference: {fileID: 1518669801}
-    - target: {fileID: 1610454160, guid: 4c24912d8eae04f3f869db8db7e99ce2, type: 3}
-      propertyPath: speedometer
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1610454160, guid: 4c24912d8eae04f3f869db8db7e99ce2, type: 3}
-      propertyPath: ball
-      value: 
-      objectReference: {fileID: 5969082537451822569, guid: 1ab916b071c2341208b82297890a1918,
-        type: 3}
-    - target: {fileID: 1610454160, guid: 4c24912d8eae04f3f869db8db7e99ce2, type: 3}
-      propertyPath: currentBall
-      value: 
-      objectReference: {fileID: 5969082537451822569, guid: 1ab916b071c2341208b82297890a1918,
-        type: 3}
-    - target: {fileID: 1610454160, guid: 4c24912d8eae04f3f869db8db7e99ce2, type: 3}
-      propertyPath: isTutorial
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1610454160, guid: 4c24912d8eae04f3f869db8db7e99ce2, type: 3}
-      propertyPath: isWhiteBullet
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8670052526547245115, guid: 4c24912d8eae04f3f869db8db7e99ce2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6932,6 +6932,33 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2032262824738760878, guid: 4c24912d8eae04f3f869db8db7e99ce2,
+        type: 3}
+      propertyPath: ballManager
+      value: 
+      objectReference: {fileID: 1518669801}
+    - target: {fileID: 1610454160, guid: 4c24912d8eae04f3f869db8db7e99ce2, type: 3}
+      propertyPath: speedometer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610454160, guid: 4c24912d8eae04f3f869db8db7e99ce2, type: 3}
+      propertyPath: ball
+      value: 
+      objectReference: {fileID: 5969082537451822569, guid: 1ab916b071c2341208b82297890a1918,
+        type: 3}
+    - target: {fileID: 1610454160, guid: 4c24912d8eae04f3f869db8db7e99ce2, type: 3}
+      propertyPath: currentBall
+      value: 
+      objectReference: {fileID: 5969082537451822569, guid: 1ab916b071c2341208b82297890a1918,
+        type: 3}
+    - target: {fileID: 1610454160, guid: 4c24912d8eae04f3f869db8db7e99ce2, type: 3}
+      propertyPath: isTutorial
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610454160, guid: 4c24912d8eae04f3f869db8db7e99ce2, type: 3}
+      propertyPath: isWhiteBullet
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c24912d8eae04f3f869db8db7e99ce2, type: 3}
