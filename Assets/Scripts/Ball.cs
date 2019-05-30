@@ -40,6 +40,9 @@ public class Ball : MonoBehaviour
         rigidbody2D.velocity = rigidbody2D.velocity.normalized * moveSpeed;
     }
 
+
+    private bool isDead = false;
+
     private void OnTriggerEnter2D(Collider2D col)
     {    
         if( isDud )
@@ -60,16 +63,18 @@ public class Ball : MonoBehaviour
             {
                 //Messenger.Broadcast( "EnableReloadButtons" );
                 //gameObject.SetActive( false );
+                BallCounter.Instance.DecrementBallCount();
                 Destroy( gameObject );   
             }
         }
 
-        if( col.CompareTag( "BreakableWall" ) || col.CompareTag( "Enemy" ) )
+        if( !isDud && col.CompareTag( "BreakableWall" ) || col.CompareTag( "Enemy" ) )
         {
             GameObject effectObj = Instantiate( deadEffect, col.transform.position, Quaternion.identity );
             var main = effectObj.transform.Find( "Red" ).GetComponent<ParticleSystem>().main;
-            main.startColor = gameObject.GetComponent<SpriteRenderer>().color;
-            Destroy( effectObj, 0.25f );
+             main.startColor = gameObject.GetComponent<SpriteRenderer>().color;
+
+            //Destroy( effectObj, 0.25f );
         } 
 
        
@@ -77,10 +82,17 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D( Collision2D col )
     {
+        Debug.Log( col.gameObject.name );
+        
         lifeSpan --;
 
         if( lifeSpan == 0 )
+        {
+            if( !isDud && col.gameObject.name != "LeftGround" && col.gameObject.name != "RightGround"  )
+                BallCounter.Instance.DecrementBallCount();
+
             gameObject.SetActive( false );
+        }
 
         if( col.gameObject.CompareTag( "Slot" ) || col.gameObject.CompareTag( "Crusher" )  )
         {
@@ -102,19 +114,25 @@ public class Ball : MonoBehaviour
    
     }
 
-    private void OnBecameInvisible() 
-    {
-        if( !isDemo ) 
-            Messenger.Broadcast( "EnableReloadButtons" );
-         //gameObject.SetActive( false );
-         Destroy( gameObject );
-     }
+    // private void OnBecameInvisible() 
+    // {
+    //     if( !isDemo ) 
+    //     {
+    //         Messenger.Broadcast( "EnableReloadButtons" );
+    //         //BallCounter.Instance.DecrementBallCount();
+
+    //      //gameObject.SetActive( false );
+    //      Destroy( gameObject );
+    //     }
+    // }
 
      private void DeathEffect()
      {
         GameObject effectObj = Instantiate( deadEffect, gameObject.transform.position, Quaternion.identity );
         var main = effectObj.transform.Find( "Red" ).GetComponent<ParticleSystem>().main;
         main.startColor = gameObject.GetComponent<SpriteRenderer>().color;
+        BallCounter.Instance.DecrementBallCount();
         Destroy( effectObj, 0.25f );
+         
      }
 }

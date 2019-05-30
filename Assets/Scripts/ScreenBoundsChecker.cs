@@ -17,8 +17,8 @@ public class ScreenBoundsChecker : MonoBehaviour
     {
        CheckScreenBoundaries();
 
-        if( !topWall || !bottomWall || !leftWall || !rightWall )  
-            Debug.Log( "One or more boundary walls have not been set..." );
+        if( !topWall || !leftWall || !rightWall )  
+            Debug.LogError( "One or more boundary walls have not been set..." );
     }
 
     // private void Update()
