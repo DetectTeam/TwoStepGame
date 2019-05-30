@@ -59,6 +59,7 @@ public class TutorialManager : MonoBehaviour
     private void OnDisable()
     {
         Messenger.RemoveListener( "Continue" , ContinueTutorial );
+        
     }
 
     private void Awake()
@@ -312,11 +313,13 @@ public class TutorialManager : MonoBehaviour
 
         //Tutorial 2 left Button test
         yield return new WaitUntil(() => continueTutorial == true);
+        leftButton.interactable = true;
         yield return new WaitForSeconds( 0.5f );
 
         PositionObj( new Vector2( 2.0f, 1.0f ) , -45.0f );
         
         yield return new WaitUntil(() => continueTutorial == true);
+        leftButton.interactable = true;
         yield return new WaitForSeconds( 0.5f );
 
         PositionObj( new Vector2( -3.0f, 3.0f ) , 90.0f );
@@ -328,12 +331,14 @@ public class TutorialManager : MonoBehaviour
      
 
         yield return new WaitUntil(() => continueTutorial == true);
+        leftButton.interactable = true;
         yield return new WaitForSeconds( 0.5f );
 
         PositionObj( new Vector2( -2.0f, 3.0f ) , 90.0f );
        
 
         yield return new WaitUntil(() => continueTutorial == true);
+        leftButton.interactable = true;
         yield return new WaitForSeconds( 0.5f );
        
 
@@ -526,7 +531,7 @@ public class TutorialManager : MonoBehaviour
 
         SetPopUpText( "For a while, most of the greens could be duds..." ); 
 
-        dialog.transform.position =  new Vector3( dialog.transform.position.x, dialog.transform.position.y + 400f, dialog.transform.position.z );
+        dialog.transform.position =  new Vector3( dialog.transform.position.x, dialog.transform.position.y, dialog.transform.position.z );
         TogglePopUp();
         
          muzzleLists[2].SetActive( true );
@@ -573,7 +578,7 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitUntil( () => isNext == true );
         TogglePopUp();
 
-        dialog.transform.position =  new Vector3( dialog.transform.position.x, dialog.transform.position.y - 400f, dialog.transform.position.z );
+        dialog.transform.position =  new Vector3( dialog.transform.position.x, dialog.transform.position.y, dialog.transform.position.z );
       
 
         muzzleLists[3].SetActive( false );

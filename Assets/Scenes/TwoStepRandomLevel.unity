@@ -657,10 +657,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonTemplate
       objectReference: {fileID: 0}
-    - target: {fileID: 1845940524261880, guid: 9527052a5a4864252a8b4745cfbc90d1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 224438696535102024, guid: 9527052a5a4864252a8b4745cfbc90d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -784,6 +780,10 @@ PrefabInstance:
     - target: {fileID: 114429144199241756, guid: 9527052a5a4864252a8b4745cfbc90d1,
         type: 3}
       propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1845940524261880, guid: 9527052a5a4864252a8b4745cfbc90d1, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224222576911036240, guid: 9527052a5a4864252a8b4745cfbc90d1,
@@ -3023,7 +3023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballCount: {fileID: 1685593930}
-  totalBalls: 15
+  totalBalls: 10
   numBallsLeft: 0
   endLevelMessage: {fileID: 961234943}
 --- !u!1001 &618743188
@@ -4783,10 +4783,15 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 806858169686566340, guid: 269ee206eb5da49318b04e1063be28de,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -11.59
+      objectReference: {fileID: 0}
     - target: {fileID: 806858169686566341, guid: 269ee206eb5da49318b04e1063be28de,
         type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Boundary
       objectReference: {fileID: 0}
     - target: {fileID: 806858169686566341, guid: 269ee206eb5da49318b04e1063be28de,
         type: 3}

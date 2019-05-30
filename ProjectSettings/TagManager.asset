@@ -11,6 +11,7 @@ TagManager:
   - Slot
   - Crusher
   - BreakableWall
+  - Boundary
   layers:
   - Default
   - TransparentFX

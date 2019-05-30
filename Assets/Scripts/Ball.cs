@@ -47,7 +47,7 @@ public class Ball : MonoBehaviour
     {    
         if( isDud )
         {
-            if( col.tag == "Enemy"  )
+            if( col.CompareTag( "Enemy" ) || col.CompareTag( "Boundary" )  )
             {
                 Debug.Log( "is dud" );
                // Messenger.Broadcast( "EnableReloadButtons" );
@@ -59,22 +59,34 @@ public class Ball : MonoBehaviour
         }
         else
         {
-            if( col.tag == "Enemy"  )
+            if( col.CompareTag( "Enemy" ) || col.CompareTag( "Boundary" )  )
             {
-                //Messenger.Broadcast( "EnableReloadButtons" );
+               Debug.Log( ">>>>>>>>> " + col.tag );
                 //gameObject.SetActive( false );
-                BallCounter.Instance.DecrementBallCount();
+                
+                if( !isDemo )
+                {
+                    if( BallCounter.Instance.NumBallsLeft >= 1 )
+                    {
+                        Messenger.Broadcast( "EnableReloadButtons" );
+                        BallCounter.Instance.DecrementBallCount();
+                    }
+                   
+                }
+
                 Destroy( gameObject );   
             }
+
+            
         }
 
-        if( !isDud && col.CompareTag( "BreakableWall" ) || col.CompareTag( "Enemy" ) )
+        if( col.CompareTag( "BreakableWall" ) || col.CompareTag( "Enemy" ) )
         {
             GameObject effectObj = Instantiate( deadEffect, col.transform.position, Quaternion.identity );
             var main = effectObj.transform.Find( "Red" ).GetComponent<ParticleSystem>().main;
              main.startColor = gameObject.GetComponent<SpriteRenderer>().color;
 
-            //Destroy( effectObj, 0.25f );
+            Destroy( effectObj, 0.25f );
         } 
 
        
@@ -89,14 +101,18 @@ public class Ball : MonoBehaviour
         if( lifeSpan == 0 )
         {
             if( !isDud && col.gameObject.name != "LeftGround" && col.gameObject.name != "RightGround"  )
-                BallCounter.Instance.DecrementBallCount();
+            {
+                if( !isDemo )
+                    BallCounter.Instance.DecrementBallCount();
+            }
 
-            gameObject.SetActive( false );
+            
+            Destroy( gameObject );
         }
 
         if( col.gameObject.CompareTag( "Slot" ) || col.gameObject.CompareTag( "Crusher" )  )
         {
-            Messenger.Broadcast( "EnableReloadButtons" );
+           
             //gameObject.SetActive( false );
             Destroy( gameObject );
         }
@@ -109,7 +125,10 @@ public class Ball : MonoBehaviour
         yield return new WaitForSeconds( lifeSpan );
 
         DeathEffect();
-        //Messenger.Broadcast( "EnableReloadButtons" );
+        
+        if( !isDemo )
+            Messenger.Broadcast( "EnableReloadButtons" );
+
         gameObject.SetActive( false );
    
     }
@@ -131,8 +150,19 @@ public class Ball : MonoBehaviour
         GameObject effectObj = Instantiate( deadEffect, gameObject.transform.position, Quaternion.identity );
         var main = effectObj.transform.Find( "Red" ).GetComponent<ParticleSystem>().main;
         main.startColor = gameObject.GetComponent<SpriteRenderer>().color;
-        BallCounter.Instance.DecrementBallCount();
+       
+       if( !isDemo )
+            BallCounter.Instance.DecrementBallCount();
+          
         Destroy( effectObj, 0.25f );
          
      }
+
+    private void OnDestroy()
+    {
+      
+        Messenger.Broadcast( "EnableReloadButtons" );
+        
+        Debug.Log( "Ball Destroyed......" );
+    }
 }

@@ -112,7 +112,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1970342392824990813}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -134,11 +134,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDud: 1
-  lifeSpan: 1.25
+  lifeSpan: 0.25
   leftButton: {fileID: 0}
   rightButton: {fileID: 0}
   deadEffect: {fileID: 1204438978744632, guid: 65a5451625ed1496c8722e9a83ed5dc3, type: 3}
-  moveSpeed: 5
+  moveSpeed: 25
   isDemo: 1
 --- !u!114 &1306984771139570576
 MonoBehaviour:

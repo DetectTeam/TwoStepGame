@@ -12,6 +12,8 @@ public class BallCounter : MonoBehaviour
 
     [SerializeField] private int totalBalls = 15;
     [SerializeField] private int numBallsLeft;
+
+    public int NumBallsLeft { get{ return numBallsLeft; } }
     [SerializeField] private GameObject endLevelMessage;
 
     private void OnEnable()
@@ -62,7 +64,7 @@ public class BallCounter : MonoBehaviour
 
     private IEnumerator CountDown()
     {
-
+        Messenger.Broadcast( "DisableReloadButtons" );
         yield return new WaitForSeconds( 3.0f );
         endLevelMessage.SetActive( false );
         numBallsLeft = totalBalls;
@@ -71,6 +73,7 @@ public class BallCounter : MonoBehaviour
         Messenger.Broadcast( "Continue" ); //Spawn new Diamond Block
         Messenger.Broadcast( "Reset" ); //Reset the walls
         SessionManager.Instance.EndSession(); //Save data to server
+        Messenger.Broadcast( "EnableReloadButtons" );
     }
 
     
