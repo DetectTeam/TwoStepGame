@@ -6,39 +6,39 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Main.unity
+    path: Assets/TwoStep/Scenes/Main.unity
     guid: 93f291f7e48d846ec9966e3ad623b6c6
   - enabled: 0
-    path: Assets/Scenes/Game.unity
+    path: Assets/TwoStep/Scenes/Game.unity
     guid: bef1882f199fa40bcad3e0cc9d1a9acc
   - enabled: 0
-    path: Assets/Scenes/Puzzle.unity
+    path: Assets/TwoStep/Scenes/Puzzle.unity
     guid: d12d6c33e2fb543a794d7f27d8bb1512
   - enabled: 0
-    path: Assets/Scenes/GameManualAim.unity
+    path: Assets/TwoStep/Scenes/GameManualAim.unity
     guid: 8529add0129ac4d3f9cca1a4f87e1869
   - enabled: 0
-    path: Assets/Scenes/Puzzle1.unity
+    path: Assets/TwoStep/Scenes/Puzzle1.unity
     guid: 60c94fc1d8095498caf0e21fb6ea3321
   - enabled: 0
-    path: Assets/Scenes/PuzzleGate.unity
+    path: Assets/TwoStep/Scenes/PuzzleGate.unity
     guid: dbf682f2dceda4d13aa59e11f9c68805
   - enabled: 0
-    path: Assets/Scenes/PowerUP.unity
+    path: Assets/TwoStep/Scenes/PowerUP.unity
     guid: 0e8aa067287954401b9a1e76e292a5dc
   - enabled: 0
-    path: Assets/Scenes/Puzzle02.unity
+    path: Assets/TwoStep/Scenes/Puzzle02.unity
     guid: 4e2700ef85ef54959ab89b2cb6f7bd58
   - enabled: 1
-    path: Assets/Scenes/TwoStepMain.unity
+    path: Assets/TwoStep/Scenes/TwoStepMain.unity
     guid: 4cec2bec9135b4e17a2890862e6dc226
   - enabled: 1
-    path: Assets/Scenes/TwoStepTutorial.unity
+    path: Assets/TwoStep/Scenes/TwoStepTutorial.unity
     guid: 1a0c9e22a18c94a12ba84bc24bb5c4d1
   - enabled: 1
-    path: Assets/Scenes/Puzzles.unity
+    path: Assets/TwoStep/Scenes/Puzzles.unity
     guid: fa5ac0a5a12b94931a48aab76be937c6
   - enabled: 1
-    path: Assets/Scenes/TwoStepRandomLevel.unity
+    path: Assets/TwoStep/Scenes/TwoStepRandomLevel.unity
     guid: d637616655b614b47834c5a3d5e64ee6
   m_configObjects: {}
