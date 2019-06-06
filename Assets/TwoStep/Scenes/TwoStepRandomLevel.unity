@@ -6170,7 +6170,7 @@ MonoBehaviour:
   percentageRedBallIsDud: 80
   currentBall: {fileID: 0}
   ballColourRatios:
-  - 80
+  - 60
   - 70
   - 90
 --- !u!1 &1545033866
