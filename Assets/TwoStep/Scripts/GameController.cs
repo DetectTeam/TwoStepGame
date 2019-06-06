@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    BallManager ballManager;
+    private BallManager ballManager;
 
     [SerializeField] private bool isTutorial;
     [SerializeField] private Vector3 cursorPoint;

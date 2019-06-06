@@ -63,7 +63,7 @@ public class ProbabilityManager : MonoBehaviour
     private void LoadProbabilityLists(  )
     {
         //Get current stage
-        currentStage = "stage1";
+        currentStage = "stage" + StageManager.Instance.StageNumber;
 
         string path = "Probability/"+ currentStage;
         //Get Path based on current Stage

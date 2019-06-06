@@ -34,6 +34,8 @@ public class BallManager : MonoBehaviour
     [SerializeField] private BallInfo activeBall;
      public BallInfo ActiveBall { get{ return activeBall; } set{ activeBall = value; } }
 
+     [SerializeField] private List<float> ballColourRatios = new List<float>();
+ 
 
     public bool CheckForDud( bool isLeft, bool isGreen)
     {
@@ -93,22 +95,31 @@ public class BallManager : MonoBehaviour
         return b;
     }
 
-    public void BallColourProbability( float percentage )
+    public void BallColourProbability( bool isLeft )
     {  
         var rand = Random.value;
         bool b = false;
 
-        //Debug.Log( "Rand: " + rand + " " + percentage / 100 );
+        float percentage = ballColourRatios[ StageManager.Instance.StageNumber - 1 ];
         
+        if( !isLeft )
+        {
+            percentage = 100 - percentage;
+        }
+
+        Debug.Log( "Current Percentage  " + percentage );
+       
         if ( rand < ( percentage / 100 ) )
             isGreenBall = true;
         else 
-            isGreenBall = false;       
-        
+            isGreenBall = false;        
     }
 
     public GameObject CreateBall( bool b )
     {
+        //Get the Ball Colour probability based on the current stage
+      
+        
         GameObject ball = null;
         SessionManager.Instance.IsBallDud = b;
 
