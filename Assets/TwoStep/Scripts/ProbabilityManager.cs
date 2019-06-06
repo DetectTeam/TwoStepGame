@@ -33,6 +33,9 @@ public class ProbabilityManager : MonoBehaviour
 
     [SerializeField] private string currentStage;
 
+    [SerializeField] private TextMeshProUGUI greenProbText;
+    [SerializeField] private TextMeshProUGUI redProbText;
+
 
 
     private void Awake()
@@ -60,7 +63,7 @@ public class ProbabilityManager : MonoBehaviour
     private void LoadProbabilityLists(  )
     {
         //Get current stage
-        currentStage = "stage2";
+        currentStage = "stage1";
 
         string path = "Probability/"+ currentStage;
         //Get Path based on current Stage
@@ -95,6 +98,8 @@ public class ProbabilityManager : MonoBehaviour
     public void IncrementGreenDrift()
     { 
         SessionManager.Instance.SetGreenProbability( greenProb.greenProbabilityList[ greenListCount ] );
+
+        greenProbText.text = greenProb.greenProbabilityList[ greenListCount ].ToString();
         
         greenListCount ++;
         
@@ -106,6 +111,8 @@ public class ProbabilityManager : MonoBehaviour
     public void IncrementRedDrift()
     {
         SessionManager.Instance.SetRedProbability( redProb.redProbabilityList[ redListCount ] );
+
+        redProbText.text = redProb.redProbabilityList[ redListCount ].ToString();
         
         redListCount ++;
         
